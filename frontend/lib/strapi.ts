@@ -52,8 +52,8 @@ export async function getProduct(documentId: string): Promise<StrapiSingleRespon
     }
 
     return res.json();
-  } catch (error) {
+  } catch {
     // Return a base mock-like structure or just re-throw to be handled by the caller's catch
-    throw error;
+    throw new Error("Product fetch failed and no mock available");
   }
 }
