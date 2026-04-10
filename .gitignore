@@ -1,154 +1,32 @@
-# ava-mobile — combined from frontend/ and strapi/ ignore rules
+# dependencies
+/node_modules
+/.pnpm-store
 
-############################
-# OS
-############################
+# next.js
+/.next/
+/out/
 
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-.Spotlight-V100
-.Trashes
-._*
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*~
+# strapi artifacts
+/strapi/node_modules/
+/strapi/dist/
+/strapi/.tmp/
+/strapi/.cache/
+/strapi/build/
 
-############################
-# Editors & IDEs
-############################
+# production artifacts
+/build
 
-.idea
-nbproject
-
-############################
-# Dependencies & package managers
-############################
-
-node_modules
-lib-cov
-.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-!.yarn/cache
-!.yarn/unplugged
-
-############################
-# Environment & secrets
-############################
-
-.env
-.env.*
-!.env.example
-!.env*.example
-
-############################
-# Logs & debug
-############################
-
-logs
-pids
-*.pid
+# logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
-.node_history
 
-############################
-# Testing & coverage
-############################
+# env files (keep example, ignore local)
+.env*.local
+.env
 
-coverage
-lcov.info
-
-############################
-# TypeScript / tooling
-############################
-
-*.tsbuildinfo
-.tsbuildinfo
-.eslintcache
-
-############################
-# Frontend (Next.js)
-############################
-
-.next/
-out/
-build
-next-env.d.ts
-.vercel
-
-############################
-# Strapi
-############################
-
-license.txt
-exports
-.strapi
-.strapi-updater.json
-.strapi-cloud.json
-dist
-ssl
-.strapi/
-
-# Strapi user uploads (keep folder with .gitkeep)
-strapi/public/uploads/*
-!strapi/public/uploads/.gitkeep
-
-############################
-# Strapi / local DB artifacts
-############################
-
-.tmp
-*.sqlite
-*.sqlite3
-
-############################
-# Archives & binaries (strapi list)
-############################
-
-*.7z
-*.csv
-*.dat
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.seed
-*.so
-*.swo
-*.swp
-*.swn
-*.swm
-*.out
-
-############################
-# Misc
-############################
-
-*#
+# misc
+.DS_Store
 *.pem
-*.sql
-*.msi
-*.msm
-*.msp
-*.cab
+node_modules
