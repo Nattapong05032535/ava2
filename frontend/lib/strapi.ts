@@ -29,7 +29,7 @@ export async function getProducts(): Promise<StrapiResponse<Product>> {
     }
 
     return res.json();
-  } catch (error) {
+  } catch {
     console.warn("Strapi connection failed. Falling back to empty data.");
     return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
   }
