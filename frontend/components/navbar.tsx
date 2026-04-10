@@ -95,9 +95,27 @@ export function Navbar() {
 
           <Link
             href="/shop"
-            className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-xs font-semibold text-white shadow-[0_12px_30px_rgba(17,17,17,0.16)] transition-transform hover:scale-[1.02]"
+            className="flex h-10 items-center justify-center rounded-full bg-[#111111] text-white shadow-[0_12px_30px_rgba(17,17,17,0.16)] transition-all hover:scale-[1.05] active:scale-95 px-3 md:px-6"
           >
-            เลือกซื้อสินค้า
+            <span className="hidden md:block text-xs font-semibold">เลือกซื้อสินค้า</span>
+            <svg
+              className="h-5 w-5 md:hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 21v-1.627a4.5 4.5 0 0 1 1.318-3.182l3.864-3.864a1.5 1.5 0 0 0-2.121-2.121l-3.864 3.864a4.5 4.5 0 0 1-3.182 1.318H7.5M10.5 3.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5Z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              />
+            </svg>
           </Link>
 
           {/* Mobile Menu Toggle */}
