@@ -123,49 +123,76 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-white md:hidden">
-          <div className="flex h-18 items-center justify-between px-6 border-b border-gray-100">
-            <Link href="/" onClick={() => setIsMenuOpen(false)}>
-              <div className="relative h-10 w-10">
-                <Image
-                  src="/images/logo/icon-logo.png"
-                  alt="AVA Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </Link>
-            <button 
-              onClick={() => setIsMenuOpen(false)}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500"
-            >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div className="flex flex-col p-6 gap-6">
-            {NAV_ITEMS.map((item) => (
+      <div 
+        className={`fixed inset-0 z-[60] bg-white/95 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden ${
+          isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+      >
+        <div className="flex h-18 items-center justify-between px-6 border-b border-gray-100/50">
+          <Link href="/" onClick={() => setIsMenuOpen(false)}>
+            <div className="relative h-10 w-10">
+              <Image
+                src="/images/logo/icon-logo.png"
+                alt="AVA Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </Link>
+          <button 
+            onClick={() => setIsMenuOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100/80 text-gray-900 transition-transform active:scale-95"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col p-8 pt-12 gap-8">
+          <div className="flex flex-col gap-6">
+            {NAV_ITEMS.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-gray-900"
+                style={{ transitionDelay: `${index * 50}ms` }}
+                className={`text-3xl font-bold tracking-tight text-gray-900 transition-all duration-500 ${
+                  isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
+                }`}
               >
                 {item.label}
               </Link>
             ))}
+          </div>
+
+          <div 
+            className={`mt-4 transition-all duration-700 delay-300 ${
+              isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            }`}
+          >
             <Link
               href="/shop"
               onClick={() => setIsMenuOpen(false)}
-              className="mt-4 flex items-center justify-center rounded-full bg-black py-4 text-sm font-semibold text-white"
+              className="flex items-center justify-center rounded-full bg-black py-4.5 text-[15px] font-bold text-white shadow-[0_20px_40px_rgba(0,0,0,0.15)] active:scale-95 transition-transform"
             >
               เลือกซื้อสินค้า
             </Link>
           </div>
+
+          <div 
+            className={`mt-auto border-t border-gray-100 pt-8 transition-all duration-700 delay-400 ${
+              isMenuOpen ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-4">ฝ่ายสนับสนุน</p>
+            <div className="flex flex-col gap-4 text-sm font-medium text-gray-600">
+               <Link href="/service-center" onClick={() => setIsMenuOpen(false)}>ศูนย์ช่วยเหลือ</Link>
+               <Link href="/about" onClick={() => setIsMenuOpen(false)}>ติดต่อเรา</Link>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
