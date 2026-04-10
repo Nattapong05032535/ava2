@@ -7,8 +7,8 @@ import { useCart } from "@/context/cart-context";
 
 const NAV_ITEMS = [
   { href: "/", label: "หน้าหลัก" },
-  { href: "/articles", label: "บทความ q&a" },
-  { href: "/about", label: "about" },
+  { href: "/articles", label: "บทความ" },
+  { href: "/about", label: "เกี่ยวกับเรา" },
   { href: "/service-center", label: "ศูนย์บริการ" },
 ] as const;
 

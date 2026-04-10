@@ -205,10 +205,10 @@ export default function Home() {
           <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-gray-300">
              <p>Copyright © 2026 AVA Mobile Official. All rights reserved.</p>
              <div className="flex gap-4">
-                <Link href="#" className="hover:underline">Privacy Policy</Link>
-                <Link href="#" className="hover:underline">Terms of Use</Link>
-                <Link href="#" className="hover:underline">Legal</Link>
-                <Link href="#" className="hover:underline">Site Map</Link>
+                <Link href="#" className="hover:underline">นโยบายความเป็นส่วนตัว</Link>
+                <Link href="#" className="hover:underline">เงื่อนไขการใช้งาน</Link>
+                <Link href="#" className="hover:underline">ข้อมูลทางกฎหมาย</Link>
+                <Link href="#" className="hover:underline">แผนผังเว็บไซต์</Link>
              </div>
           </div>
         </div>
