@@ -1,0 +1,99 @@
+<svg width="1800" height="1200" viewBox="0 0 1800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="p89Shadow" x="480" y="80" width="920" height="1060" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="34"/>
+      <feGaussianBlur stdDeviation="34"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0196078 0 0 0 0 0.0117647 0 0 0 0 0.00392157 0 0 0 0.34 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="p89Body" x1="34" y1="26" x2="420" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFBF73"/>
+      <stop offset="0.28" stop-color="#F29B45"/>
+      <stop offset="0.72" stop-color="#CF7424"/>
+      <stop offset="1" stop-color="#8E3F0F"/>
+    </linearGradient>
+    <linearGradient id="p89Edge" x1="0" y1="0" x2="450" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFDAB5"/>
+      <stop offset="0.28" stop-color="#D47C2D"/>
+      <stop offset="1" stop-color="#6E2E0A"/>
+    </linearGradient>
+    <linearGradient id="p89Island" x1="18" y1="20" x2="238" y2="222" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8A25E"/>
+      <stop offset="0.48" stop-color="#C16B24"/>
+      <stop offset="1" stop-color="#6E2D0B"/>
+    </linearGradient>
+    <linearGradient id="p89Window" x1="82" y1="408" x2="332" y2="738" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC78A" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="p89Logo" x1="0" y1="0" x2="34" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7EF"/>
+      <stop offset="1" stop-color="#FFE0BE" stop-opacity="0.48"/>
+    </linearGradient>
+    <radialGradient id="p89LensRing" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(36)">
+      <stop stop-color="#4F545E"/>
+      <stop offset="0.7" stop-color="#20242A"/>
+      <stop offset="1" stop-color="#0A0C10"/>
+    </radialGradient>
+    <radialGradient id="p89LensCore" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(23)">
+      <stop stop-color="#11192A"/>
+      <stop offset="0.45" stop-color="#060910"/>
+      <stop offset="1" stop-color="#000000"/>
+    </radialGradient>
+    <radialGradient id="p89LensGlass" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(11)">
+      <stop stop-color="#79B6FF"/>
+      <stop offset="0.42" stop-color="#274A79"/>
+      <stop offset="1" stop-color="#08101A"/>
+    </radialGradient>
+    <radialGradient id="p89Glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 520) rotate(90) scale(270)">
+      <stop stop-color="#FFAE62" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#FFAE62" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="1010" cy="520" r="270" fill="url(#p89Glow)"/>
+  <ellipse cx="910" cy="962" rx="330" ry="74" fill="#120701" fill-opacity="0.28"/>
+
+  <g transform="translate(696 144) rotate(18 225 420)" filter="url(#p89Shadow)">
+    <rect x="18" y="24" width="450" height="840" rx="108" fill="#6D3110"/>
+    <rect x="0" y="0" width="450" height="840" rx="104" fill="url(#p89Edge)"/>
+    <rect x="10" y="10" width="430" height="820" rx="96" fill="url(#p89Body)"/>
+    <rect x="10" y="10" width="430" height="820" rx="96" stroke="#FFE3C2" stroke-opacity="0.46" stroke-width="3"/>
+
+    <path d="M38 52C112 22 198 26 286 56C226 150 154 288 86 454L38 52Z" fill="#FFFFFF" fill-opacity="0.16"/>
+    <path d="M430 98C440 132 444 172 444 214V714" stroke="#FFF5E9" stroke-opacity="0.26" stroke-width="4" stroke-linecap="round"/>
+    <path d="M420 108C428 138 432 176 432 230V704" stroke="#7D360E" stroke-opacity="0.24" stroke-width="8" stroke-linecap="round"/>
+
+    <rect x="26" y="24" width="238" height="202" rx="62" fill="url(#p89Island)"/>
+    <rect x="26" y="24" width="238" height="202" rx="62" stroke="#FFDAB7" stroke-opacity="0.24" stroke-width="2"/>
+
+    <circle cx="94" cy="90" r="38" fill="url(#p89LensRing)"/>
+    <circle cx="94" cy="90" r="28" fill="url(#p89LensCore)"/>
+    <circle cx="94" cy="90" r="12" fill="url(#p89LensGlass)"/>
+    <circle cx="80" cy="76" r="5" fill="#FFFFFF" fill-opacity="0.24"/>
+
+    <circle cx="176" cy="90" r="38" fill="url(#p89LensRing)"/>
+    <circle cx="176" cy="90" r="28" fill="url(#p89LensCore)"/>
+    <circle cx="176" cy="90" r="12" fill="url(#p89LensGlass)"/>
+    <circle cx="162" cy="76" r="5" fill="#FFFFFF" fill-opacity="0.24"/>
+
+    <circle cx="94" cy="172" r="38" fill="url(#p89LensRing)"/>
+    <circle cx="94" cy="172" r="28" fill="url(#p89LensCore)"/>
+    <circle cx="94" cy="172" r="12" fill="url(#p89LensGlass)"/>
+    <circle cx="80" cy="158" r="5" fill="#FFFFFF" fill-opacity="0.24"/>
+
+    <circle cx="192" cy="64" r="14" fill="#F3E1C7"/>
+    <circle cx="192" cy="64" r="8" fill="#FFF7EC"/>
+    <circle cx="206" cy="146" r="16" fill="#0B0E14"/>
+    <circle cx="166" cy="170" r="6" fill="#1B2028"/>
+
+    <rect x="74" y="384" width="286" height="300" rx="88" fill="url(#p89Window)" opacity="0.8"/>
+    <path d="M88 736C166 724 260 724 360 738" stroke="#8D3F10" stroke-opacity="0.18" stroke-width="10" stroke-linecap="round"/>
+
+    <path d="M164 742L182 696L200 742H192L188 730H176L172 742H164ZM178 724H186L182 710L178 724Z" fill="url(#p89Logo)"/>
+    <path d="M210 742V696H216L226 724L236 696H242V742H236V710L228 738H224L216 710V742H210Z" fill="url(#p89Logo)"/>
+  </g>
+</svg>

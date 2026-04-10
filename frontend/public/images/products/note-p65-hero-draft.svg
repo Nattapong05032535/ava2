@@ -1,0 +1,55 @@
+<svg width="1800" height="1200" viewBox="0 0 1800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="noteShadow" x="450" y="100" width="900" height="1100" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="50"/>
+      <feGaussianBlur stdDeviation="40"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.12 0 0 0 0 0.15 0 0 0 0.35 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="noteFrame" x1="0" y1="0" x2="440" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBC2C9"/>
+      <stop offset="0.5" stop-color="#838D95"/>
+      <stop offset="1" stop-color="#555D65"/>
+    </linearGradient>
+    <linearGradient id="noteScreen" x1="0" y1="0" x2="420" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E2327"/>
+      <stop offset="0.5" stop-color="#090B0D"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="noteShine" x1="40" y1="40" x2="350" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.14"/>
+      <stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0.02"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="noteAccent" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 550) rotate(90) scale(380)">
+      <stop stop-color="#88949C" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#88949C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="900" cy="550" r="380" fill="url(#noteAccent)"/>
+  <ellipse cx="900" cy="1000" rx="400" ry="70" fill="#0E1216" fill-opacity="0.32"/>
+
+  <g filter="url(#noteShadow)">
+    <g transform="translate(680 120) rotate(12 220 430)">
+      <!-- Main Phone -->
+      <rect x="0" y="0" width="440" height="860" rx="58" fill="url(#noteFrame)"/>
+      <rect x="2" y="2" width="436" height="856" rx="56" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+      <rect x="12" y="12" width="416" height="836" rx="46" fill="url(#noteScreen)"/>
+      
+      <!-- Shine -->
+      <path d="M12 60C100 120 220 240 380 340V12H12V60Z" fill="url(#noteShine)"/>
+      
+      <!-- Note Pen (Floating beside) -->
+      <g transform="translate(-100 200) rotate(-25 15 250)">
+        <rect x="0" y="0" width="22" height="500" rx="11" fill="url(#noteFrame)"/>
+        <rect x="1" y="1" width="20" height="498" rx="10" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
+        <!-- Pen Tip -->
+        <path d="M0 480L11 510L22 480H0Z" fill="#2D333B"/>
+      </g>
+    </g>
+  </g>
+</svg>

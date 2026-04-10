@@ -1,0 +1,26 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tab_body_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cad4e0" />
+      <stop offset="100%" stop-color="#8ba2b5" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Tablet Body (Landscape) -->
+  <g transform="translate(100, 150) rotate(-2)">
+    <rect x="0" y="0" width="1000" height="650" rx="40" fill="url(#tab_body_grad)" />
+    <rect x="25" y="25" width="950" height="600" rx="25" fill="#080b0f" />
+    
+    <!-- Camera Area -->
+    <rect x="850" y="50" width="80" height="80" rx="20" fill="#ffffff" fill-opacity="0.1" />
+    <circle cx="890" cy="90" r="20" fill="#000" />
+    
+    <!-- Screen Highlights -->
+    <rect x="100" y="100" width="600" height="400" rx="10" fill="#ffffff" fill-opacity="0.03" />
+    <path d="M150 200 L450 200 M150 250 L350 250" stroke="white" stroke-width="4" stroke-opacity="0.2" />
+  </g>
+  
+  <!-- Pro Stylus Pen -->
+  <rect x="200" y="780" width="450" height="18" rx="9" fill="#ffffff" fill-opacity="0.9" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.2))" />
+  <path d="M650 780 L675 789 L650 798 Z" fill="#ffffff" fill-opacity="0.9" />
+</svg>

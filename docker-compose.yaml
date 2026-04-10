@@ -1,0 +1,64 @@
+services:
+  frontend:
+    container_name: v2-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file: ./frontend/.env.local
+    ports:
+      - "3001:3000"
+    networks:
+      - frontend
+    depends_on:
+      - strapiDB
+      - strapi
+
+  strapi:
+    container_name: v2-strapi
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
+    # restart: unless-stopped
+    env_file: ./strapi/.env
+    environment:
+      DATABASE_HOST: strapiDB
+    volumes:
+      - ./strapi/config:/opt/app/config
+      - ./strapi/src:/opt/app/src
+      - ./strapi/package.json:/opt/app/package.json
+      - ./strapi/.env:/opt/app/.env
+      - ./strapi/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1338:1337"
+    networks:
+      - strapi
+      - frontend
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: v2-strapiDB
+    image: postgres:17.0-alpine
+    # restart: unless-stopped
+    environment:
+      POSTGRES_USER: strapi-admin
+      POSTGRES_PASSWORD: strapi-admin-pass
+      POSTGRES_DB: strapi-db
+    volumes:
+      - strapi-data:/var/lib/postgresql/data/ #using a volume
+
+    ports:
+      - "5434:5432"
+    networks:
+      - strapi
+
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: strapi
+    driver: bridge
+  frontend:
+    name: frontend
+    driver: bridge

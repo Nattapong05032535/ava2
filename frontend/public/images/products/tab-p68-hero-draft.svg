@@ -1,0 +1,62 @@
+<svg width="1800" height="1200" viewBox="0 0 1800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="tabShadow" x="300" y="200" width="1200" height="850" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="44"/>
+      <feGaussianBlur stdDeviation="38"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.05 0 0 0 0 0.06 0 0 0 0 0.08 0 0 0 0.38 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="tabFrame" x1="0" y1="0" x2="1000" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A3F47"/>
+      <stop offset="0.5" stop-color="#1E2228"/>
+      <stop offset="1" stop-color="#0F1114"/>
+    </linearGradient>
+    <linearGradient id="tabScreen" x1="0" y1="0" x2="960" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1F25"/>
+      <stop offset="0.5" stop-color="#080A0C"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="tabGlass" x1="100" y1="50" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="0.4" stop-color="#FFFFFF" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="tabGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 600) rotate(90) scale(400)">
+      <stop stop-color="#4F6F8F" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#4F6F8F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="900" cy="600" r="400" fill="url(#tabGlow)"/>
+  <ellipse cx="900" cy="1000" rx="550" ry="100" fill="#000000" fill-opacity="0.32"/>
+
+  <g filter="url(#tabShadow)">
+    <g transform="translate(400 300) rotate(-6 500 350)">
+      <!-- Device Frame -->
+      <rect x="0" y="0" width="1000" height="700" rx="44" fill="url(#tabFrame)"/>
+      <rect x="2" y="2" width="996" height="696" rx="42" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1.5"/>
+      
+      <!-- Screen Area -->
+      <rect x="20" y="20" width="960" height="660" rx="32" fill="url(#tabScreen)"/>
+      
+      <!-- Screen Reflection -->
+      <path d="M20 32C150 120 380 280 650 380H980V20H20V32Z" fill="url(#tabGlass)"/>
+      
+      <!-- Camera Lens (Small point) -->
+      <circle cx="500" cy="40" r="6" fill="#1A1F25"/>
+      <circle cx="500" cy="40" r="2.5" fill="#2E4A6F"/>
+      
+      <!-- Charging Port cutout (visual) -->
+      <rect x="1000" y="320" width="4" height="60" rx="2" fill="#000000" fill-opacity="0.4"/>
+      
+      <!-- Wordmark placeholder style -->
+      <g transform="translate(460 620)" opacity="0.4">
+        <path d="M0 24L8 0L16 24H12L10 18H6L4 24H0ZM9 12L7 6L5 12H9Z" fill="white"/>
+        <path d="M20 24V0H24L32 18L40 0H44V24H40V6L34 20H30L24 6V24H20Z" fill="white"/>
+      </g>
+    </g>
+  </g>
+</svg>
