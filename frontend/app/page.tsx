@@ -10,7 +10,7 @@ const AVA_LINEUP = [
     shortName: "Pro Max P89",
     tagline: "Intelligence in every detail.",
     image: "/images/products/promax-p89.png",
-    price: "เริ่มที่ ฿XX,XXX",
+    price: "เริ่มที่ ฿24,990",
     colors: ["bg-black", "bg-gray-400", "bg-orange-400", "bg-blue-900"],
   },
   {
@@ -19,7 +19,7 @@ const AVA_LINEUP = [
     shortName: "Pro Max P63",
     tagline: "Streamlined luxury. Pro all day.",
     image: "/images/products/promax-p63.png",
-    price: "เริ่มที่ ฿XX,XXX",
+    price: "เริ่มที่ ฿19,990",
     colors: ["bg-slate-800", "bg-slate-300", "bg-blue-200"],
   },
   {
@@ -28,7 +28,7 @@ const AVA_LINEUP = [
     shortName: "Note Cold P65",
     tagline: "Note everything. Anywhere.",
     image: "/images/products/note-p65.png",
-    price: "เริ่มที่ ฿XX,XXX",
+    price: "เริ่มที่ ฿14,990",
     colors: ["bg-black", "bg-gray-300"],
   },
   {
@@ -37,7 +37,7 @@ const AVA_LINEUP = [
     shortName: "Series Pro P65",
     tagline: "More fun. More power.",
     image: "/images/products/enjoy-p65.png",
-    price: "เริ่มที่ ฿X,XXX",
+    price: "เริ่มที่ ฿9,990",
     colors: ["bg-black", "bg-blue-100"],
   },
   {
@@ -46,7 +46,7 @@ const AVA_LINEUP = [
     shortName: "Tab Ultra P68",
     tagline: "Pro creativity. Ultra portable.",
     image: "/images/products/tab-p68.png",
-    price: "เริ่มที่ ฿XX,XXX",
+    price: "เริ่มที่ ฿18,990",
     colors: ["bg-gray-700", "bg-blue-200", "bg-stone-200"],
   },
 ];
@@ -101,7 +101,7 @@ export default function Home() {
               className="relative order-2 block h-[360px] bg-white sm:h-[460px] lg:order-1 lg:h-[620px]"
             >
               <Image
-                src="/images/products/promax-p893.png.png"
+                src="/images/products/promax-p89.png"
                 alt={heroProduct.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"

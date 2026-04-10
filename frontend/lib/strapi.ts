@@ -15,34 +15,45 @@ export function getStrapiImageUrl(url: string | undefined | null): string {
  * ดึงข้อมูล products ทั้งหมดจาก Strapi API
  */
 export async function getProducts(): Promise<StrapiResponse<Product>> {
-  const res = await fetch(
-    `${STRAPI_URL}/api/products?populate=*&status=published`,
-    {
-      next: { revalidate: 60 }, // revalidate ทุก 60 วินาที
+  try {
+    const res = await fetch(
+      `${STRAPI_URL}/api/products?populate=*&status=published`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!res.ok) {
+      console.warn(`Strapi fetch failed: ${res.status}. Falling back to empty data.`);
+      return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
     }
-  );
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+    return res.json();
+  } catch (error) {
+    console.warn("Strapi connection failed. Falling back to empty data.");
+    return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
   }
-
-  return res.json();
 }
 
 /**
  * ดึงข้อมูล product เดียวจาก Strapi API
  */
 export async function getProduct(documentId: string): Promise<StrapiSingleResponse<Product>> {
-  const res = await fetch(
-    `${STRAPI_URL}/api/products/${documentId}?populate=*`,
-    {
-      next: { revalidate: 60 },
+  try {
+    const res = await fetch(
+      `${STRAPI_URL}/api/products/${documentId}?populate=*`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`Product not found in Strapi`);
     }
-  );
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch product: ${res.status} ${res.statusText}`);
+    return res.json();
+  } catch (error) {
+    // Return a base mock-like structure or just re-throw to be handled by the caller's catch
+    throw error;
   }
-
-  return res.json();
 }

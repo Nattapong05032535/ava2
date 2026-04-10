@@ -156,9 +156,6 @@ export default function ProductConfigPage({ params }: { params: Promise<{ id: st
                  >
                    เพิ่มลงตะกร้า
                  </button>
-                 <button className="w-full rounded-full border border-gray-300 py-5 text-lg font-semibold text-[#1d1d1f] transition-all hover:bg-gray-50">
-                    ชำระเงินทันที
-                 </button>
                </div>
             </div>
           </div>
