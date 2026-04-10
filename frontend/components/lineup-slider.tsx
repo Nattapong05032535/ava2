@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Play } from "lucide-react";
 
 interface ProductItem {
   id: string;
@@ -16,17 +17,45 @@ interface ProductItem {
 
 export function LineupSlider({ products }: { products: ProductItem[] }) {
   const [currentSet, setCurrentSet] = useState(0);
-  const itemsPerPage = 3;
-  const totalSets = Math.ceil(products.length / itemsPerPage);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Reset currentSet if it goes out of bounds when itemsPerPage changes
+  useEffect(() => {
+    const totalSets = Math.ceil(products.length / itemsPerPage);
+    if (currentSet >= totalSets) {
+      setCurrentSet(0);
+    }
+  }, [itemsPerPage, products.length, currentSet]);
+
+  const totalSets = Math.ceil(products.length / itemsPerPage);
   const displayedProducts = products.slice(
     currentSet * itemsPerPage,
     (currentSet + 1) * itemsPerPage
   );
 
+  const nextSet = () => {
+    setCurrentSet((prev) => (prev + 1) % totalSets);
+  };
+
   return (
-    <div className="space-y-10">
-      {/* Products Row */}
+    <div className="space-y-12">
+      {/* Products Display */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {displayedProducts.map((item) => (
           <article
@@ -39,7 +68,7 @@ export function LineupSlider({ products }: { products: ProductItem[] }) {
 
             <Link href={`/products/${item.id}`} prefetch className="mt-3 block">
               <div className="relative overflow-hidden rounded-[1.8rem] bg-white">
-                <div className="relative h-52 sm:h-60">
+                <div className="relative h-56 sm:h-60">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -101,29 +130,36 @@ export function LineupSlider({ products }: { products: ProductItem[] }) {
         ))}
       </div>
 
-      {/* Set Pagination Dots */}
+      {/* Apple-style Pagination Control */}
       {totalSets > 1 && (
-        <div className="flex items-center justify-center gap-4">
-          {Array.from({ length: totalSets }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSet(i)}
-              className={`group flex items-center gap-3 transition-opacity ${
-                currentSet === i ? "opacity-100" : "opacity-40 hover:opacity-60"
-              }`}
-            >
-              <span
-                className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                  currentSet === i ? "w-8 bg-black" : "bg-gray-400"
-                }`}
-              />
-              {currentSet === i && (
-                <span className="text-[10px] font-bold uppercase tracking-widest text-black">
-                  Set {i + 1}
-                </span>
-              )}
-            </button>
-          ))}
+        <div className="flex items-center justify-center gap-3">
+          {/* Dots Container */}
+          <div className="flex items-center gap-2.5 rounded-full bg-[#1e1e1e]/90 px-5 py-4 backdrop-blur-md shadow-lg border border-white/5">
+            {Array.from({ length: totalSets }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSet(i)}
+                className="group relative flex items-center justify-center h-4 focus:outline-none"
+              >
+                <span
+                  className={`h-2 transition-all duration-500 ease-out rounded-full ${
+                    currentSet === i 
+                      ? "w-8 bg-white" 
+                      : "w-2 bg-[#666666] hover:bg-[#999999]"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Next/Play Button */}
+          <button
+            onClick={nextSet}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1e1e1e]/90 text-white backdrop-blur-md shadow-lg border border-white/5 transition-all hover:scale-105 hover:bg-[#2a2a2a] active:scale-95"
+            aria-label="Next set"
+          >
+            <Play className="ml-0.5 h-4 w-4 fill-current" />
+          </button>
         </div>
       )}
     </div>
