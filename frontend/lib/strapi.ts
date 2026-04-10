@@ -24,13 +24,11 @@ export async function getProducts(): Promise<StrapiResponse<Product>> {
     );
 
     if (!res.ok) {
-      console.warn(`Strapi fetch failed: ${res.status}. Falling back to empty data.`);
       return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
     }
 
     return res.json();
   } catch {
-    console.warn("Strapi connection failed. Falling back to empty data.");
     return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
   }
 }
