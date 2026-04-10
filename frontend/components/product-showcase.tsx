@@ -3,7 +3,7 @@
 import React, { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { MoveRight } from "lucide-react";
 import type {
   ProductShowcase,
   ProductShowcaseSection,
@@ -208,8 +208,8 @@ function SpotlightHero({ showcase }: { showcase: ProductShowcase }) {
                 >
                   {showcase.hero.primaryCtaLabel}
                 </Link>
-                 <Link
-                  href="/shop"
+                <Link
+                  href="/products"
                   className="rounded-full border border-black/8 bg-white/60 px-8 py-4 text-sm font-semibold text-(--showcase-ink) transition-colors hover:bg-white/80 sm:text-base"
                 >
                   {showcase.hero.secondaryCtaLabel}
@@ -308,7 +308,8 @@ function SpotlightHero({ showcase }: { showcase: ProductShowcase }) {
 
 function RelatedCard({ item }: { item: ProductLineupItem }) {
   return (
-    <div
+    <Link
+      href={`/products/${item.documentId}`}
       className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-black/6 bg-white/80 p-5 transition-all hover:scale-[1.02] sm:p-6"
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white sm:rounded-2xl">
@@ -329,8 +330,11 @@ function RelatedCard({ item }: { item: ProductLineupItem }) {
         <p className="mt-1 text-[13px] text-gray-500 line-clamp-2 sm:mt-2 sm:text-sm">
           {item.subtitle}
         </p>
+        <div className="mt-auto pt-5 flex items-center text-[13px] font-semibold text-blue-600 transition-colors group-hover:text-blue-700 sm:pt-6 sm:text-sm">
+          ดูรายละเอียด <MoveRight className="ml-2 h-4 w-4" />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -530,10 +534,10 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                   </h2>
                 </div>
                 <Link
-                  href="/shop"
+                  href="/products"
                   className="text-sm font-medium text-(--showcase-accent)"
                 >
-                  เลือกซื้อสินค้า
+                  ดูสินค้าทั้งหมด
                 </Link>
               </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import {
   resolveProductPresentationByModelKey,
@@ -143,6 +144,7 @@ function ProductPurchaseCard({
   const { modelName, template } = resolveProductPresentationByModelKey(
     product.modelKey
   );
+  const detailHref = `/products/${product.modelKey}`;
 
 
   return (
@@ -161,7 +163,7 @@ function ProductPurchaseCard({
         </span>
       </div>
 
-      <div className="mt-5 block">
+      <Link href={detailHref} className="mt-5 block">
         <div
           className="relative overflow-hidden rounded-[1.7rem]"
           style={{
@@ -178,7 +180,7 @@ function ProductPurchaseCard({
             />
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="mt-6 flex flex-1 flex-col">
         <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-tight text-[#161616]">
@@ -257,6 +259,12 @@ function ProductPurchaseCard({
           >
             เลือกแพ็กเกจ
           </button>
+          <Link
+            href={detailHref}
+            className="inline-flex items-center justify-center rounded-full border border-black/12 bg-white px-5 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-[#f3f4f6]"
+          >
+            ดูรายละเอียดรุ่น
+          </Link>
         </div>
       </div>
     </article>

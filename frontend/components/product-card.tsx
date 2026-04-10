@@ -28,7 +28,8 @@ export function ProductCard({ product }: ProductCardProps) {
         product.heroImg?.formats?.small?.url ||
         product.heroImg?.url
     ) || presentation.art.fallbackProduct;
-  const buyHref = `/shop`; // Point to main shop for now
+  const detailHref = `/products/${product.documentId}`;
+  const buyHref = `/shop/${modelKey}`;
   const description = product.details || presentation.hero.subheadline;
   const price = PRICE_BY_MODEL[modelKey] || PRICE_BY_MODEL.default;
   const swatches = presentation.finishes.slice(0, 4);
@@ -42,7 +43,11 @@ export function ProductCard({ product }: ProductCardProps) {
         ใหม่
       </p>
 
-      <div className="mt-4 block">
+      <Link
+        href={detailHref}
+        prefetch
+        className="mt-4 block"
+      >
         <div
           className="relative overflow-hidden rounded-[1.8rem]"
           style={{
@@ -66,18 +71,18 @@ export function ProductCard({ product }: ProductCardProps) {
             />
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="mt-6 flex flex-1 flex-col">
         <p className="text-[11px] font-medium uppercase tracking-[0.34em] text-[#6a7280]">
           {presentation.category}
         </p>
 
-        <div>
+        <Link href={detailHref} prefetch>
           <h3 className="mt-3 min-h-24 text-[2rem] font-semibold leading-[1.08] tracking-tight text-[#161616]">
             {modelName}
           </h3>
-        </div>
+        </Link>
 
         <p className="mt-4 min-h-[5.5rem] text-sm leading-7 text-[#5f6570]">
           {description}
@@ -104,7 +109,13 @@ export function ProductCard({ product }: ProductCardProps) {
               href={buyHref}
               className="inline-flex items-center justify-center rounded-full bg-black px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1a]"
             >
-              เลือกซื้อ
+              ซื้อ
+            </Link>
+            <Link
+              href={detailHref}
+              className="inline-flex items-center justify-center rounded-full border border-black/12 bg-white px-5 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-[#f3f4f6]"
+            >
+              ดูรายละเอียด
             </Link>
           </div>
         </div>

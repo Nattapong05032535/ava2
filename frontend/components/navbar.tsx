@@ -13,6 +13,8 @@ const NAV_ITEMS = [
 ] as const;
 
 export function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/8 bg-white shadow-[0_10px_28px_rgba(15,23,42,0.04)]">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.18),transparent)]" />
@@ -39,6 +41,7 @@ export function Navbar() {
           </div>
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center rounded-full border border-gray-200 bg-white px-6 py-2.5 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
           <div className="flex items-center gap-8 text-sm font-medium">
             {NAV_ITEMS.map((item) => (
@@ -96,7 +99,12 @@ export function Navbar() {
           >
             เลือกซื้อสินค้า
           </Link>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white md:hidden">
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setIsMenuOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white md:hidden"
+          >
             <svg
               className="h-5 w-5"
               fill="none"
@@ -113,6 +121,51 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[60] bg-white md:hidden">
+          <div className="flex h-18 items-center justify-between px-6 border-b border-gray-100">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
+              <div className="relative h-10 w-10">
+                <Image
+                  src="/images/logo/icon-logo.png"
+                  alt="AVA Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Link>
+            <button 
+              onClick={() => setIsMenuOpen(false)}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="flex flex-col p-6 gap-6">
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-gray-900"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/shop"
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-4 flex items-center justify-center rounded-full bg-black py-4 text-sm font-semibold text-white"
+            >
+              เลือกซื้อสินค้า
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

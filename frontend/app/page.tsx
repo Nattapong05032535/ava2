@@ -59,12 +59,14 @@ export default function Home() {
 
       <main className="flex-grow pt-[64px]">
         {/* APPLE-STYLE SUB-MENU (SECONDARY NAV) */}
-        <div className="sticky top-0 z-40 w-full overflow-x-auto border-b border-gray-200 bg-white/90 backdrop-blur-xl no-scrollbar">
+        <div className="z-40 hidden w-full overflow-x-auto border-b border-gray-200 bg-white/90 backdrop-blur-xl no-scrollbar md:block">
           <div className="mx-auto flex max-w-7xl gap-4 px-6 py-4 min-w-max lg:min-w-0">
             {AVA_LINEUP.map((item) => (
-              <div
+              <Link
                 key={item.id}
-                className="group flex min-w-[220px] items-center justify-between gap-4 rounded-[1.35rem] border border-black/10 bg-[#f8f8f9] px-4 py-4 shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-black/18 hover:bg-white lg:min-w-0 lg:flex-1"
+                href={`/products/${item.id}`}
+                prefetch
+                className="group flex min-w-[220px] items-center justify-between gap-4 rounded-[1.35rem] border border-black/10 bg-[#f8f8f9] px-4 py-4 shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-black/18 hover:bg-white lg:min-w-0 lg:flex-1"
               >
                 <div className="min-w-0">
                   <p className="text-base font-semibold tracking-tight text-gray-900">
@@ -84,7 +86,7 @@ export default function Home() {
                     className="object-contain"
                   />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -92,7 +94,9 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className="overflow-hidden bg-white py-14 lg:py-20">
           <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-            <div
+            <Link
+              href="/products/promax-p89"
+              prefetch
               className="relative order-2 block h-[360px] bg-white sm:h-[460px] lg:order-1 lg:h-[620px]"
             >
               <Image
@@ -103,7 +107,7 @@ export default function Home() {
                 loading="eager"
                 className="animate-in fade-in zoom-in duration-1000 delay-200 object-contain object-center lg:scale-[1.08]"
               />
-            </div>
+            </Link>
 
             <div className="relative order-1 text-center text-[#111111] lg:order-2 lg:text-left">
               <p className="animate-in fade-in slide-in-from-bottom-5 text-sm font-semibold tracking-[0.18em] text-[#6b6f76] duration-700">
@@ -124,9 +128,16 @@ export default function Home() {
                 <Link
                   href="/shop/promax-p89"
                   prefetch
-                  className="rounded-full bg-black px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1a]"
+                  className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1a]"
                 >
-                  เลือกซื้อ
+                  ซื้อ
+                </Link>
+                <Link
+                  href="/products/promax-p89"
+                  prefetch
+                  className="rounded-full border border-black/12 bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-[#f3f4f6]"
+                >
+                  ดูรายละเอียด
                 </Link>
               </div>
             </div>
@@ -140,17 +151,19 @@ export default function Home() {
               Explore the lineup.
             </h2>
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 -mx-6 px-6">
               {AVA_LINEUP.map((item) => (
                 <article
                   key={item.id}
-                  className="group flex h-full flex-col rounded-[2rem] border border-black/8 bg-[#f6f7f9] p-4 shadow-[0_20px_55px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1"
+                  className="group flex h-full min-w-[320px] sm:min-w-[360px] flex-col rounded-[2rem] border border-black/8 bg-[#f6f7f9] p-4 shadow-[0_20px_55px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1 snap-start"
                 >
                   <p className="text-[11px] font-semibold tracking-tight text-[#1b5cff]">
                     ใหม่
                   </p>
 
-                  <div
+                  <Link
+                    href={`/products/${item.id}`}
+                    prefetch
                     className="mt-3 block"
                   >
                     <div className="relative overflow-hidden rounded-[1.8rem] bg-white">
@@ -164,7 +177,7 @@ export default function Home() {
                       />
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
                   <div className="mt-5 flex flex-1 flex-col">
                     <p className="text-[11px] font-medium uppercase tracking-[0.34em] text-[#6a7280]">
@@ -200,7 +213,14 @@ export default function Home() {
                         prefetch
                         className="inline-flex items-center justify-center rounded-full bg-black px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1a]"
                       >
-                        เลือกซื้อ
+                        ซื้อ
+                      </Link>
+                      <Link
+                        href={`/products/${item.id}`}
+                        prefetch
+                        className="inline-flex items-center justify-center rounded-full border border-black/12 bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-[#f3f4f6]"
+                      >
+                        เรียนรู้เพิ่มเติม
                       </Link>
                       </div>
                     </div>
