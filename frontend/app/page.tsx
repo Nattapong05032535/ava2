@@ -148,8 +148,8 @@ export default function Home() {
         {/* LINEUP EXPLORATION */}
         <section className="bg-[#f8f9fb] py-24">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="text-3xl lg:text-5xl font-bold text-center mb-20 tracking-tight">
-              Explore the lineup.
+            <h2 className="text-3xl lg:text-5xl font-bold text-center mb-16 tracking-tight">
+              เลือกชมกลุ่มผลิตภัณฑ์ของเรา
             </h2>
 
             <LineupSlider products={AVA_LINEUP} />
@@ -159,12 +159,12 @@ export default function Home() {
         {/* WHY AVA - FEATURE STRIPS */}
         <section className="bg-[#f5f5f7] py-24">
            <div className="mx-auto max-w-5xl px-6">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-16 tracking-tight">Why AVA is specialized.</h2>
+              <h2 className="text-3xl lg:text-5xl font-bold mb-16 tracking-tight">ทำไม AVA ถึงพิเศษเหนือใคร</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative">
+                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative border border-black/5 shadow-sm">
                     <div className="relative z-10">
-                       <h3 className="text-2xl font-bold mb-4">Intelligence built-in.</h3>
-                       <p className="text-gray-500">Powerful chips for maximum performance and efficiency in every task.</p>
+                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">อัจฉริยะในทุกอณู</h3>
+                       <p className="text-gray-500 leading-relaxed">ชิปอันทรงพลังที่ออกแบบมาเพื่อประสิทธิภาพสูงสุดและการจัดการพลังงานที่ยอดเยี่ยมในทุกๆ งานของคุณ</p>
                     </div>
                     <div className="relative h-48 w-full group-hover:scale-110 transition-transform duration-700">
                        <Image
@@ -176,10 +176,10 @@ export default function Home() {
                        />
                     </div>
                  </div>
-                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative">
+                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative border border-black/5 shadow-sm">
                     <div className="relative z-10">
-                       <h3 className="text-2xl font-bold mb-4">Pro Cameras.</h3>
-                       <p className="text-gray-500">Capture the world in stunning detail with advanced sensor technology.</p>
+                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">กล้องถ่ายรูปสเปกโปร</h3>
+                       <p className="text-gray-500 leading-relaxed">บันทึกโลกของคุณด้วยรายละเอียดที่น่าทึ่งผ่านเทคโนโลยีเซ็นเซอร์ที่ทันสมัยและระบบประมวลผลภาพขั้นสูง</p>
                     </div>
                     <div className="relative h-48 w-full group-hover:scale-105 transition-transform duration-700 translate-y-8">
                        <Image
