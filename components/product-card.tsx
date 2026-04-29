@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { resolveProductPresentation } from "@/constants/products";
-import { getStrapiImageUrl } from "@/lib/strapi";
-import type { Product } from "@/types";
+import {
+  resolveProductPresentationByModelKey,
+  type SupportedProductModelKey,
+} from "@/constants/products";
 
 interface ProductCardProps {
-  product: Product;
+  modelKey: SupportedProductModelKey;
 }
 
 const PRICE_BY_MODEL: Record<string, string> = {
@@ -17,26 +18,19 @@ const PRICE_BY_MODEL: Record<string, string> = {
   default: "฿XX,XXX",
 };
 
-export function ProductCard({ product }: ProductCardProps) {
-  const { modelKey, modelName, template: presentation } = resolveProductPresentation(
-    product.name || ""
-  );
-  const imageUrl =
-    presentation.art.detail ||
-    getStrapiImageUrl(
-      product.heroImg?.formats?.medium?.url ||
-        product.heroImg?.formats?.small?.url ||
-        product.heroImg?.url
-    ) || presentation.art.fallbackProduct;
-  const detailHref = `/products/${product.documentId}`;
+export function ProductCard({ modelKey }: ProductCardProps) {
+  const { modelName, template: presentation } =
+    resolveProductPresentationByModelKey(modelKey);
+  const imageUrl = presentation.art.detail || presentation.art.fallbackProduct;
+  const detailHref = `/products/${modelKey}`;
   const buyHref = `/shop/${modelKey}`;
-  const description = product.details || presentation.hero.subheadline;
+  const description = presentation.hero.subheadline;
   const price = PRICE_BY_MODEL[modelKey] || PRICE_BY_MODEL.default;
   const swatches = presentation.finishes.slice(0, 4);
 
   return (
     <article
-      id={`product-card-${product.id}`}
+      id={`product-card-${modelKey}`}
       className="group flex h-full flex-col rounded-[2rem] border border-black/8 bg-[#f6f7f9] p-5 shadow-[0_20px_55px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1"
     >
       <p className="text-[11px] font-semibold tracking-tight text-[#1b5cff]">
@@ -64,7 +58,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="relative h-56 sm:h-64">
             <Image
               src={imageUrl}
-              alt={product.heroImg?.alternativeText || modelName}
+              alt={modelName}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               className="object-contain p-4 transition-transform duration-500 group-hover:scale-105 sm:p-5"
@@ -91,7 +85,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-5 flex gap-2">
           {swatches.map((finish) => (
             <span
-              key={`${product.id}-${finish.name}`}
+              key={`${modelKey}-${finish.name}`}
               className="h-5 w-5 rounded-full border border-black/12 ring-2 ring-white"
               style={{ backgroundColor: finish.swatch }}
             />

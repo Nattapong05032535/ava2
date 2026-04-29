@@ -3,12 +3,10 @@ import "server-only";
 import { cache } from "react";
 import {
   isProductModelKey,
-  resolveProductPresentation,
   resolveProductPresentationByModelKey,
   SUPPORTED_PRODUCT_MODEL_KEYS,
   type SupportedProductModelKey,
 } from "@/constants/products";
-import { getProduct, getProducts, getStrapiImageUrl } from "@/lib/strapi";
 import type {
   Product,
   ProductLineupItem,
@@ -16,7 +14,7 @@ import type {
   ProductShowcaseSection,
 } from "@/types";
 
-function createMockProduct(modelKey: SupportedProductModelKey): Product {
+function createLocalProduct(modelKey: SupportedProductModelKey): Product {
   const { modelName, template } = resolveProductPresentationByModelKey(modelKey);
   const mockTimestamp = "2026-04-08T00:00:00.000Z";
 
@@ -25,49 +23,13 @@ function createMockProduct(modelKey: SupportedProductModelKey): Product {
     documentId: modelKey,
     name: modelName,
     details: template.hero.description,
-    heroImg: null,
     createdAt: mockTimestamp,
     updatedAt: mockTimestamp,
     publishedAt: mockTimestamp,
   };
 }
 
-function getProductImage(product: Product): string {
-  return getStrapiImageUrl(
-    product.heroImg?.formats?.large?.url ||
-      product.heroImg?.formats?.medium?.url ||
-      product.heroImg?.formats?.small?.url ||
-      product.heroImg?.url
-  );
-}
-
-function getProductThumbnail(product: Product): string {
-  return getStrapiImageUrl(
-    product.heroImg?.formats?.small?.url ||
-      product.heroImg?.formats?.thumbnail?.url ||
-      product.heroImg?.url
-  );
-}
-
-function createLineupItem(product: Product): ProductLineupItem {
-  const { modelName, template: presentation } = resolveProductPresentation(
-    product.name || ""
-  );
-  const remoteImage = getProductThumbnail(product);
-  const imageSrc = remoteImage || presentation.art.fallbackProduct;
-
-  return {
-    documentId: product.documentId,
-    name: modelName,
-    category: presentation.category,
-    subtitle: presentation.hero.subheadline,
-    imageSrc,
-    imageAlt: product.heroImg?.alternativeText || modelName,
-    accent: presentation.theme.accent,
-  };
-}
-
-function createMockLineupItem(
+function createLineupItem(
   modelKey: SupportedProductModelKey
 ): ProductLineupItem {
   const { modelName, template: presentation } =
@@ -87,45 +49,20 @@ function createMockLineupItem(
 export const getProductShowcase = cache(async function getProductShowcase(
   documentId: string
 ): Promise<ProductShowcase> {
-  let product: Product;
-  let modelName: string;
-  let presentation: ReturnType<typeof resolveProductPresentation>["template"];
-  let lineup: ProductLineupItem[];
-
-  if (isProductModelKey(documentId)) {
-    const resolved = resolveProductPresentationByModelKey(documentId);
-    product = createMockProduct(documentId);
-    modelName = resolved.modelName;
-    presentation = resolved.template;
-    lineup = SUPPORTED_PRODUCT_MODEL_KEYS.filter((item) => item !== documentId)
-      .slice(0, 4)
-      .map(createMockLineupItem);
-  } else {
-    const [productResponse, productsResponse] = await Promise.all([
-      getProduct(documentId),
-      getProducts().catch(() => null),
-    ]);
-    const allProducts = productsResponse?.data || [];
-    product = productResponse.data;
-
-    const resolved = resolveProductPresentation(product.name || "");
-    modelName = resolved.modelName;
-    presentation = resolved.template;
-    lineup =
-      allProducts.length > 0
-        ? allProducts
-            .filter((item) => item.documentId !== product.documentId)
-            .slice(0, 4)
-            .map(createLineupItem)
-        : SUPPORTED_PRODUCT_MODEL_KEYS.filter(
-            (item) => item !== resolved.modelKey
-          )
-          .slice(0, 4)
-          .map(createMockLineupItem);
+  if (!isProductModelKey(documentId)) {
+    throw new Error(`Unsupported product model: ${documentId}`);
   }
 
-  const detailImage =
-    getProductImage(product) || presentation.art.fallbackProduct;
+  const resolved = resolveProductPresentationByModelKey(documentId);
+  const product = createLocalProduct(documentId);
+  const modelName = resolved.modelName;
+  const presentation = resolved.template;
+  const lineup = SUPPORTED_PRODUCT_MODEL_KEYS.filter(
+    (item) => item !== documentId
+  )
+    .slice(0, 4)
+    .map(createLineupItem);
+  const detailImage = presentation.art.detail || presentation.art.fallbackProduct;
 
   const sections: ProductShowcaseSection[] = presentation.sections.map(
     (section) => ({
@@ -142,7 +79,7 @@ export const getProductShowcase = cache(async function getProductShowcase(
           section.visualRole === "hero"
             ? presentation.art.hero || detailImage
             : presentation.art.detail || detailImage,
-        alt: product.heroImg?.alternativeText || modelName,
+        alt: modelName,
         fit: "contain",
       },
     })
@@ -150,9 +87,7 @@ export const getProductShowcase = cache(async function getProductShowcase(
 
   const heroVisualSrc = presentation.art.hero || detailImage;
   const detailVisualSrc = presentation.art.detail || detailImage;
-  const detailsNote =
-    product.details ||
-    "ข้อมูลสินค้าจาก Strapi สามารถนำมาแทนที่ข้อความส่วนนี้ได้ทันทีโดยไม่ต้องแก้หน้า detail เพิ่ม";
+  const detailsNote = product.details || presentation.hero.description;
 
   const anchors = [
     { id: "overview", label: "ภาพรวม" },
@@ -172,14 +107,14 @@ export const getProductShowcase = cache(async function getProductShowcase(
       detailsNote,
       heroVisual: {
         src: heroVisualSrc,
-        alt: product.heroImg?.alternativeText || modelName,
+        alt: modelName,
         fit: "contain",
       },
       serviceBadges: presentation.serviceBadges,
     },
     detailVisual: {
       src: detailVisualSrc,
-      alt: product.heroImg?.alternativeText || modelName,
+      alt: modelName,
       fit: "contain",
     },
     stats: presentation.stats,

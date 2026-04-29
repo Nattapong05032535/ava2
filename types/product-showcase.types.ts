@@ -1,4 +1,12 @@
-import type { Product } from "./strapi.types";
+export interface Product {
+  id: number;
+  documentId: string;
+  name: string;
+  details: string | null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
 
 export interface ProductShowcaseServiceBadge {
   label: string;

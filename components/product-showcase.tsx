@@ -1,8 +1,9 @@
 "use client";
 
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Play } from "lucide-react";
 import {
   ProductShowcase,
   ProductShowcaseSection,
@@ -10,6 +11,40 @@ import {
 } from "@/types";
 import { Navbar } from "@/components/navbar";
 import { LineupSlider } from "@/components/lineup-slider";
+import { Product3DViewer } from "@/components/product-3d-viewer";
+
+const FIRST_DETAIL_SLIDES = [
+  {
+    src: "/first-detail/P89/1.jpeg",
+    alt: "ภาพรายละเอียดดีไซน์ตัวเครื่อง P89",
+    description:
+      "ขอแนะนำดีไซน์ตัวเครื่องที่จัดวางทุกเส้นสายให้ดูลงตัวขึ้น ทั้งพื้นผิว โมดูลกล้อง และสัดส่วนที่ให้ความรู้สึกพรีเมียมตั้งแต่แรกเห็น",
+  },
+  {
+    src: "/first-detail/P89/2.jpeg",
+    alt: "ภาพชุดกล้องและพื้นผิวตัวเครื่อง P89",
+    description:
+      "โมดูลกล้องถูกออกแบบให้กลมกลืนกับตัวเครื่อง พร้อมเน้นรายละเอียดของวัสดุและแสงเงาให้ดูหรูอย่างเป็นธรรมชาติ",
+  },
+  {
+    src: "/first-detail/P89/3.jpeg",
+    alt: "ภาพมุมมองตัวเครื่อง P89",
+    description:
+      "สัดส่วนของตัวเครื่องถูกจัดให้ดูนิ่งและมั่นใจ เหมาะกับภาพลักษณ์ของสมาร์ทโฟนระดับเรือธง",
+  },
+  {
+    src: "/first-detail/P89/4.jpeg",
+    alt: "ภาพดีไซน์ด้านหลัง P89",
+    description:
+      "พื้นผิวด้านหลังช่วยขับคาแรกเตอร์ของรุ่นให้ชัดขึ้น โดยยังคงความเรียบและดูสะอาดตา",
+  },
+  {
+    src: "/first-detail/P89/5.jpeg",
+    alt: "ภาพรายละเอียดวัสดุ P89",
+    description:
+      "รายละเอียดเล็ก ๆ รอบตัวเครื่องถูกเก็บให้ดูประณีต เพื่อให้ประสบการณ์โดยรวมรู้สึกพรีเมียมมากขึ้น",
+  },
+];
 
 function formatUpdatedDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("th-TH", {
@@ -150,41 +185,48 @@ function StorySection({
 }
 
 function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; onScrollTo: (id: string) => void }) {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const currentSlide = FIRST_DETAIL_SLIDES[activeSlide];
+
+  function showNextSlide() {
+    setActiveSlide((current) => (current + 1) % FIRST_DETAIL_SLIDES.length);
+  }
+
   return (
     <>
       <section
         id="overview"
-        className="scroll-mt-40 overflow-hidden border-b border-black/5 bg-[#f1f5f9] text-(--showcase-ink)"
+        className="scroll-mt-40 overflow-hidden border-b border-white/10 bg-[#0f172a] text-white"
       >
         <div className="relative isolate px-6 pb-6 pt-8 sm:pt-10 lg:pb-2 lg:pt-16">
           <div 
             className="absolute inset-x-0 top-0 h-[500px] opacity-40 lg:h-[700px]"
             style={{
-              background: `radial-gradient(circle at 70% 20%, ${showcase.theme.accent}15, transparent 70%)`
+              background: `radial-gradient(circle at 70% 20%, ${showcase.theme.accent}, transparent 70%)`
             }}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-size-[100px_100px] opacity-[0.5]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-size-[100px_100px] opacity-[0.5]" />
 
           <div className="relative mx-auto max-w-7xl">
             <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-8">
               <div className="showcase-stage-copy z-20 text-center lg:pt-8 lg:text-left">
                 <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                  <span className="rounded-full border border-black/8 bg-white/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) backdrop-blur-xl shadow-sm">
+                  <span className="rounded-full border border-white/10 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) backdrop-blur-xl shadow-sm">
                     {showcase.hero.label}
                   </span>
-                  <span className="rounded-full border border-black/8 bg-white/40 px-4 py-1.5 text-[11px] font-medium text-(--showcase-muted-ink) backdrop-blur-xl">
+                  <span className="rounded-full border border-white/10 bg-white/10 px-4 py-1.5 text-[11px] font-medium text-white/60 backdrop-blur-xl">
                     อัปเดตล่าสุด {formatUpdatedDate(showcase.product.updatedAt)}
                   </span>
                 </div>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.34em] text-(--showcase-muted-ink)">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.34em] text-white/50">
                   {showcase.hero.eyebrow}
                 </p>
 
                 <h1
                   className="showcase-stage-wordmark mt-2 text-6xl font-semibold tracking-[-0.08em] sm:text-7xl md:text-8xl lg:text-[12rem] lg:leading-[0.9]"
                   style={{
-                    backgroundImage: `linear-gradient(180deg, var(--showcase-ink) 0%, ${showcase.theme.accent} 92%)`,
+                    backgroundImage: `linear-gradient(180deg, #ffffff 0%, ${showcase.theme.accent} 92%)`,
                     WebkitBackgroundClip: "text",
                     color: "transparent",
                   }}
@@ -192,21 +234,21 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                   {showcase.hero.spotlightWordmark}
                 </h1>
 
-                <p className="mt-3 text-lg font-medium text-(--showcase-muted-ink) sm:text-xl lg:text-2xl">
+                <p className="mt-3 text-lg font-medium text-white/70 sm:text-xl lg:text-2xl">
                   {showcase.displayName}
                 </p>
                 
                 <div className="mt-8 flex items-center justify-center lg:mt-10 lg:justify-start">
                   <button
                     onClick={() => onScrollTo('signature')}
-                    className="flex h-12 items-center justify-center rounded-full border border-black/10 bg-white/60 px-10 text-sm font-semibold text-black backdrop-blur-md transition-all hover:bg-white/80 active:scale-95 sm:h-14 sm:text-base shadow-sm"
+                    className="flex h-12 items-center justify-center rounded-full border border-white bg-transparent px-10 text-sm font-semibold text-white transition-all hover:bg-white/10 active:scale-95 sm:h-14 sm:text-base shadow-sm"
                   >
                     ดูรายละเอียด
                   </button>
                 </div>
               </div>
 
-              <div className="relative mx-auto h-80 w-full max-w-lg sm:h-100 md:h-120 lg:-mt-16 lg:h-160 lg:max-w-none lg:-translate-y-4">
+              <div className="relative mx-auto h-72 w-full max-w-sm sm:h-88 md:h-104 lg:-mt-6 lg:h-120 lg:max-w-lg lg:-translate-y-1 lg:-translate-x-4 xl:h-128 xl:max-w-xl">
                 <div
                   className="showcase-stage-glow absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-25 sm:h-80 sm:w-80 lg:h-115 lg:w-115"
                   style={{ backgroundColor: showcase.theme.accent }}
@@ -217,9 +259,10 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                   src={showcase.hero.heroVisual.src}
                   alt={showcase.hero.heroVisual.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                  className="showcase-stage-device relative z-10 object-contain object-center transition-transform duration-1000 lg:scale-115"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 42vw, 32vw"
+                  className="showcase-stage-device relative z-10 object-contain object-center transition-transform duration-1000 lg:scale-105 xl:scale-110"
                   priority
+                  quality={100}
                 />
               </div>
             </div>
@@ -227,67 +270,60 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
         </div>
       </section>
 
-      {/* Level 2: Detail Panels Section - Dark Tone */}
-      <section className="relative px-6 pb-20 pt-16 bg-[#0f172a] overflow-hidden">
-        <div 
-          className="absolute top-0 right-0 w-[500px] h-[500px] opacity-10 blur-[120px] pointer-events-none"
-          style={{ background: `radial-gradient(circle, ${showcase.theme.accent}, transparent)` }}
-        />
-        
-        <div className="mx-auto max-w-7xl relative z-10">
-          <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[2rem] border border-white/5 bg-white/5 p-6 shadow-[0_32px_96px_rgba(0,0,0,0.3)] backdrop-blur-2xl sm:p-10 lg:rounded-[2.5rem]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) sm:text-[11px]">
-                Signature story
-              </p>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white sm:mt-6 sm:text-3xl lg:text-4xl xl:text-5xl">
-                {showcase.hero.headline}
-              </h2>
-              <p className="mt-5 text-sm leading-relaxed text-white/70 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg lg:leading-9">
-                {showcase.hero.subheadline}
-              </p>
-              <p className="mt-4 text-[13px] leading-relaxed text-white/50 sm:mt-6 sm:text-sm sm:leading-7 lg:text-base">
-                {showcase.hero.description}
-              </p>
-            </div>
-
-            <div className="rounded-[2rem] border border-white/5 bg-white/5 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur-2xl sm:p-10 lg:rounded-[2.5rem]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-[11px]">
-                Product note
-              </p>
-              <p className="mt-4 text-[13px] leading-relaxed text-white/70 sm:mt-6 sm:text-base sm:leading-8">
-                {showcase.hero.detailsNote}
-              </p>
-
-              <div className="mt-8 rounded-2xl border border-white/5 bg-white/5 p-6 sm:mt-10 sm:rounded-[2rem]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-[11px]">
-                  Collection
-                </p>
-                <p className="mt-3 text-xl font-semibold text-white sm:text-2xl">
-                  {showcase.familyLabel}
-                </p>
-                <p className="mt-2 text-[13px] text-white/50 sm:text-sm">
-                  {showcase.category} ที่ออกแบบให้ภาพแรกของหน้า detail เป็นเหมือนโปสเตอร์เปิดตัวของรุ่นนี้
-                </p>
-              </div>
-            </div>
+      <section className="relative overflow-hidden bg-black px-5 py-16 text-white sm:px-6 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-semibold text-[#1683ff] sm:text-base">
+              พบกับดีไซน์ที่ออกแบบมาเพื่อ {showcase.displayName}
+            </p>
+            <h2 className="mt-3 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              ดีไซน์ที่ประณีตบรรจง
+            </h2>
           </div>
 
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {showcase.hero.serviceBadges.map((badge) => (
-              <div
-                key={badge.label}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 backdrop-blur-xl shadow-sm transition-transform hover:-translate-y-1 sm:p-6 lg:rounded-[1.8rem]"
+          <div className="mt-12 overflow-hidden rounded-[1.75rem] bg-zinc-900 sm:mt-16 sm:rounded-[2rem]">
+            <div className="relative aspect-[1.35/1] sm:aspect-[16/9]">
+              <Image
+                key={currentSlide.src}
+                src={currentSlide.src}
+                alt={currentSlide.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 1200px"
+                className="object-cover"
+                quality={95}
+              />
+              <button
+                type="button"
+                onClick={showNextSlide}
+                aria-label="ดูภาพถัดไป"
+                className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/80 bg-black/10 text-white backdrop-blur-md transition-colors hover:bg-white/15 sm:bottom-7 sm:right-7 sm:h-12 sm:w-12"
               >
-                <p className="text-sm font-semibold text-white">
-                  {badge.label}
-                </p>
-                <p className="mt-2 text-[13px] leading-relaxed text-white/50 sm:mt-3 sm:text-sm sm:leading-6">
-                  {badge.detail}
-                </p>
-              </div>
-            ))}
+                <Play className="h-5 w-5 fill-current" aria-hidden="true" />
+              </button>
+            </div>
           </div>
+
+          <div className="mt-7 flex justify-center">
+            <div className="flex h-7 items-center gap-3 rounded-full border border-white/15 bg-black px-4">
+              {FIRST_DETAIL_SLIDES.map((slide, index) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  onClick={() => setActiveSlide(index)}
+                  aria-label={`ดูภาพที่ ${index + 1}`}
+                  className={`h-2 rounded-full transition-all ${
+                    index === activeSlide
+                      ? "w-8 bg-white"
+                      : "w-2 bg-white/55 hover:bg-white/80"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <p className="mx-auto mt-9 max-w-6xl text-center text-[17px] leading-8 text-white/64 sm:text-xl sm:leading-9">
+            {currentSlide.description}
+          </p>
         </div>
       </section>
     </>
@@ -341,23 +377,39 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
       <Navbar />
 
       <main className="pt-18">
-        <header className="sticky top-[72px] z-40 hidden border-b border-black/5 bg-white/70 backdrop-blur-xl lg:block">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.16),transparent)]" />
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 overflow-x-auto px-6 py-3 no-scrollbar sm:py-4">
-            <div className="min-w-fit">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-500 sm:text-[11px]">
+        <header className="sticky top-[72px] z-40 hidden overflow-hidden border-b border-white/10 bg-[#050506]/88 text-white shadow-[0_18px_70px_rgba(0,0,0,0.32)] backdrop-blur-2xl lg:block">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(255,255,255,0.08),transparent_30%),linear-gradient(90deg,rgba(255,255,255,0.05),transparent_38%,rgba(255,255,255,0.04))]" />
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-80"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, var(--showcase-accent), rgba(255,255,255,0.5), transparent)",
+            }}
+          />
+          <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-6 overflow-x-auto px-6 py-3 no-scrollbar sm:py-4">
+            <div className="flex min-w-fit items-center gap-4">
+              <div
+                className="h-9 w-px rounded-full opacity-70"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent, var(--showcase-accent), transparent)",
+                }}
+              />
+              <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/42 sm:text-[11px]">
                 {showcase.familyLabel}
               </p>
-              <p className="mt-0.5 text-[13px] font-medium text-gray-700 sm:mt-1 sm:text-sm">
+              <p className="mt-0.5 text-[13px] font-semibold text-white/88 sm:mt-1 sm:text-sm">
                 {showcase.displayName}
               </p>
+              </div>
             </div>
-            <div className="flex min-w-fit items-center gap-1.5 rounded-full border border-gray-200 bg-white p-1 text-[12px] text-gray-500 shadow-[0_10px_24px_rgba(15,23,42,0.04)] sm:gap-2 sm:p-1.5 sm:text-sm">
+            <div className="flex min-w-fit items-center gap-1 rounded-full border border-white/14 bg-white/[0.07] p-1 text-[12px] text-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_48px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-sm">
               {showcase.anchors.map((anchor) => (
                 <button
                   key={anchor.id}
                   onClick={() => handleScroll(anchor.id)}
-                  className="rounded-full px-3 py-1.5 transition-colors hover:bg-gray-50 hover:text-black sm:px-4 sm:py-2"
+                  className="rounded-full px-3.5 py-1.5 font-medium transition-all hover:bg-white/12 hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:px-4 sm:py-2"
                 >
                   {anchor.label}
                 </button>
@@ -367,6 +419,29 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
         </header>
 
         <SpotlightHero showcase={showcase} onScrollTo={handleScroll} />
+
+        <section id="3d-view" className="scroll-mt-40 bg-black py-16 text-white lg:py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mx-auto mb-10 max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#1683ff]">
+                มุมมองสามมิติ
+              </p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                หมุนดูทุกมุม เหมือนถือจริง
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+                หมุนชม {showcase.displayName} แบบ 360 องศา ลากเพื่อหมุน ซูมเข้าดูรายละเอียด หรือเลือกมุมมองที่ต้องการได้ทันที
+              </p>
+            </div>
+            <div className="mx-auto max-w-5xl">
+              <Product3DViewer
+                productImage={showcase.detailVisual.src}
+                accentColor={showcase.theme.accent}
+                productName={showcase.displayName}
+              />
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-7xl px-6 py-10 sm:py-14">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

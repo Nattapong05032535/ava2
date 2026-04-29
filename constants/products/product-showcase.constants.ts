@@ -77,11 +77,27 @@ const PRODUCT_PRESENTATION_IDENTITIES: Record<
   },
   "note-p65": {
     modelName: "AVA Note P65",
-    aliases: ["ava note p65", "note p65", "note-p65", "note"],
+    aliases: [
+      "ava note p65",
+      "note p65",
+      "note-p65",
+      "p65c",
+      "p65 cold",
+      "note cold p65",
+      "note",
+    ],
   },
   "enjoy-p65": {
     modelName: "AVA Enjoy P65",
-    aliases: ["ava enjoy p65", "enjoy p65", "enjoy-p65", "enjoy"],
+    aliases: [
+      "ava enjoy p65",
+      "enjoy p65",
+      "enjoy-p65",
+      "p65p",
+      "p65 pro",
+      "enjoy series pro p65",
+      "enjoy",
+    ],
   },
   "tab-p68": {
     modelName: "AVA Tab P68",
@@ -96,7 +112,7 @@ const PRODUCT_PRESENTATION_IDENTITIES: Record<
 export const DEFAULT_SERVICE_BADGES: ProductShowcaseServiceBadge[] = [
   {
     label: "ประกันตัวเครื่อง 24 เดือน",
-    detail: "บริการหลังการขายโดยทีม AVA Official Store",
+    detail: "บริการหลังการขายโดยทีมร้านค้าอย่างเป็นทางการของเอวีเอ",
   },
   {
     label: "ส่งฟรีทั่วประเทศ",
@@ -117,7 +133,7 @@ export const PRODUCT_PRESENTATIONS: Record<
   ProductPresentationTemplate
 > = {
   "promax-p89": {
-    familyLabel: "AVA Signature Flagship",
+    familyLabel: "เรือธงซิกเนเจอร์เอวีเอ",
     category: "สมาร์ทโฟน",
     theme: {
       page: "#ffffff",
@@ -132,13 +148,13 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     hero: {
       eyebrow: "AVA Life Pro Max P89",
-      label: "Flagship Design Story",
+      label: "เรื่องราวดีไซน์เรือธง",
       spotlightWordmark: "P89",
-      headline: "Engineered to look unmistakably expensive.",
+      headline: "ออกแบบให้ดูหรูชัดเจนตั้งแต่มองครั้งแรก",
       subheadline:
         "โครงสร้างระดับเรือธงที่ให้ความรู้สึกพรีเมียมตั้งแต่วินาทีแรกที่หยิบขึ้นมา",
       description:
-        "P89 คือรุ่นที่เราออกแบบให้เป็นหน้าโชว์ของแบรนด์ ทั้งสัดส่วน วัสดุ และจังหวะของแสงเงาบนตัวเครื่องถูกจัดวางเพื่อให้ภาพรวมดูนิ่ง หรู และมีพลังในแบบเดียวกับหน้าสินค้าระดับ flagship.",
+        "P89 คือรุ่นที่เราออกแบบให้เป็นหน้าโชว์ของแบรนด์ ทั้งสัดส่วน วัสดุ และจังหวะของแสงเงาบนตัวเครื่องถูกจัดวางเพื่อให้ภาพรวมดูนิ่ง หรู และมีพลังในแบบเดียวกับสินค้าระดับเรือธง.",
       primaryCtaLabel: "ดูสเปกเด่น",
       secondaryCtaLabel: "สำรวจรุ่นอื่น",
     },
@@ -146,22 +162,22 @@ export const PRODUCT_PRESENTATIONS: Record<
     stats: [
       {
         value: "6.8”",
-        label: "Immersive OLED",
+        label: "จอโอแอลอีดีเต็มตา",
         detail: "หน้าจอใหญ่เต็มตา พร้อมคอนทราสต์ลึกและโทนสีคมสะอาด",
       },
       {
         value: "120Hz",
-        label: "Smooth Motion",
+        label: "การเคลื่อนไหวลื่นไหล",
         detail: "การเลื่อนและการโต้ตอบลื่นไหลในทุกการใช้งาน",
       },
       {
         value: "50MP AI",
-        label: "Signature Camera",
+        label: "กล้องซิกเนเจอร์",
         detail: "ชุดกล้องที่ออกแบบมาเพื่อภาพคมชัดและโทนสกินสวยสมจริง",
       },
       {
         value: "67W",
-        label: "Rapid Charge",
+        label: "ชาร์จไว",
         detail: "เติมแบตเตอรี่ได้ไว เพื่อกลับเข้าสู่โหมดพร้อมใช้งานอย่างรวดเร็ว",
       },
     ],
@@ -169,8 +185,8 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Design language",
-        title: "Luxury silhouette with confident proportions.",
+        eyebrow: "ภาษาดีไซน์",
+        title: "ทรงเครื่องหรูที่จัดสัดส่วนอย่างมั่นใจ",
         description:
           "ภาษาดีไซน์ของ P89 เน้นเส้นสายที่สงบแต่หนักแน่น จึงดูหรูโดยไม่ต้องพยายามมาก ตัวเครื่องถูกออกแบบให้ดูนิ่ง เรียบ และมีมิติแบบสินค้ากลุ่มพรีเมียมสมัยใหม่.",
         quote:
@@ -178,20 +194,20 @@ export const PRODUCT_PRESENTATIONS: Record<
         tone: "light",
         cards: [
           {
-            eyebrow: "Finish",
-            title: "Four signature finishes",
+            eyebrow: "พื้นผิว",
+            title: "สี่สีซิกเนเจอร์",
             description:
-              "เลือกโทนที่ชัดเจนทั้ง Graphite, Pearl, Midnight Blue และ Solar Orange",
+              "เลือกโทนที่ชัดเจนทั้งกราไฟต์ เพิร์ล มิดไนต์บลู และโซลาร์ออเรนจ์",
           },
           {
-            eyebrow: "Build",
-            title: "Soft-edge aluminum frame",
+            eyebrow: "งานประกอบ",
+            title: "เฟรมอะลูมิเนียมขอบโค้งนุ่ม",
             description:
-              "ขอบตัวเครื่องโค้งรับมืออย่างพอดี ให้สัมผัสเนียนและดู polished มากขึ้น",
+              "ขอบตัวเครื่องโค้งรับมืออย่างพอดี ให้สัมผัสเนียนและดูประณีตมากขึ้น",
           },
           {
-            eyebrow: "Presence",
-            title: "Camera deck as the hero",
+            eyebrow: "จุดจำ",
+            title: "โมดูลกล้องคือเอกลักษณ์หลัก",
             description:
               "พื้นที่กล้องถูกขยายและจัดองค์ประกอบให้กลายเป็นเอกลักษณ์หลักของรุ่นนี้",
           },
@@ -201,30 +217,30 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "กล้อง",
-        eyebrow: "Signature capability",
-        title: "A camera-first flagship made for social, portrait and travel.",
+        eyebrow: "ความสามารถซิกเนเจอร์",
+        title: "เรือธงที่ให้กล้องเป็นหัวใจของภาพจำ",
         description:
           "จุดขายของ P89 คือการทำให้ภาพรวมของฮาร์ดแวร์กับคาแรกเตอร์ของกล้องเดินไปด้วยกัน ทั้งเรื่องรูปลักษณ์ โหมดถ่าย และงานคัลเลอร์ที่ให้บุคลิกดูชัด.",
         quote: "ภาพที่ได้ควรสวยตั้งแต่ตอนยกขึ้นถ่าย ไม่ใช่รอแก้ทีหลังทั้งหมด",
         tone: "dark",
         cards: [
           {
-            eyebrow: "Main lens",
-            title: "Balanced sharpness",
+            eyebrow: "เลนส์หลัก",
+            title: "ความคมที่พอดี",
             description:
               "เน้นความคมที่พอดี รายละเอียดชัด แต่ยังคงผิวนวลและโทนแสงที่ดูแพง",
           },
           {
-            eyebrow: "Portrait",
-            title: "Depth with softness",
+            eyebrow: "ภาพบุคคล",
+            title: "มิติภาพที่นุ่มตา",
             description:
               "แยกตัวแบบได้ดีขึ้น พร้อมฉากหลังละลายที่ดูสะอาดไม่แข็งกระด้าง",
           },
           {
-            eyebrow: "Night",
-            title: "Low-light confidence",
+            eyebrow: "กลางคืน",
+            title: "มั่นใจในแสงน้อย",
             description:
-              "ดึงแสงเงาในฉากกลางคืนให้ดูมีมิติ ลด noise และรักษาบรรยากาศเดิมไว้",
+              "ดึงแสงเงาในฉากกลางคืนให้ดูมีมิติ ลดสัญญาณรบกวน และรักษาบรรยากาศเดิมไว้",
           },
         ],
         visualRole: "detail",
@@ -233,83 +249,83 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Daily experience",
-      title: "Flagship polish, from first unlock to late-night charging.",
+      eyebrow: "ประสบการณ์ประจำวัน",
+      title: "ความประณีตระดับเรือธงตั้งแต่เริ่มใช้งานจนถึงชาร์จก่อนนอน",
       description:
-        "หน้านี้ถูกออกแบบให้ขายทั้งฟอร์มและฟังก์ชัน จึงมี section ที่เล่าความรู้สึกเวลาใช้งานจริง ไม่ใช่แค่สเปกบนกระดาษ.",
+        "หน้านี้ถูกออกแบบให้ขายทั้งรูปทรงและฟังก์ชัน จึงมีส่วนที่เล่าความรู้สึกเวลาใช้งานจริง ไม่ใช่แค่สเปกบนกระดาษ.",
       cards: [
         {
-          title: "Premium unboxing",
+          title: "ประสบการณ์แกะกล่องพรีเมียม",
           description:
             "เริ่มต้นความรู้สึกพรีเมียมตั้งแต่แพ็กเกจจนถึงการวางเครื่องบนแท่นชาร์จข้างเตียง",
         },
         {
-          title: "Balanced performance",
+          title: "ประสิทธิภาพสมดุล",
           description:
             "ใช้งานลื่นในการสลับแอป เล่นคอนเทนต์ และถ่ายภาพต่อเนื่องตลอดวัน",
         },
         {
-          title: "Signature color identity",
+          title: "สีซิกเนเจอร์ที่จดจำง่าย",
           description:
-            "สี Solar Orange ถูกวางให้เป็นฮีโร่ของรุ่น ช่วยสร้างการจดจำแบรนด์ได้ทันที",
+            "สีโซลาร์ออเรนจ์ถูกวางให้เป็นสีเด่นของรุ่น ช่วยสร้างการจดจำแบรนด์ได้ทันที",
         },
       ],
     },
     finishes: [
       {
-        name: "Solar Orange",
+        name: "โซลาร์ออเรนจ์",
         swatch: "#df8b43",
         description:
           "สีไฮไลต์ของคอลเลกชัน ให้บุคลิกหรู กล้า และเห็นได้ชัดในทันที",
       },
       {
-        name: "Midnight Blue",
+        name: "มิดไนต์บลู",
         swatch: "#25314f",
         description: "โทนเข้มที่ดูสุขุมและร่วมสมัย เหมาะกับการใช้งานทุกวัน",
       },
       {
-        name: "Pearl White",
+        name: "เพิร์ลไวต์",
         swatch: "#f2eee8",
         description:
           "ขาวมุกเนียนตา ดูสะอาด ละมุน และสะท้อนงานประกอบได้ชัด",
       },
       {
-        name: "Graphite Black",
+        name: "กราไฟต์แบล็ก",
         swatch: "#262626",
-        description: "ดำกราไฟต์สำหรับลุคเท่ เรียบ และ professional",
+        description: "ดำกราไฟต์สำหรับลุคเท่ เรียบ และดูเป็นมืออาชีพ",
       },
     ],
     specs: [
       {
-        label: "Display",
-        value: "6.8-inch OLED 120Hz",
+        label: "หน้าจอ",
+        value: "โอแอลอีดี 6.8 นิ้ว 120Hz",
         description: "ให้ภาพไหลลื่น คม และดูเต็มพื้นที่ในทุกคอนเทนต์หลัก",
       },
       {
-        label: "Chipset",
-        value: "Flagship-class 5G",
+        label: "ชิปเซ็ต",
+        value: "ระดับเรือธง รองรับ 5G",
         description: "รองรับการใช้งานหนักและการสลับงานรวดเร็วได้อย่างต่อเนื่อง",
       },
       {
-        label: "Camera",
-        value: "50MP main + pro portrait tuning",
+        label: "กล้อง",
+        value: "กล้องหลัก 50MP พร้อมจูนภาพบุคคล",
         description:
           "เน้นภาพบุคคล ภาพเดินทาง และภาพไลฟ์สไตล์ที่โทนดูพรีเมียม",
       },
       {
-        label: "Battery",
-        value: "Fast charge 67W",
+        label: "แบตเตอรี่",
+        value: "ชาร์จไว 67W",
         description: "เติมพลังได้ไวและเหมาะกับคนที่ต้องการพร้อมใช้งานเสมอ",
       },
     ],
     art: {
-      hero: "/images/products/p89-hero-premium.svg",
+      hero: "/hero-detail/P89/hero1.png",
       detail: "/phone/promax-p89.png",
       fallbackProduct: "/images/products/promax-p89.png",
     },
   },
   "promax-p63": {
-    familyLabel: "AVA Pro Series",
+    familyLabel: "เอวีเอโปรซีรีส์",
     category: "สมาร์ทโฟน",
     theme: {
       page: "#ffffff",
@@ -324,13 +340,13 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     hero: {
       eyebrow: "AVA Life Pro Max P63",
-      label: "Everyday Luxury",
+      label: "ความหรูสำหรับทุกวัน",
       spotlightWordmark: "P63",
-      headline: "Sharper lines. Lighter presence. Pro all day.",
+      headline: "เส้นสายคมขึ้น เบาขึ้น และพร้อมใช้งานทั้งวัน",
       subheadline:
         "รุ่นที่เน้นภาพลักษณ์พรีเมียมแบบสุขุม เหมาะกับคนที่ชอบเรือธงลุคเรียบและคล่องตัว",
       description:
-        "P63 ถูกออกแบบให้มีความเป็น pro ที่เข้าถึงง่ายขึ้น ลุคโดยรวมจึงออกไปทางโมเดิร์น เนี้ยบ และพร้อมพกพาในทุกวันโดยยังคงคาแรกเตอร์ระดับบนของซีรีส์ไว้ชัดเจน.",
+        "P63 ถูกออกแบบให้มีความเป็นมืออาชีพที่เข้าถึงง่ายขึ้น ลุคโดยรวมจึงออกไปทางโมเดิร์น เนี้ยบ และพร้อมพกพาในทุกวันโดยยังคงคาแรกเตอร์ระดับบนของซีรีส์ไว้ชัดเจน.",
       primaryCtaLabel: "ดูประสบการณ์",
       secondaryCtaLabel: "ดูรุ่นอื่น",
     },
@@ -338,22 +354,22 @@ export const PRODUCT_PRESENTATIONS: Record<
     stats: [
       {
         value: "6.6”",
-        label: "Slim-bezel display",
+        label: "หน้าจอขอบบาง",
         detail: "ขอบจอบางเพื่อภาพรวมที่ทันสมัยและรู้สึกโปร่งขึ้นในมือ",
       },
       {
         value: "5G",
-        label: "Always connected",
+        label: "เชื่อมต่อได้เสมอ",
         detail: "พร้อมสำหรับการใช้งานที่ต้องการความเร็วและเสถียรภาพในทุกวัน",
       },
       {
         value: "50MP",
-        label: "Everyday clarity",
+        label: "ภาพคมชัดในทุกวัน",
         detail: "ได้ภาพคมและโทนธรรมชาติ เหมาะกับการใช้งานตั้งแต่เช้าจรดค่ำ",
       },
       {
         value: "5000mAh",
-        label: "Long endurance",
+        label: "แบตอึดตลอดวัน",
         detail:
           "แบตเตอรี่ที่พอสำหรับการทำงาน ความบันเทิง และการเดินทางหนึ่งวันเต็ม",
       },
@@ -362,24 +378,24 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Refined profile",
-        title: "A quieter design for people who like their premium subtle.",
+        eyebrow: "รูปทรงประณีต",
+        title: "ดีไซน์สุขุมสำหรับคนที่ชอบความหรูแบบไม่ต้องตะโกน",
         description:
           "ดีไซน์ของ P63 ลดความหวือหวาลง แล้วไปเพิ่มคุณค่าที่สัดส่วน การเก็บงาน และโทนสีที่ดูสะอาดขึ้นแทน จึงเหมาะกับผู้ใช้ที่ชอบความหรูแบบไม่ตะโกน.",
         tone: "light",
         cards: [
           {
-            title: "Contoured frame",
+            title: "เฟรมโค้งรับมือ",
             description:
               "ขอบเครื่องรับกับอุ้งมือได้ดี พกพาง่ายและดูเรียบเนียนในทุกมุม",
           },
           {
-            title: "Neutral luxury palette",
+            title: "โทนสีหรูแบบสุขุม",
             description:
               "โทนสีที่คุมอารมณ์ให้นิ่ง ทำให้ภาพรวมดูเป็นมืออาชีพมากขึ้น",
           },
           {
-            title: "Balanced camera geometry",
+            title: "ชุดกล้องที่จัดวางสมดุล",
             description:
               "เลนส์และโมดูลกล้องถูกจัดวางแบบสมดุล เหมาะกับงานดีไซน์ที่ต้องการความเนี้ยบ",
           },
@@ -389,23 +405,23 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "พลัง",
-        eyebrow: "Everyday power",
-        title: "Built for long workdays and clean visual performance.",
+        eyebrow: "พลังสำหรับทุกวัน",
+        title: "พร้อมสำหรับวันทำงานยาว ๆ และภาพที่ดูสะอาดตา",
         description:
-          "เราออกแบบหน้าสินค้าของรุ่นนี้ให้เล่าเรื่องพลังการใช้งานในชีวิตจริง ทั้งงานเอกสาร ประชุมออนไลน์ ถ่ายภาพ และดูคอนเทนต์ โดยไม่ทำให้ลุคโดยรวมเสียความเรียบหรู.",
+          "เราออกแบบหน้าสินค้าของรุ่นนี้ให้เล่าเรื่องพลังการใช้งานในชีวิตจริง ทั้งงานเอกสาร ประชุมออนไลน์ ถ่ายภาพ และดูเนื้อหา โดยไม่ทำให้ลุคโดยรวมเสียความเรียบหรู.",
         tone: "dark",
         cards: [
           {
-            title: "Fast app switching",
+            title: "สลับแอปได้รวดเร็ว",
             description: "รองรับงานสลับหลายแอปได้คล่องและนิ่งขึ้น",
           },
           {
-            title: "Comfort viewing",
+            title: "มองสบายตา",
             description:
               "จอภาพถูกจูนให้ใช้งานนานแล้วสบายตาและดูสะอาดบนพื้นหลังสว่าง",
           },
           {
-            title: "Confident battery life",
+            title: "แบตเตอรี่ที่ไว้ใจได้",
             description:
               "รองรับวันทำงานแน่น ๆ ได้โดยไม่ต้องกังวลมากเรื่องแบตเตอรี่",
           },
@@ -416,23 +432,23 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Lifestyle fit",
-      title: "A premium phone made to disappear into your routine beautifully.",
+      eyebrow: "เข้ากับไลฟ์สไตล์",
+      title: "มือถือพรีเมียมที่กลมกลืนกับทุกจังหวะชีวิตอย่างสวยงาม",
       description:
         "P63 ไม่ได้พยายามเป็นรุ่นที่หวือหวาที่สุด แต่ถูกวางให้เป็นรุ่นที่อยู่กับการใช้งานประจำวันได้อย่างกลมกลืนและดูดีตลอดเวลา.",
       cards: [
         {
-          title: "Business-ready look",
+          title: "ลุคพร้อมทำงาน",
           description:
             "เหมาะกับการใช้งานที่ต้องการภาพลักษณ์สุภาพ เนี้ยบ และเป็นมืออาชีพ",
         },
         {
-          title: "Clean interface moments",
+          title: "หน้าจอใช้งานที่สะอาดตา",
           description:
-            "เหมาะกับ UX ที่ชอบความเรียบง่าย อ่านง่าย และสัมผัสลื่นมือ",
+            "เหมาะกับประสบการณ์ใช้งานที่ชอบความเรียบง่าย อ่านง่าย และสัมผัสลื่นมือ",
         },
         {
-          title: "Easy carry profile",
+          title: "พกพาง่าย",
           description:
             "น้ำหนักและสัดส่วนเอื้อต่อการพกพาทั้งวันแบบไม่รู้สึกเกะกะ",
         },
@@ -440,35 +456,35 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     finishes: [
       {
-        name: "Titan Gray",
+        name: "ไททันเกรย์",
         swatch: "#5d646b",
         description: "สีเทาเข้มสำหรับลุคเรียบหรูและมั่นคง",
       },
       {
-        name: "Steel Blue",
+        name: "สตีลบลู",
         swatch: "#53657d",
-        description: "น้ำเงินอมเท้าให้ความรู้สึกทันสมัยและดูโปร",
+        description: "น้ำเงินอมเทาให้ความรู้สึกทันสมัยและดูมืออาชีพ",
       },
     ],
     specs: [
       {
-        label: "Display",
-        value: "6.6-inch FHD+ panel",
+        label: "หน้าจอ",
+        value: "จอ FHD+ ขนาด 6.6 นิ้ว",
         description: "จอใหญ่กำลังดีสำหรับการทำงานและความบันเทิง",
       },
       {
-        label: "Camera",
-        value: "50MP main camera",
+        label: "กล้อง",
+        value: "กล้องหลัก 50MP",
         description: "ถ่ายภาพกลางวันคม รายละเอียดดี และใช้งานง่าย",
       },
       {
-        label: "Battery",
-        value: "5000mAh long-life",
+        label: "แบตเตอรี่",
+        value: "5000mAh ใช้งานได้นาน",
         description: "รองรับวันใช้งานแน่น ๆ ได้มั่นใจมากขึ้น",
       },
       {
-        label: "Positioning",
-        value: "Pro for everyday carry",
+        label: "ตำแหน่งรุ่น",
+        value: "รุ่นโปรสำหรับพกใช้งานทุกวัน",
         description: "เหมาะกับผู้ใช้ที่อยากได้ความพรีเมียมแบบสมดุล",
       },
     ],
@@ -479,7 +495,7 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
   },
   "note-p65": {
-    familyLabel: "AVA Note Series",
+    familyLabel: "เอวีเอโน้ตซีรีส์",
     category: "สมาร์ทโฟน",
     theme: {
       page: "#ffffff",
@@ -494,61 +510,61 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     hero: {
       eyebrow: "AVA Life Note P65",
-      label: "Focused productivity",
-      spotlightWordmark: "NOTE",
-      headline: "A calmer phone for sharper thinking.",
+      label: "โฟกัสกับงานได้มากขึ้น",
+      spotlightWordmark: "โน้ต",
+      headline: "มือถือที่นิ่งขึ้น เพื่อการคิดงานที่คมขึ้น",
       subheadline:
         "รุ่นที่วางคาแรกเตอร์ให้เหมาะกับคนทำงาน คิดงาน และจดทุกไอเดียได้ลื่นขึ้นตลอดวัน",
       description:
         "Note P65 ถูกออกแบบให้ดูสะอาด โปร่ง และไม่รบกวนสายตา เพื่อให้เหมาะกับการอ่าน การจด การตอบแชตงาน และการใช้งานต่อเนื่องยาวนานในทุกวัน.",
-      primaryCtaLabel: "ดู section ทำงาน",
+      primaryCtaLabel: "ดูส่วนการทำงาน",
       secondaryCtaLabel: "ดูรุ่นอื่น",
     },
     serviceBadges: DEFAULT_SERVICE_BADGES,
     stats: [
       {
         value: "108MP",
-        label: "Detail-friendly camera",
+        label: "กล้องเก็บรายละเอียดดี",
         detail: "เหมาะกับการเก็บภาพเอกสาร งานประชุม และชีวิตประจำวัน",
       },
       {
         value: "5000mAh",
-        label: "All-day battery",
+        label: "แบตเตอรี่ตลอดวัน",
         detail: "ออกแบบมาให้รับมือกับวันทำงานที่ยาวและต่อเนื่อง",
       },
       {
-        value: "Large screen",
-        label: "Reading comfort",
+        value: "หน้าจอใหญ่",
+        label: "อ่านสบายตา",
         detail: "พื้นที่แสดงผลที่เหมาะกับเอกสาร บทความ และงานอ่านยาว",
       },
       {
-        value: "AI Notes",
-        label: "Productivity-first",
-        detail: "พร้อมต่อยอดกับ workflow สายจดและจัดการงาน",
+        value: "โน้ตอัจฉริยะ",
+        label: "เน้นการทำงานเป็นหลัก",
+        detail: "พร้อมต่อยอดกับขั้นตอนการจดและจัดการงาน",
       },
     ],
     sections: [
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Quiet luxury",
-        title: "Minimal by intention, so your focus stays on what matters.",
+        eyebrow: "ความหรูที่สงบ",
+        title: "เรียบอย่างตั้งใจ เพื่อให้โฟกัสอยู่กับสิ่งสำคัญ",
         description:
           "งานออกแบบของ Note P65 ใช้โทนขาวสะอาดและเส้นสายที่เนียนเพื่อลดความรู้สึกวุ่นวาย ทำให้เหมาะกับคนที่ต้องการอุปกรณ์ที่ดูโปรแต่ไม่หนักเกินไปในเชิงภาพลักษณ์.",
         tone: "light",
         cards: [
           {
-            title: "Soft white finish",
+            title: "ผิวสีขาวนุ่มตา",
             description:
               "โทนสีสะอาดช่วยให้ตัวเครื่องดูเบา เรียบ และเข้ากับทุกสภาพแวดล้อม",
           },
           {
-            title: "Reading-first display feel",
+            title: "หน้าจอที่ให้ความรู้สึกเหมาะกับการอ่าน",
             description:
-              "เลย์เอาต์บนหน้า detail ถูกวางให้สื่อถึงความนิ่ง อ่านง่าย และใช้งานจริงได้นาน",
+              "เลย์เอาต์บนหน้ารายละเอียดถูกวางให้สื่อถึงความนิ่ง อ่านง่าย และใช้งานจริงได้นาน",
           },
           {
-            title: "Understated camera layout",
+            title: "ชุดกล้องที่ดูเรียบและพอดี",
             description:
               "ชุดกล้องถูกออกแบบให้ร่วมกับตัวเครื่องแบบกลมกลืน ไม่เด่นเกินความจำเป็น",
           },
@@ -558,25 +574,25 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "โฟกัส",
-        eyebrow: "Work mode",
+        eyebrow: "โหมดทำงาน",
         title:
-          "A device that supports long hours of reading, writing and planning.",
+          "อุปกรณ์ที่รองรับการอ่าน เขียน และวางแผนได้ยาวนาน",
         description:
-          "หัวใจของรุ่นนี้คือการทำให้ช่วงเวลาทำงานรู้สึก flow มากขึ้น ตั้งแต่ตอนเปิดอ่าน brief จดสิ่งสำคัญ ไปจนถึงตอบกลับงานก่อนจบวัน.",
+          "หัวใจของรุ่นนี้คือการทำให้ช่วงเวลาทำงานรู้สึกลื่นไหลมากขึ้น ตั้งแต่ตอนเปิดอ่านบรีฟ จดสิ่งสำคัญ ไปจนถึงตอบกลับงานก่อนจบวัน.",
         tone: "dark",
         cards: [
           {
-            title: "Long-form reading",
+            title: "อ่านงานยาวได้สบายขึ้น",
             description:
               "อ่านบทความหรือเอกสารยาว ๆ ได้สบายขึ้นด้วยการจัดการพื้นที่หน้าจอที่ลงตัว",
           },
           {
-            title: "Quick capture",
+            title: "เก็บข้อมูลได้รวดเร็ว",
             description:
               "หยิบขึ้นมาถ่ายเอกสารหรือบันทึกไวท์บอร์ดได้ทันทีเมื่อมีไอเดียใหม่",
           },
           {
-            title: "Routine-friendly battery",
+            title: "แบตเตอรี่ที่เข้ากับกิจวัตร",
             description:
               "วางใจได้กับแบตเตอรี่ที่รองรับทั้งวันประชุมและงานต่อเนื่องหลังเลิกงาน",
           },
@@ -587,23 +603,23 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Practical luxury",
-      title: "Less noise. More room for your routine.",
+      eyebrow: "ความหรูที่ใช้ได้จริง",
+      title: "ลดสิ่งรบกวน เพิ่มพื้นที่ให้กิจวัตรของคุณ",
       description:
         "ประสบการณ์ของ Note P65 เน้นความพอดีในการใช้งานจริงมากกว่าการโชว์พลังสุดโต่ง ทำให้รุ่นนี้เหมาะกับคนที่ให้ค่ากับความนิ่งและความสม่ำเสมอ.",
       cards: [
         {
-          title: "Desk-to-go flow",
+          title: "ต่อเนื่องจากโต๊ะทำงานสู่การเดินทาง",
           description:
             "ใช้งานได้ดีทั้งที่โต๊ะทำงาน ระหว่างเดินทาง และในช่วงพักระหว่างวัน",
         },
         {
-          title: "Clean content view",
+          title: "มุมมองเนื้อหาที่สะอาดตา",
           description:
             "ตัวอักษร ภาพ และองค์ประกอบบนหน้าจอถูกมองได้สบายในระยะเวลานานขึ้น",
         },
         {
-          title: "Trusted daily tool",
+          title: "เครื่องมือประจำวันที่ไว้ใจได้",
           description:
             "ตอบโจทย์คนที่ต้องการมือถือไว้ทำงานได้จริงทุกวันโดยไม่ต้องคิดมาก",
         },
@@ -611,46 +627,46 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     finishes: [
       {
-        name: "Cloud White",
+        name: "คลาวด์ไวต์",
         swatch: "#f3f4f2",
         description: "โทนขาวสะอาดที่ช่วยให้ตัวเครื่องดูเบาและเรียบหรู",
       },
       {
-        name: "Slate Black",
+        name: "สเลตแบล็ก",
         swatch: "#2f3133",
         description: "ตัวเลือกที่ดูนิ่ง เหมาะกับงานและการใช้งานทุกสถานการณ์",
       },
     ],
     specs: [
       {
-        label: "Camera",
-        value: "108MP detail capture",
+        label: "กล้อง",
+        value: "108MP เก็บรายละเอียดคมชัด",
         description: "เก็บภาพเอกสารและงานประจำวันได้คมชัดมากขึ้น",
       },
       {
-        label: "Battery",
-        value: "5000mAh endurance",
+        label: "แบตเตอรี่",
+        value: "5000mAh ใช้งานได้ยาวนาน",
         description: "รองรับวันใช้งานต่อเนื่องได้ดีโดยไม่ต้องกังวลมาก",
       },
       {
-        label: "Positioning",
-        value: "Productivity-focused phone",
+        label: "ตำแหน่งรุ่น",
+        value: "มือถือที่เน้นการทำงาน",
         description: "เหมาะสำหรับคนอ่าน เขียน วางแผน และตอบงานบ่อย",
       },
       {
-        label: "Display feel",
-        value: "Comfort-first large panel",
+        label: "ประสบการณ์หน้าจอ",
+        value: "จอใหญ่ที่เน้นความสบายตา",
         description: "ช่วยให้การอ่านและการดูเนื้อหาต่อเนื่องลื่นไหลขึ้น",
       },
     ],
     art: {
-      hero: "/images/products/note-p65-hero-draft.svg",
+      hero: "/hero-detail/P65C/hero.png",
       detail: "/phone/note-p65.png",
       fallbackProduct: "/images/products/note-p65.png",
     },
   },
   "enjoy-p65": {
-    familyLabel: "AVA Enjoy Series",
+    familyLabel: "เอวีเอเอนจอยซีรีส์",
     category: "สมาร์ทโฟน",
     theme: {
       page: "#ffffff",
@@ -665,13 +681,13 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     hero: {
       eyebrow: "AVA Enjoy Series P65",
-      label: "Everyday fun, elevated",
-      spotlightWordmark: "ENJOY",
-      headline: "A brighter personality for people who live on content.",
+      label: "ความสนุกทุกวันที่ยกระดับขึ้น",
+      spotlightWordmark: "สนุก",
+      headline: "คาแรกเตอร์สดใสสำหรับคนที่ใช้ชีวิตกับคอนเทนต์",
       subheadline:
         "สมาร์ทโฟนที่วางอารมณ์ให้สดขึ้น ใช้ง่ายขึ้น และดูเป็นมิตรกับการใช้งานทุกวัน",
       description:
-        "Enjoy P65 คือรุ่นที่ให้พลังบวกกับประสบการณ์บนมือถือ ตั้งแต่ดีไซน์ โทนสี ไปจนถึงจังหวะของหน้า detail ที่เน้นความสนุก ความสว่าง และการใช้งานบันเทิงที่ลื่นมือ.",
+        "Enjoy P65 คือรุ่นที่ให้พลังบวกกับประสบการณ์บนมือถือ ตั้งแต่ดีไซน์ โทนสี ไปจนถึงจังหวะของหน้ารายละเอียดที่เน้นความสนุก ความสว่าง และการใช้งานบันเทิงที่ลื่นมือ.",
       primaryCtaLabel: "ดูไฮไลต์",
       secondaryCtaLabel: "ดูรุ่นอื่น",
     },
@@ -679,22 +695,22 @@ export const PRODUCT_PRESENTATIONS: Record<
     stats: [
       {
         value: "90Hz",
-        label: "Fluid scrolling",
+        label: "เลื่อนหน้าจอลื่น",
         detail: "เลื่อนคอนเทนต์และโซเชียลได้ลื่นขึ้นในทุกวัน",
       },
       {
         value: "50MP",
-        label: "Share-ready shots",
+        label: "ภาพพร้อมแชร์",
         detail: "เหมาะกับการถ่ายรูปและโพสต์ได้ทันทีโดยไม่ซับซ้อน",
       },
       {
-        value: "Stereo",
-        label: "Entertainment focus",
+        value: "เสียงสเตอริโอ",
+        label: "เน้นความบันเทิง",
         detail: "เติมมิติให้การดูซีรีส์ ฟังเพลง และเล่นคอนเทนต์สั้น",
       },
       {
-        value: "Fast charge",
-        label: "Quick top-up",
+        value: "ชาร์จไว",
+        label: "เติมพลังรวดเร็ว",
         detail: "เสียบชาร์จไม่นานก็กลับมาใช้งานต่อได้สะดวก",
       },
     ],
@@ -702,24 +718,24 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Playful luxury",
-        title: "Designed to feel fresh, not ordinary.",
+        eyebrow: "ความหรูที่สนุกขึ้น",
+        title: "ออกแบบให้สดใหม่ ไม่จำเจ",
         description:
-          "Enjoy P65 ใช้แนวทางงานออกแบบที่เบากว่าและสว่างกว่า แต่ยังรักษาความเป็นสินค้า premium ผ่านพื้นผิว แสงเงา และองค์ประกอบที่เรียบร้อยขึ้นกว่าระดับราคาทั่วไป.",
+          "Enjoy P65 ใช้แนวทางงานออกแบบที่เบากว่าและสว่างกว่า แต่ยังรักษาความเป็นสินค้าพรีเมียมผ่านพื้นผิว แสงเงา และองค์ประกอบที่เรียบร้อยขึ้นกว่าระดับราคาทั่วไป.",
         tone: "light",
         cards: [
           {
-            title: "Friendly color story",
+            title: "โทนสีที่เป็นมิตร",
             description:
-              "โทนสีของรุ่นนี้ช่วยให้ภาพรวมดู approachable และมีพลัง",
+              "โทนสีของรุ่นนี้ช่วยให้ภาพรวมดูเข้าถึงง่ายและมีพลัง",
           },
           {
-            title: "Rounded comfort",
+            title: "มุมโค้งที่ถือสบาย",
             description:
               "สัดส่วนและมุมโค้งของตัวเครื่องช่วยให้ถือใช้งานได้นานแบบสบายมือ",
           },
           {
-            title: "Content-first presence",
+            title: "ภาพลักษณ์ที่พร้อมสำหรับคอนเทนต์",
             description:
               "ดีไซน์เน้นให้ตัวเครื่องดูพร้อมสำหรับความบันเทิงในทันที",
           },
@@ -729,23 +745,23 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "ความบันเทิง",
-        eyebrow: "Entertainment mode",
-        title: "Made for feeds, music, reels and everything in between.",
+        eyebrow: "โหมดความบันเทิง",
+        title: "ทำมาเพื่อโซเชียล เพลง คลิปสั้น และความสนุกระหว่างวัน",
         description:
-          "หน้าสินค้าของรุ่นนี้เน้นขายอารมณ์ในการใช้งานจริงกับโซเชียลและคอนเทนต์ จึงใช้ copy และจังหวะ section ที่เบา สนุก และเห็นภาพการใช้งานได้ง่าย.",
+          "หน้าสินค้าของรุ่นนี้เน้นขายอารมณ์ในการใช้งานจริงกับโซเชียลและคอนเทนต์ จึงใช้ข้อความและจังหวะการเล่าเรื่องที่เบา สนุก และเห็นภาพการใช้งานได้ง่าย.",
         tone: "dark",
         cards: [
           {
-            title: "Feed-friendly smoothness",
+            title: "ลื่นไหลกับฟีดโซเชียล",
             description: "ตอบสนองการเลื่อนหน้าจอและสลับคอนเทนต์ได้ไวขึ้น",
           },
           {
-            title: "Loud and clear playback",
+            title: "เสียงชัดสำหรับการรับชม",
             description:
               "เหมาะกับคนที่ใช้มือถือเป็นหน้าจอความบันเทิงหลักในแต่ละวัน",
           },
           {
-            title: "Quick social capture",
+            title: "ถ่ายแล้วแชร์ได้รวดเร็ว",
             description:
               "หยิบถ่ายภาพหรือคลิปสั้นแล้วแชร์ได้ทันทีแบบไม่ต้องปรับเยอะ",
           },
@@ -756,23 +772,23 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Daylight energy",
-      title: "Built to make everyday digital life feel lighter and more alive.",
+      eyebrow: "พลังสดใสระหว่างวัน",
+      title: "สร้างมาให้ชีวิตดิจิทัลทุกวันรู้สึกเบาและมีชีวิตชีวามากขึ้น",
       description:
         "รุ่นนี้เหมาะกับผู้ใช้ที่ต้องการมือถือที่ดูดี ใช้งานสนุก และให้ความรู้สึกบวกแบบต่อเนื่องทั้งวันโดยไม่ต้องเป็นสายสเปกสุดโต่ง.",
       cards: [
         {
-          title: "Social-first routine",
+          title: "กิจวัตรที่เริ่มจากโซเชียล",
           description:
             "เหมาะกับคนที่อยู่กับการดูคอนเทนต์ อัปเดตเทรนด์ และแชตกับเพื่อนบ่อย",
         },
         {
-          title: "Portable and cheerful",
+          title: "พกง่ายและสดใส",
           description:
             "รูปทรงและสีช่วยให้มือถือดูเป็นส่วนหนึ่งของลุคได้อย่างง่ายดาย",
         },
         {
-          title: "Easy premium feel",
+          title: "ความพรีเมียมที่เข้าถึงง่าย",
           description:
             "ได้บรรยากาศพรีเมียมแบบเข้าถึงง่าย เหมาะกับผู้ใช้วงกว้างมากขึ้น",
         },
@@ -780,46 +796,46 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     finishes: [
       {
-        name: "Ice Blue",
+        name: "ไอซ์บลู",
         swatch: "#cfe6ff",
         description: "สีน้ำเงินอ่อนที่ให้ภาพจำสดใสและร่วมสมัย",
       },
       {
-        name: "Midnight",
+        name: "มิดไนต์",
         swatch: "#202835",
         description: "โทนเข้มสำหรับคนที่ชอบความนิ่งแต่ยังอยากได้คาแรกเตอร์ชัด",
       },
     ],
     specs: [
       {
-        label: "Display",
-        value: "Smooth 90Hz panel",
+        label: "หน้าจอ",
+        value: "จอ 90Hz ลื่นไหล",
         description: "ลื่นกำลังดีสำหรับโซเชียลและคอนเทนต์ประจำวัน",
       },
       {
-        label: "Camera",
-        value: "50MP share-ready",
+        label: "กล้อง",
+        value: "50MP พร้อมแชร์",
         description: "ได้ภาพที่พร้อมแชร์โดยโทนภาพใช้งานง่าย",
       },
       {
-        label: "Audio",
-        value: "Stereo playback",
+        label: "เสียง",
+        value: "เล่นเสียงสเตอริโอ",
         description: "เพิ่มอรรถรสให้การดูวิดีโอและฟังเพลงมากขึ้น",
       },
       {
-        label: "Positioning",
-        value: "Lifestyle entertainment",
+        label: "ตำแหน่งรุ่น",
+        value: "ความบันเทิงในไลฟ์สไตล์ทุกวัน",
         description: "เหมาะกับคนที่เน้นความสนุกและความคล่องในทุกวัน",
       },
     ],
     art: {
-      hero: "/images/products/enjoy-p65-hero-draft.svg",
+      hero: "/hero-detail/P65P/hero2.png",
       detail: "/phone/enjoy-p65.png",
       fallbackProduct: "/images/products/enjoy-p65-hero-draft.svg",
     },
   },
   "tab-p68": {
-    familyLabel: "AVA Life Tab",
+    familyLabel: "เอวีเอไลฟ์แท็บ",
     category: "แท็บเล็ต",
     theme: {
       page: "#ffffff",
@@ -834,36 +850,36 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     hero: {
       eyebrow: "AVA Life Tab Ultra P68",
-      label: "Creative canvas",
-      spotlightWordmark: "TAB",
-      headline: "A larger, quieter canvas for ideas in motion.",
+      label: "พื้นที่สร้างสรรค์",
+      spotlightWordmark: "แท็บ",
+      headline: "พื้นที่จอที่ใหญ่และนิ่งขึ้นสำหรับไอเดียที่เคลื่อนไหว",
       subheadline:
-        "แท็บเล็ตที่ถูกวางบทบาทให้เหมาะกับทั้งงานสร้างสรรค์ ความบันเทิง และ productivity แบบพกพา",
+        "แท็บเล็ตที่ถูกวางบทบาทให้เหมาะกับทั้งงานสร้างสรรค์ ความบันเทิง และการทำงานแบบพกพา",
       description:
         "P68 เน้นความรู้สึกของพื้นที่ใช้งานที่กว้างขึ้น หายใจสะดวกขึ้น และพร้อมสำหรับการดูงาน วาดไอเดีย พรีเซนต์ หรือปล่อยให้เป็นหน้าจอความบันเทิงคู่วันของคุณ.",
-      primaryCtaLabel: "ดู section สร้างสรรค์",
+      primaryCtaLabel: "ดูส่วนสร้างสรรค์",
       secondaryCtaLabel: "ดูรุ่นอื่น",
     },
     serviceBadges: DEFAULT_SERVICE_BADGES,
     stats: [
       {
         value: "11.5”",
-        label: "Expansive display",
+        label: "หน้าจอกว้างเต็มตา",
         detail: "พื้นที่มองเห็นกว้างขึ้นสำหรับงานและความบันเทิง",
       },
       {
         value: "2.5K",
-        label: "Sharper canvas",
+        label: "พื้นที่ภาพคมชัด",
         detail: "รายละเอียดคมสะอาดเหมาะกับการดูงานและสตรีมมิง",
       },
       {
-        value: "Stylus ready",
-        label: "Idea capture",
+        value: "พร้อมใช้ปากกา",
+        label: "เก็บไอเดียได้ทันที",
         detail: "พร้อมต่อยอดไปสู่การจดและสเก็ตช์งานสร้างสรรค์",
       },
       {
         value: "8000mAh",
-        label: "Portable endurance",
+        label: "พลังงานสำหรับพกพา",
         detail: "พกไปใช้งานนอกบ้านได้สบายขึ้นโดยไม่ต้องคอยหาไฟบ่อย",
       },
     ],
@@ -871,24 +887,24 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Portable studio",
-        title: "Thin enough to travel. Refined enough to present with.",
+        eyebrow: "สตูดิโอพกพา",
+        title: "บางพอสำหรับพกเดินทาง และประณีตพอสำหรับการนำเสนอ",
         description:
-          "P68 ถูกวางคาแรกเตอร์เป็นแท็บเล็ตที่ดู clean และมืออาชีพพอสำหรับการประชุม แต่ก็ยังมีความเบาและคล่องพอสำหรับการใช้งานสร้างสรรค์นอกสถานที่.",
+          "P68 ถูกวางคาแรกเตอร์เป็นแท็บเล็ตที่ดูสะอาดตาและมืออาชีพพอสำหรับการประชุม แต่ก็ยังมีความเบาและคล่องพอสำหรับการใช้งานสร้างสรรค์นอกสถานที่.",
         tone: "light",
         cards: [
           {
-            title: "Balanced wide form",
+            title: "สัดส่วนกว้างที่สมดุล",
             description:
               "สัดส่วนตัวเครื่องเหมาะกับทั้งแนวตั้งและแนวนอนในงานจริง",
           },
           {
-            title: "Desk-worthy finish",
+            title: "พื้นผิวที่เข้ากับโต๊ะทำงาน",
             description:
               "พื้นผิวและโทนสีช่วยให้วางคู่กับอุปกรณ์ทำงานแล้วดูเข้ากัน",
           },
           {
-            title: "Large-view confidence",
+            title: "ความมั่นใจจากพื้นที่จอใหญ่",
             description:
               "ให้ความรู้สึกว่ามีพื้นที่พอสำหรับคิด เขียน และดูรายละเอียดงาน",
           },
@@ -898,25 +914,25 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "สร้างสรรค์",
-        eyebrow: "Creative flow",
+        eyebrow: "จังหวะสร้างสรรค์",
         title:
-          "From sketch to streaming, the larger canvas changes the rhythm.",
+          "ตั้งแต่สเก็ตช์งานจนถึงดูสตรีม พื้นที่จอใหญ่เปลี่ยนจังหวะการใช้งาน",
         description:
-          "ส่วนนี้ของหน้า detail เน้นบรรยากาศการใช้งานแบบ creative lifestyle ทั้งการจด วาด ดู reference เปิดหนัง หรือใช้เป็นหน้าจอเสริมระหว่างทำงาน.",
+          "ส่วนนี้ของหน้ารายละเอียดเน้นบรรยากาศการใช้งานแบบไลฟ์สไตล์สร้างสรรค์ ทั้งการจด วาด ดูภาพอ้างอิง เปิดหนัง หรือใช้เป็นหน้าจอเสริมระหว่างทำงาน.",
         tone: "dark",
         cards: [
           {
-            title: "Idea board moments",
+            title: "พื้นที่รวมไอเดีย",
             description:
-              "เหมาะกับการเปิด reference หลายอย่างและสลับดูได้ไหลลื่น",
+              "เหมาะกับการเปิดภาพอ้างอิงหลายอย่างและสลับดูได้ไหลลื่น",
           },
           {
-            title: "Streaming with comfort",
+            title: "ดูสตรีมได้สบายตา",
             description:
               "ดูคอนเทนต์ยาว ๆ ได้เต็มตาและเหมาะกับการพักผ่อนหลังเลิกงาน",
           },
           {
-            title: "Portable creative setup",
+            title: "ชุดสร้างสรรค์แบบพกพา",
             description:
               "ช่วยให้ชุดทำงานนอกสถานที่ดูครบขึ้นโดยไม่ต้องพกอุปกรณ์เยอะ",
           },
@@ -927,23 +943,23 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Large-screen rhythm",
-      title: "A tablet experience designed around clarity, calm and room to think.",
+      eyebrow: "จังหวะจอใหญ่",
+      title: "ประสบการณ์แท็บเล็ตที่ออกแบบให้ชัด นิ่ง และมีพื้นที่ให้คิด",
       description:
         "จังหวะของการเล่าเรื่องบนหน้านี้จึงใหญ่ขึ้น โล่งขึ้น และมีพื้นที่หายใจมากขึ้น เพื่อสื่อว่ารุ่นนี้ไม่ได้เป็นแค่มือถือจอใหญ่ แต่เป็นพื้นที่ทำงานอีกแบบหนึ่ง.",
       cards: [
         {
-          title: "Presentation-ready",
+          title: "พร้อมสำหรับการนำเสนอ",
           description:
             "เหมาะกับการเปิดงานให้ลูกค้าดู หรือใช้แทนสมุดโน้ตดิจิทัลแบบจริงจัง",
         },
         {
-          title: "Entertainment companion",
+          title: "คู่หูความบันเทิง",
           description:
             "ทำหน้าที่เป็นหน้าจอสำหรับดูหนัง ฟังเพลง และพักผ่อนหลังงานได้ดี",
         },
         {
-          title: "Creative mobility",
+          title: "ความคล่องตัวสำหรับงานสร้างสรรค์",
           description:
             "พกง่ายกว่าคอมในหลายสถานการณ์ แต่ยังให้พื้นที่ใช้งานมากพอ",
         },
@@ -951,47 +967,47 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     finishes: [
       {
-        name: "Glacier Silver",
+        name: "เกลเชียร์ซิลเวอร์",
         swatch: "#dfe4ec",
         description: "สีเงินสะอาดที่ดูโปรและเข้ากับโต๊ะทำงานทุกสไตล์",
       },
       {
-        name: "Mist Blue",
+        name: "มิสต์บลู",
         swatch: "#b7cee7",
         description: "น้ำเงินหม่นที่ช่วยให้รุ่นนี้ดูครีเอทีฟและไม่แข็งเกินไป",
       },
     ],
     specs: [
       {
-        label: "Display",
-        value: "11.5-inch 2.5K canvas",
+        label: "หน้าจอ",
+        value: "พื้นที่จอ 2.5K ขนาด 11.5 นิ้ว",
         description: "พื้นที่ใหญ่และคมชัดสำหรับงานดูงาน วาด และสตรีม",
       },
       {
-        label: "Battery",
-        value: "8000mAh portable endurance",
+        label: "แบตเตอรี่",
+        value: "8000mAh สำหรับการพกพา",
         description: "รองรับการพกไปใช้งานนอกบ้านได้นานขึ้น",
       },
       {
-        label: "Input",
-        value: "Stylus-ready workflow",
+        label: "การป้อนข้อมูล",
+        value: "พร้อมใช้งานร่วมกับปากกา",
         description: "พร้อมต่อยอดกับการจดและสเก็ตช์เมื่อคุณต้องการ",
       },
       {
-        label: "Positioning",
-        value: "Creative lifestyle tablet",
+        label: "ตำแหน่งรุ่น",
+        value: "แท็บเล็ตสำหรับไลฟ์สไตล์สร้างสรรค์",
         description:
           "เหมาะสำหรับงานสร้างสรรค์ การเรียน และความบันเทิงครบในเครื่องเดียว",
       },
     ],
     art: {
-      hero: "/images/products/tab-p68-hero-draft.svg",
+      hero: "/hero-detail/P68/hero.png",
       detail: "/phone/tab-p68.png",
       fallbackProduct: "/images/products/tab-p68-hero-draft.svg",
     },
   },
   default: {
-    familyLabel: "AVA Premium Device",
+    familyLabel: "อุปกรณ์พรีเมียมเอวีเอ",
     category: "อุปกรณ์อัจฉริยะ",
     theme: {
       page: "#ffffff",
@@ -1005,38 +1021,38 @@ export const PRODUCT_PRESENTATIONS: Record<
       darkSurface: "#121417",
     },
     hero: {
-      eyebrow: "AVA Product Story",
-      label: "Signature collection",
+      eyebrow: "เรื่องราวสินค้าเอวีเอ",
+      label: "คอลเลกชันซิกเนเจอร์",
       spotlightWordmark: "AVA",
-      headline: "Luxury presentation, tailored around your device.",
+      headline: "การนำเสนอที่หรูและปรับเข้ากับอุปกรณ์ของคุณ",
       subheadline:
-        "หน้า detail ที่ออกแบบให้ดึงชื่อ ภาพ และเรื่องเล่าจาก action กลางมาใช้งานได้ทันที",
+        "หน้ารายละเอียดที่ออกแบบให้ดึงชื่อ ภาพ และเรื่องเล่าจากข้อมูลกลางมาใช้งานได้ทันที",
       description:
-        "หากรุ่นนี้ยังไม่มี template เฉพาะ ระบบจะใช้เลย์เอาต์หรูแบบเดียวกันก่อน แล้วค่อยเติม copy หรือ section เฉพาะรุ่นภายหลังได้จากที่เดียว.",
-      primaryCtaLabel: "ดู section หลัก",
+        "หากรุ่นนี้ยังไม่มีแม่แบบเฉพาะ ระบบจะใช้เลย์เอาต์หรูแบบเดียวกันก่อน แล้วค่อยเติมข้อความหรือส่วนเฉพาะรุ่นภายหลังได้จากที่เดียว.",
+      primaryCtaLabel: "ดูส่วนหลัก",
       secondaryCtaLabel: "กลับไปหน้ารวมสินค้า",
     },
     serviceBadges: DEFAULT_SERVICE_BADGES,
     stats: [
       {
-        value: "Premium",
-        label: "Layout-ready",
+        value: "พรีเมียม",
+        label: "พร้อมจัดวาง",
         detail: "พร้อมจัดวางเล่าเรื่องสินค้าให้ดูพรีเมียมในทันที",
       },
       {
-        value: "Flexible",
-        label: "Section-driven",
+        value: "ยืดหยุ่น",
+        label: "แยกส่วนชัดเจน",
         detail:
-          "เหมาะกับการเพิ่ม content ภายหลังโดยไม่ต้องแก้หน้า JSX หลายจุด",
+          "เหมาะกับการเพิ่มเนื้อหาภายหลังโดยไม่ต้องแก้หน้าโค้ดหลายจุด",
       },
       {
-        value: "Unified",
-        label: "Single action source",
-        detail: "ดึงข้อมูล presentation จาก action กลางเพียงจุดเดียว",
+        value: "รวมศูนย์",
+        label: "ข้อมูลต้นทางเดียว",
+        detail: "ดึงข้อมูลการนำเสนอจากจุดกลางเพียงจุดเดียว",
       },
       {
-        value: "Scalable",
-        label: "Future lineup",
+        value: "ต่อยอดได้",
+        label: "รองรับไลน์อัปใหม่",
         detail: "รองรับการต่อยอดไปยังรุ่นอื่นในอนาคตได้ง่าย",
       },
     ],
@@ -1044,23 +1060,23 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "design",
         navLabel: "ดีไซน์",
-        eyebrow: "Default presentation",
-        title: "A polished template ready for your next premium device.",
+        eyebrow: "การนำเสนอพื้นฐาน",
+        title: "แม่แบบประณีตที่พร้อมสำหรับอุปกรณ์พรีเมียมรุ่นถัดไป",
         description:
-          "section นี้เป็น fallback หากรุ่นนั้นยังไม่มี copy เฉพาะ แต่ยังคงโครงสร้างหรูแบบเดียวกับรุ่นอื่นเพื่อให้ประสบการณ์คงเส้นคงวา.",
+          "ส่วนนี้เป็นทางเลือกพื้นฐานหากรุ่นนั้นยังไม่มีข้อความเฉพาะ แต่ยังคงโครงสร้างหรูแบบเดียวกับรุ่นอื่นเพื่อให้ประสบการณ์คงเส้นคงวา.",
         tone: "light",
         cards: [
           {
-            title: "Brand-first composition",
+            title: "การจัดวางที่ให้แบรนด์มาก่อน",
             description: "ทุกบล็อกยังจัดวางตามภาษาดีไซน์เดียวกัน",
           },
           {
-            title: "Adaptable imagery",
-            description: "พร้อมใส่ภาพเฉพาะรุ่นเมื่อมี asset ใหม่",
+            title: "ภาพที่ปรับเข้ากับแต่ละรุ่นได้",
+            description: "พร้อมใส่ภาพเฉพาะรุ่นเมื่อมีไฟล์ภาพใหม่",
           },
           {
-            title: "Editable story",
-            description: "ปรับข้อความภายหลังจาก action กลางได้สะดวก",
+            title: "เรื่องเล่าที่แก้ไขได้ง่าย",
+            description: "ปรับข้อความภายหลังจากข้อมูลกลางได้สะดวก",
           },
         ],
         visualRole: "detail",
@@ -1068,25 +1084,25 @@ export const PRODUCT_PRESENTATIONS: Record<
       {
         id: "signature",
         navLabel: "ไฮไลต์",
-        eyebrow: "Signature section",
-        title: "Designed so every model can feel considered and complete.",
+        eyebrow: "ส่วนซิกเนเจอร์",
+        title: "ออกแบบให้ทุกรุ่นดูตั้งใจและสมบูรณ์",
         description:
-          "โครงนี้ช่วยให้การออกแบบหน้า product detail เป็นระบบมากขึ้น ทั้งเวลาเพิ่มสินค้าใหม่หรือปรับการเล่าเรื่องในอนาคต.",
+          "โครงนี้ช่วยให้การออกแบบหน้ารายละเอียดสินค้าเป็นระบบมากขึ้น ทั้งเวลาเพิ่มสินค้าใหม่หรือปรับการเล่าเรื่องในอนาคต.",
         tone: "dark",
         cards: [
           {
-            title: "Single source of truth",
+            title: "ข้อมูลหลักเพียงจุดเดียว",
             description:
-              "ข้อความ ภาพ และธีมของแต่ละ section อยู่ใน action กลางจุดเดียว",
+              "ข้อความ ภาพ และธีมของแต่ละส่วนอยู่ในข้อมูลกลางจุดเดียว",
           },
           {
-            title: "Luxury pacing",
+            title: "จังหวะการเล่าที่หรูขึ้น",
             description:
-              "จัดจังหวะ page ให้มี hero, spotlight, features และ specs แบบสินค้า flagship",
+              "จัดจังหวะหน้าให้มีภาพเปิด ไฮไลต์ คุณสมบัติ และสเปกแบบสินค้าเรือธง",
           },
           {
-            title: "Fast iteration",
-            description: "เพิ่มรุ่นหรือปรับ theme รายรุ่นได้เร็วขึ้นมาก",
+            title: "ปรับปรุงได้รวดเร็ว",
+            description: "เพิ่มรุ่นหรือปรับธีมรายรุ่นได้เร็วขึ้นมาก",
           },
         ],
         visualRole: "detail",
@@ -1095,21 +1111,21 @@ export const PRODUCT_PRESENTATIONS: Record<
     experience: {
       id: "experience",
       navLabel: "ประสบการณ์",
-      eyebrow: "Structured storytelling",
-      title: "An elegant baseline for the rest of the catalog.",
+      eyebrow: "การเล่าเรื่องที่เป็นระบบ",
+      title: "ฐานการนำเสนอที่สง่างามสำหรับสินค้ารุ่นอื่น",
       description:
-        "หน้า template นี้ช่วยให้สินค้ารุ่นถัดไปขึ้นโครงได้เร็วและยังรักษาความหรูของประสบการณ์หน้า detail เอาไว้ได้ครบ.",
+        "หน้าแม่แบบนี้ช่วยให้สินค้ารุ่นถัดไปขึ้นโครงได้เร็วและยังรักษาความหรูของประสบการณ์หน้ารายละเอียดเอาไว้ได้ครบ.",
       cards: [
         {
-          title: "Consistent brand feel",
+          title: "ความรู้สึกของแบรนด์ที่สม่ำเสมอ",
           description: "ทุกหน้ามีจังหวะการเล่าเรื่องไปในทิศทางเดียวกัน",
         },
         {
-          title: "Modular sections",
-          description: "ย้ายหรือเพิ่ม section ได้โดยไม่ต้องรื้อทั้งหน้า",
+          title: "ส่วนประกอบที่ยืดหยุ่น",
+          description: "ย้ายหรือเพิ่มส่วนได้โดยไม่ต้องรื้อทั้งหน้า",
         },
         {
-          title: "Asset ready",
+          title: "พร้อมรองรับไฟล์ภาพ",
           description:
             "พร้อมผูกภาพเฉพาะรุ่นได้ทันทีที่คุณมีไฟล์ใหม่",
         },
@@ -1117,31 +1133,31 @@ export const PRODUCT_PRESENTATIONS: Record<
     },
     finishes: [
       {
-        name: "Signature Neutral",
+        name: "นิวทรัลซิกเนเจอร์",
         swatch: "#d9d9d9",
-        description: "โทนกลางสำหรับ fallback template",
+        description: "โทนกลางสำหรับแม่แบบพื้นฐาน",
       },
     ],
     specs: [
       {
-        label: "Template",
-        value: "Luxury product detail",
-        description: "หน้า detail สำหรับสินค้า AVA ทุกรุ่น",
+        label: "แม่แบบ",
+        value: "หน้ารายละเอียดสินค้าพรีเมียม",
+        description: "หน้ารายละเอียดสำหรับสินค้าเอวีเอทุกรุ่น",
       },
       {
-        label: "Data source",
-        value: "Single showcase action",
-        description: "ใช้ action เดียวเป็นต้นทางในการจัดหน้า",
+        label: "แหล่งข้อมูล",
+        value: "ข้อมูลโชว์เคสจุดเดียว",
+        description: "ใช้ข้อมูลกลางเพียงจุดเดียวเป็นต้นทางในการจัดหน้า",
       },
       {
-        label: "Scalability",
-        value: "Ready for new models",
-        description: "เพิ่มสินค้าใหม่ได้ง่ายด้วย config เฉพาะรุ่น",
+        label: "การต่อยอด",
+        value: "พร้อมสำหรับรุ่นใหม่",
+        description: "เพิ่มสินค้าใหม่ได้ง่ายด้วยค่าตั้งเฉพาะรุ่น",
       },
       {
-        label: "Visual system",
-        value: "Theme-based sections",
-        description: "แยกธีมสีและจังหวะ section ตามคาแรกเตอร์ของรุ่น",
+        label: "ระบบภาพ",
+        value: "ส่วนต่าง ๆ ตามธีมของรุ่น",
+        description: "แยกธีมสีและจังหวะของแต่ละส่วนตามคาแรกเตอร์ของรุ่น",
       },
     ],
     art: {
