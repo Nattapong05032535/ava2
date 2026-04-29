@@ -10,9 +10,6 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  {
-    ignores: ["strapi/**"],
-  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 

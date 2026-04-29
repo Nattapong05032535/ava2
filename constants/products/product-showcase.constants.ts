@@ -489,7 +489,7 @@ export const PRODUCT_PRESENTATIONS: Record<
       },
     ],
     art: {
-      hero: "/images/products/p63-hero-premium.svg",
+      hero: "/hero-detail/P63/hero.png",
       detail: "/phone/promax-p63.png",
       fallbackProduct: "/images/products/promax-p63.png",
     },
@@ -511,7 +511,7 @@ export const PRODUCT_PRESENTATIONS: Record<
     hero: {
       eyebrow: "AVA Life Note P65",
       label: "โฟกัสกับงานได้มากขึ้น",
-      spotlightWordmark: "โน้ต",
+      spotlightWordmark: "NOTE",
       headline: "มือถือที่นิ่งขึ้น เพื่อการคิดงานที่คมขึ้น",
       subheadline:
         "รุ่นที่วางคาแรกเตอร์ให้เหมาะกับคนทำงาน คิดงาน และจดทุกไอเดียได้ลื่นขึ้นตลอดวัน",
@@ -682,7 +682,7 @@ export const PRODUCT_PRESENTATIONS: Record<
     hero: {
       eyebrow: "AVA Enjoy Series P65",
       label: "ความสนุกทุกวันที่ยกระดับขึ้น",
-      spotlightWordmark: "สนุก",
+      spotlightWordmark: "ENJOY",
       headline: "คาแรกเตอร์สดใสสำหรับคนที่ใช้ชีวิตกับคอนเทนต์",
       subheadline:
         "สมาร์ทโฟนที่วางอารมณ์ให้สดขึ้น ใช้ง่ายขึ้น และดูเป็นมิตรกับการใช้งานทุกวัน",
@@ -851,7 +851,7 @@ export const PRODUCT_PRESENTATIONS: Record<
     hero: {
       eyebrow: "AVA Life Tab Ultra P68",
       label: "พื้นที่สร้างสรรค์",
-      spotlightWordmark: "แท็บ",
+      spotlightWordmark: "TAB",
       headline: "พื้นที่จอที่ใหญ่และนิ่งขึ้นสำหรับไอเดียที่เคลื่อนไหว",
       subheadline:
         "แท็บเล็ตที่ถูกวางบทบาทให้เหมาะกับทั้งงานสร้างสรรค์ ความบันเทิง และการทำงานแบบพกพา",

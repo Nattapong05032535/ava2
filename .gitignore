@@ -6,12 +6,8 @@
 /.next/
 /out/
 
-# strapi artifacts
-/strapi/node_modules/
-/strapi/dist/
-/strapi/.tmp/
-/strapi/.cache/
-/strapi/build/
+# database
+/db/migrations/
 
 # production artifacts
 /build

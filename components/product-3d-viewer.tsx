@@ -532,7 +532,7 @@ export function Product3DViewer({
       </div>
 
       {/* 3D Canvas */}
-      <div className="relative h-[520px] w-full sm:h-[620px] lg:h-[680px]">
+      <div className="relative h-[420px] w-full sm:h-[500px] lg:h-[540px]">
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
           style={{ backgroundColor: accentColor }}

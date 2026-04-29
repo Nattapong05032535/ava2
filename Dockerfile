@@ -1,18 +1,21 @@
-FROM node:24-alpine
-
-# Alpine uses apk, not apt. build-base ≈ build-essential (for native addons / node-gyp).
-RUN apk add --no-cache build-base python3
-
-WORKDIR /app
-
-RUN npm install -g pnpm
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
-
+# Dockerfile (production - multi-stage)
+FROM node:20.12.2-alpine AS development
+RUN apk add --no-cache python3 make g++
+WORKDIR /usr/src/app
+COPY ./package.json ./pnpm-lock.yaml ./tsconfig.json ./
+RUN npm install -g pnpm && pnpm install
 COPY . .
+RUN pnpm run build
 
-RUN pnpm build
-
-EXPOSE 3000
-CMD ["pnpm", "exec", "next", "start", "--hostname", "0.0.0.0", "--port", "3000"]
+FROM node:20.12.2-alpine AS production
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /usr/src/app
+COPY --from=development /usr/src/app/package.json ./
+COPY --from=development /usr/src/app/pnpm-lock.yaml ./
+COPY --from=development /usr/src/app/.next ./.next
+COPY --from=development /usr/src/app/public ./public
+RUN npm install -g pnpm && pnpm install --prod
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+CMD ["pnpm","start"]

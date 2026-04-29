@@ -13,37 +13,22 @@ import { Navbar } from "@/components/navbar";
 import { LineupSlider } from "@/components/lineup-slider";
 import { Product3DViewer } from "@/components/product-3d-viewer";
 
-const FIRST_DETAIL_SLIDES = [
-  {
-    src: "/first-detail/P89/1.jpeg",
-    alt: "ภาพรายละเอียดดีไซน์ตัวเครื่อง P89",
-    description:
-      "ขอแนะนำดีไซน์ตัวเครื่องที่จัดวางทุกเส้นสายให้ดูลงตัวขึ้น ทั้งพื้นผิว โมดูลกล้อง และสัดส่วนที่ให้ความรู้สึกพรีเมียมตั้งแต่แรกเห็น",
-  },
-  {
-    src: "/first-detail/P89/2.jpeg",
-    alt: "ภาพชุดกล้องและพื้นผิวตัวเครื่อง P89",
-    description:
-      "โมดูลกล้องถูกออกแบบให้กลมกลืนกับตัวเครื่อง พร้อมเน้นรายละเอียดของวัสดุและแสงเงาให้ดูหรูอย่างเป็นธรรมชาติ",
-  },
-  {
-    src: "/first-detail/P89/3.jpeg",
-    alt: "ภาพมุมมองตัวเครื่อง P89",
-    description:
-      "สัดส่วนของตัวเครื่องถูกจัดให้ดูนิ่งและมั่นใจ เหมาะกับภาพลักษณ์ของสมาร์ทโฟนระดับเรือธง",
-  },
-  {
-    src: "/first-detail/P89/4.jpeg",
-    alt: "ภาพดีไซน์ด้านหลัง P89",
-    description:
-      "พื้นผิวด้านหลังช่วยขับคาแรกเตอร์ของรุ่นให้ชัดขึ้น โดยยังคงความเรียบและดูสะอาดตา",
-  },
-  {
-    src: "/first-detail/P89/5.jpeg",
-    alt: "ภาพรายละเอียดวัสดุ P89",
-    description:
-      "รายละเอียดเล็ก ๆ รอบตัวเครื่องถูกเก็บให้ดูประณีต เพื่อให้ประสบการณ์โดยรวมรู้สึกพรีเมียมมากขึ้น",
-  },
+import { getProductModelKey } from "@/constants";
+
+const MODEL_FOLDER_MAP: Record<string, string> = {
+  "promax-p89": "P89",
+  "promax-p63": "P63",
+  "note-p65": "P65C",
+  "enjoy-p65": "P65P",
+  "tab-p68": "P68",
+};
+
+const DEFAULT_DESCRIPTIONS = [
+  "ขอแนะนำดีไซน์ตัวเครื่องที่จัดวางทุกเส้นสายให้ดูลงตัวขึ้น ทั้งพื้นผิว โมดูลกล้อง และสัดส่วนที่ให้ความรู้สึกพรีเมียมตั้งแต่แรกเห็น",
+  "โมดูลกล้องถูกออกแบบให้กลมกลืนกับตัวเครื่อง พร้อมเน้นรายละเอียดของวัสดุและแสงเงาให้ดูหรูอย่างเป็นธรรมชาติ",
+  "สัดส่วนของตัวเครื่องถูกจัดให้ดูนิ่งและมั่นใจ เหมาะกับภาพลักษณ์ของสมาร์ทโฟนระดับเรือธง",
+  "พื้นผิวด้านหลังช่วยขับคาแรกเตอร์ของรุ่นให้ชัดขึ้น โดยยังคงความเรียบและดูสะอาดตา",
+  "รายละเอียดเล็ก ๆ รอบตัวเครื่องถูกเก็บให้ดูประณีต เพื่อให้ประสบการณ์โดยรวมรู้สึกพรีเมียมมากขึ้น",
 ];
 
 function formatUpdatedDate(dateString: string) {
@@ -72,112 +57,75 @@ function MetricCard({ stat }: { stat: ProductShowcaseStat }) {
 
 function StorySection({
   section,
-  reverse,
+  showcase,
 }: {
   section: ProductShowcaseSection;
-  reverse?: boolean;
+  showcase: ProductShowcase;
 }) {
-  const isDark = section.tone === "dark";
-
   return (
     <section
       id={section.id}
-      className="scroll-mt-40 py-10 sm:py-14"
-      aria-labelledby={`${section.id}-title`}
+      className="relative scroll-mt-20 overflow-hidden py-10 sm:py-14 lg:py-16"
+      style={{ 
+        backgroundColor: 
+          section.id === "experience" 
+            ? "var(--showcase-surface)" 
+            : section.tone === "dark" || section.id === "signature" || section.id === "performance"
+            ? "var(--showcase-accent-soft)"
+            : "white",
+        color: "var(--showcase-ink)"
+      }}
     >
-      <div
-        className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16 ${
-          reverse ? "lg:[&>*:first-child]:order-2" : ""
-        }`}
-      >
-        <div
-          className={`relative overflow-hidden rounded-[2.5rem] ${
-            isDark
-              ? "bg-(--showcase-dark) text-white"
-              : "border border-black/6 bg-white/82 text-(--showcase-ink)"
-          }`}
-          style={
-            isDark
-              ? {
-                  background:
-                    "radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%), linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%), var(--showcase-dark)",
-                }
-              : {
-                  background:
-                    "radial-gradient(circle at top right, var(--showcase-accent-soft), transparent 28%), linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72))",
-                }
-          }
-        >
-          <div className="relative flex h-full flex-col justify-between p-8 lg:p-10">
-            <div>
-              <p
-                className={`text-xs font-semibold uppercase tracking-[0.26em] ${
-                  isDark ? "text-white/60" : "text-(--showcase-accent)"
-                }`}
-              >
-                {section.eyebrow}
-              </p>
-              <h2
-                id={`${section.id}-title`}
-                className="mt-4 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl"
-              >
-                {section.title}
-              </h2>
-              <p
-                className={`mt-5 max-w-xl text-base leading-7 ${
-                  isDark ? "text-white/72" : "text-(--showcase-muted-ink)"
-                }`}
-              >
-                {section.description}
-              </p>
-            </div>
+      <div 
+        className="absolute inset-x-0 top-0 h-[350px] opacity-10"
+        style={{
+          background: `radial-gradient(circle at 50% 0%, ${showcase.theme.accent}, transparent 70%)`
+        }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.01)_1px,transparent_1px)] bg-size-[60px_60px] opacity-[0.2]" />
 
-            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              {section.cards.map((card) => (
-                <div
-                  key={card.title}
-                  className={`rounded-2xl p-5 ${
-                    isDark ? "bg-white/7" : "bg-black/4"
-                  }`}
-                >
-                  <h3 className="text-base font-semibold">{card.title}</h3>
-                  <p
-                    className={`mt-2 text-sm leading-6 ${
-                      isDark ? "text-white/54" : "text-black/54"
-                    }`}
-                  >
-                    {card.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {section.quote && (
-              <div
-                className={`mt-12 border-l-2 py-1 pl-6 ${
-                  isDark ? "border-white/20" : "border-black/10"
-                }`}
-              >
-                <p
-                  className={`text-sm italic leading-7 ${
-                    isDark ? "text-white/60" : "text-black/60"
-                  }`}
-                >
-                  “{section.quote}”
-                </p>
-              </div>
-            )}
-          </div>
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-4xl text-center mb-16 lg:mb-24">
+          <p className="text-base font-bold uppercase tracking-[0.3em] text-(--showcase-accent) sm:text-lg">
+            {section.eyebrow}
+          </p>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-6xl lg:leading-[1.1]">
+            {section.title}
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-relaxed text-(--showcase-muted-ink) sm:text-lg sm:leading-8">
+            {section.description}
+          </p>
         </div>
 
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-(--showcase-muted-surface) sm:aspect-[1.1/1] lg:aspect-square">
-          <Image
-            src={section.visual.src}
-            alt={section.visual.alt}
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 hover:scale-105"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+          <div className="lg:col-span-3">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-gray-200/50 sm:rounded-[2.5rem]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
+                <Image
+                  src={section.visual?.src || showcase.detailVisual.src}
+                  alt={section.visual?.alt || section.title}
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-2 flex flex-col gap-5">
+            {section.cards.map((card) => (
+              <div
+                key={card.title}
+                className="group rounded-2xl border border-black/5 bg-white/40 p-6 backdrop-blur-sm transition-all hover:translate-x-2 sm:rounded-3xl hover:bg-white/60"
+              >
+                <h3 className="text-lg font-bold tracking-tight">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-black/50 sm:leading-6">
+                  {card.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -186,10 +134,24 @@ function StorySection({
 
 function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; onScrollTo: (id: string) => void }) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const currentSlide = FIRST_DETAIL_SLIDES[activeSlide];
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+  
+  const slides = React.useMemo(() => {
+    const modelKey = getProductModelKey(showcase.product.name);
+    const folderName = MODEL_FOLDER_MAP[modelKey] || "P89";
+    
+    return [1, 2, 3, 4, 5].map((num, i) => ({
+      src: `/first-detail/${folderName}/${num}.jpeg`,
+      alt: `ภาพรายละเอียด ${showcase.displayName} ชุดที่ ${num}`,
+      description: DEFAULT_DESCRIPTIONS[i],
+    }));
+  }, [showcase.product.name, showcase.displayName]);
+
+  const currentSlide = slides[activeSlide];
 
   function showNextSlide() {
-    setActiveSlide((current) => (current + 1) % FIRST_DETAIL_SLIDES.length);
+    setDirection("next");
+    setActiveSlide((current) => (current + 1) % slides.length);
   }
 
   return (
@@ -248,7 +210,7 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                 </div>
               </div>
 
-              <div className="relative mx-auto h-72 w-full max-w-sm sm:h-88 md:h-104 lg:-mt-6 lg:h-120 lg:max-w-lg lg:-translate-y-1 lg:-translate-x-4 xl:h-128 xl:max-w-xl">
+              <div className="relative mx-auto h-64 w-full max-w-sm sm:h-76 md:h-92 lg:-mt-6 lg:h-104 lg:max-w-lg lg:-translate-y-1 lg:-translate-x-4 xl:h-112 xl:max-w-xl">
                 <div
                   className="showcase-stage-glow absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-25 sm:h-80 sm:w-80 lg:h-115 lg:w-115"
                   style={{ backgroundColor: showcase.theme.accent }}
@@ -281,7 +243,7 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
             </h2>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-[1.75rem] bg-zinc-900 sm:mt-16 sm:rounded-[2rem]">
+          <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.75rem] bg-zinc-900 sm:mt-12 sm:rounded-[2rem]">
             <div className="relative aspect-[1.35/1] sm:aspect-[16/9]">
               <Image
                 key={currentSlide.src}
@@ -289,7 +251,11 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                 alt={currentSlide.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"
-                className="object-cover"
+                className={`object-cover ${
+                  direction === "next"
+                    ? "animate-slide-in-right"
+                    : "animate-slide-in-left"
+                }`}
                 quality={95}
               />
               <button
@@ -303,13 +269,16 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
             </div>
           </div>
 
-          <div className="mt-7 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <div className="flex h-7 items-center gap-3 rounded-full border border-white/15 bg-black px-4">
-              {FIRST_DETAIL_SLIDES.map((slide, index) => (
+              {slides.map((slide, index) => (
                 <button
                   key={slide.src}
                   type="button"
-                  onClick={() => setActiveSlide(index)}
+                  onClick={() => {
+                    setDirection(index > activeSlide ? "next" : "prev");
+                    setActiveSlide(index);
+                  }}
                   aria-label={`ดูภาพที่ ${index + 1}`}
                   className={`h-2 rounded-full transition-all ${
                     index === activeSlide
@@ -321,7 +290,7 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
             </div>
           </div>
 
-          <p className="mx-auto mt-9 max-w-6xl text-center text-[17px] leading-8 text-white/64 sm:text-xl sm:leading-9">
+          <p className="mx-auto mt-7 max-w-4xl text-center text-[17px] leading-8 text-white/64 sm:text-xl sm:leading-9">
             {currentSlide.description}
           </p>
         </div>
@@ -369,6 +338,10 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
     }
   };
 
+  const modelKey = getProductModelKey(showcase.product.name);
+  const folderName = MODEL_FOLDER_MAP[modelKey] || "P89";
+  const colorImagePath = `/color/${folderName}/color.jpeg`;
+
   return (
     <div
       style={themeStyle}
@@ -396,16 +369,20 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                 }}
               />
               <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/42 sm:text-[11px]">
-                {showcase.familyLabel}
-              </p>
-              <p className="mt-0.5 text-[13px] font-semibold text-white/88 sm:mt-1 sm:text-sm">
-                {showcase.displayName}
-              </p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/42 sm:text-[11px]">
+                  {showcase.familyLabel}
+                </p>
+                <p className="mt-0.5 text-[13px] font-semibold text-white/88 sm:mt-1 sm:text-sm">
+                  {showcase.displayName}
+                </p>
               </div>
             </div>
             <div className="flex min-w-fit items-center gap-1 rounded-full border border-white/14 bg-white/[0.07] p-1 text-[12px] text-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_48px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-sm">
-              {showcase.anchors.map((anchor) => (
+              {[
+                { id: 'overview', label: 'ภาพรวม' },
+                { id: 'highlights', label: 'ไฮไลท์' },
+                { id: 'specs', label: 'สเปก' },
+              ].map((anchor) => (
                 <button
                   key={anchor.id}
                   onClick={() => handleScroll(anchor.id)}
@@ -443,60 +420,116 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-10 sm:py-14">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {showcase.stats.map((stat) => (
-              <MetricCard key={`${stat.label}-${stat.value}`} stat={stat} />
-            ))}
+        <section id="features" className="relative scroll-mt-20 overflow-hidden bg-[#0f172a] py-20 text-white sm:py-24 lg:py-32">
+          {/* Unified Background Effects - Clean & Seamless */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-size-[60px_60px] opacity-[0.2]" />
+          <div 
+            className="absolute inset-x-0 top-0 h-full opacity-15"
+            style={{
+              background: `radial-gradient(circle at 50% 25%, ${showcase.theme.accent}, transparent 80%)`
+            }}
+          />
+
+          <div className="relative mx-auto max-w-7xl px-6">
+            {/* 1. Specifications Grid */}
+            <div id="specs" className="mb-24 lg:mb-32 scroll-mt-32">
+              <div className="mx-auto max-w-3xl text-center mb-12">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-blue-400">
+                  Performance Specs
+                </p>
+                <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+                  ประสิทธิภาพที่เหนือกว่าในทุกมิติ
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                {showcase.specs.map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all hover:bg-white/10 sm:rounded-[2.5rem] sm:p-8"
+                  >
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40 sm:text-[11px]">
+                        {spec.label}
+                      </p>
+                      <h3 className="mt-3 text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-indigo-400 sm:mt-4 sm:text-3xl">
+                        {spec.value}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-[11px] leading-relaxed text-white/50 sm:mt-4 sm:text-sm">
+                      {spec.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Unified 3-Column Feature Trio */}
+            <div id="highlights" className="scroll-mt-32">
+              <div className="mx-auto max-w-4xl text-center mb-10 lg:mb-14">
+                <p className="text-sm font-bold uppercase tracking-[0.3em] text-blue-400">
+                  ที่สุดของประสบการณ์
+                </p>
+                <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl lg:leading-[1.2]">
+                  {showcase.displayName} นิยามใหม่แห่งนวัตกรรม
+                </h2>
+                <p className="mx-auto mt-4 max-w-4xl text-sm leading-relaxed text-white/50 sm:text-base sm:leading-7">
+                  เรารวบรวมความประณีตของการออกแบบ พลังของการสร้างสรรค์ และประสบการณ์ที่ไร้รอยต่อไว้ในที่เดียว
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+                {[
+                  { 
+                    id: "design", 
+                    title: showcase.sections[0].title, 
+                    desc: showcase.sections[0].description, 
+                    img: showcase.sections[0].visual.src,
+                    eyebrow: showcase.sections[0].eyebrow
+                  },
+                  { 
+                    id: "creative", 
+                    title: showcase.sections[1].title, 
+                    desc: showcase.sections[1].description, 
+                    img: showcase.sections[1].visual.src,
+                    eyebrow: showcase.sections[1].eyebrow
+                  },
+                  { 
+                    id: "experience", 
+                    title: showcase.experience.title, 
+                    desc: showcase.experience.description, 
+                    img: showcase.detailVisual.src,
+                    eyebrow: showcase.experience.eyebrow
+                  }
+                ].map((item) => (
+                  <div key={item.id} className="flex flex-col group">
+                    <div className="relative aspect-[4/4.5] overflow-hidden rounded-[1.5rem] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] shadow-black/40">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="mt-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-2">
+                        {item.eyebrow}
+                      </p>
+                      <h3 className="text-lg font-bold tracking-tight lg:text-xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-xs leading-relaxed text-white/40 sm:text-[13px] sm:leading-6 line-clamp-3">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        <div className="mx-auto max-w-7xl px-6">
-          {showcase.sections.map((section, index) => (
-            <StorySection
-              key={section.id}
-              section={section}
-              reverse={index % 2 === 1}
-            />
-          ))}
-        </div>
-
-        <section
-          id={showcase.experience.id}
-          className="scroll-mt-40 py-10 lg:py-14"
-        >
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="max-w-3xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent)">
-                {showcase.experience.eyebrow}
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                {showcase.experience.title}
-              </h2>
-              <p className="mt-5 text-sm leading-relaxed text-(--showcase-muted-ink) sm:text-base sm:leading-8">
-                {showcase.experience.description}
-              </p>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {showcase.experience.cards.map((card) => (
-                <div
-                  key={card.title}
-                  className="rounded-2xl border border-black/6 bg-white/74 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.06)] sm:rounded-[2rem] sm:p-7"
-                >
-                  <h3 className="text-xl font-semibold tracking-tight text-(--showcase-ink) sm:text-2xl">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-(--showcase-muted-ink) sm:mt-4 sm:text-base sm:leading-7">
-                    {card.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-10 lg:py-14">
+        <section className="py-10 lg:py-14 bg-[#e8e8ed]">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="showcase-stage-panel rounded-2xl border border-black/6 bg-white/84 p-6 shadow-[0_32px_96px_rgba(15,23,42,0.08)] backdrop-blur-2xl sm:rounded-[2.5rem] sm:p-10">
@@ -530,50 +563,18 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                 </div>
               </div>
 
-            <div
-              className="relative min-h-80 overflow-hidden rounded-2xl border border-black/6 bg-white shadow-[0_32px_96px_rgba(15,23,42,0.06)] sm:min-h-100 sm:rounded-[2.5rem] lg:min-h-120"
-            >
-              <Image
-                src={showcase.detailVisual.src}
-                alt={showcase.detailVisual.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="specs" className="scroll-mt-40 py-10 lg:py-14">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="max-w-3xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent)">
-                Specs at a glance
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                Key details that complete the story.
-              </h2>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {showcase.specs.map((spec) => (
-                <div
-                  key={spec.label}
-                  className="rounded-2xl border border-black/6 bg-white/82 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:rounded-[2.5rem] sm:p-6"
-                >
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) sm:text-[10px]">
-                    {spec.label}
-                  </p>
-                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-(--showcase-ink) sm:text-2xl">
-                    {spec.value}
-                  </h3>
-                  <p className="mt-3 text-[13px] leading-relaxed text-(--showcase-muted-ink) sm:mt-4 sm:text-sm sm:leading-6">
-                    {spec.description}
-                  </p>
-                </div>
-              ))}
+              <div
+                className="relative min-h-80 overflow-hidden rounded-2xl border border-black/6 bg-white shadow-[0_32px_96px_rgba(15,23,42,0.06)] sm:min-h-100 sm:rounded-[2.5rem] lg:min-h-120"
+              >
+                <Image
+                  src={colorImagePath}
+                  alt={`${showcase.displayName} Colors`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </section>
