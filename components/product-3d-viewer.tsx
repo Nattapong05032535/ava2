@@ -532,14 +532,14 @@ export function Product3DViewer({
       </div>
 
       {/* 3D Canvas */}
-      <div className="relative h-[420px] w-full sm:h-[500px] lg:h-[540px]">
+      <div className="relative h-[320px] w-full sm:h-[380px] lg:h-[420px]">
         <div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
           style={{ backgroundColor: accentColor }}
         />
         <Suspense fallback={<LoadingSpinner accentColor={accentColor} />}>
           <Canvas
-            camera={{ position: [0, 0, 5.5], fov: 35 }}
+            camera={{ position: [0, 0, 6.5], fov: 35 }}
             gl={{ antialias: true, alpha: true }}
             dpr={[1, 2]}
           >
@@ -623,8 +623,9 @@ export function Product3DViewer({
         </div>
       </div>
 
-      <div className="relative z-20 flex flex-col gap-4 bg-black px-4 pb-8 pt-2 sm:px-6 lg:flex-row lg:items-end lg:justify-center lg:gap-5">
-        <div className="rounded-[1.35rem] bg-white/10 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.35)] sm:min-w-64 sm:p-5">
+      <div className="relative z-20 flex flex-wrap items-stretch justify-center gap-4 bg-black px-4 pb-10 pt-2 sm:gap-5 sm:px-8">
+        {/* Color Selector Card */}
+        <div className="flex flex-col justify-center rounded-[1.35rem] bg-white/10 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.35)] sm:p-5">
           <div className="flex items-center gap-3">
             {[
               "#424260",
@@ -638,7 +639,7 @@ export function Product3DViewer({
                 key={color}
                 type="button"
                 aria-label={`เลือกสีที่ ${index + 1}`}
-                className={`h-6 w-6 rounded-full border transition-transform hover:scale-110 ${
+                className={`h-5 w-5 rounded-full border transition-transform hover:scale-110 sm:h-6 sm:w-6 ${
                   index === 0
                     ? "border-[#1683ff] ring-2 ring-[#1683ff]/70 ring-offset-2 ring-offset-[#1d1d1f]"
                     : "border-white/25"
@@ -647,22 +648,25 @@ export function Product3DViewer({
               />
             ))}
           </div>
-          <p className="mt-4 text-sm font-semibold text-white sm:text-base">
+          <p className="mt-3 text-[10px] font-semibold text-white sm:mt-4 sm:text-sm">
             Cobalt Violet
           </p>
         </div>
 
-        {PRESET_VIEWS.map((preset) => (
-          <button
-            key={preset.label}
-            type="button"
-            onClick={() => handlePresetView(preset.rotation)}
-            className="flex h-14 min-w-32 items-center justify-between gap-4 rounded-full bg-white/10 px-5 text-sm font-semibold text-white shadow-[0_18px_48px_rgba(0,0,0,0.34)] transition-all hover:bg-white/15 active:scale-95 sm:min-w-36 sm:text-base"
-          >
-            <span>{preset.label}</span>
-            <span className="text-2xl font-light leading-none text-white/86">+</span>
-          </button>
-        ))}
+        {/* Preset Buttons Grid (2 Rows) */}
+        <div className="grid grid-flow-col grid-rows-2 gap-2 sm:gap-3">
+          {PRESET_VIEWS.map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              onClick={() => handlePresetView(preset.rotation)}
+              className="flex h-10 min-w-[100px] items-center justify-between gap-3 rounded-full bg-white/10 px-4 text-[10px] font-semibold text-white shadow-[0_18px_48px_rgba(0,0,0,0.34)] transition-all hover:bg-white/15 active:scale-95 sm:h-[52px] sm:min-w-[140px] sm:px-5 sm:text-sm"
+            >
+              <span>{preset.label}</span>
+              <span className="text-base font-light leading-none text-white/86 sm:text-xl">+</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

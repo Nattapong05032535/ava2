@@ -338,6 +338,18 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
     }
   };
 
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  const handleFeatureScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    const width = e.currentTarget.clientWidth;
+    const itemWidth = width * 0.85; // matching min-w-[85vw]
+    const index = Math.round(scrollLeft / itemWidth);
+    if (index !== activeFeature) {
+      setActiveFeature(index);
+    }
+  };
+
   const modelKey = getProductModelKey(showcase.product.name);
   const folderName = MODEL_FOLDER_MAP[modelKey] || "P89";
   const colorImagePath = `/color/${folderName}/color.jpeg`;
@@ -381,6 +393,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
               {[
                 { id: 'overview', label: 'ภาพรวม' },
                 { id: 'highlights', label: 'ไฮไลท์' },
+                { id: '3d-view', label: 'มุมมอง 3D' },
                 { id: 'specs', label: 'สเปก' },
               ].map((anchor) => (
                 <button
@@ -397,16 +410,16 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
 
         <SpotlightHero showcase={showcase} onScrollTo={handleScroll} />
 
-        <section id="3d-view" className="scroll-mt-40 bg-black py-16 text-white lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="mx-auto mb-10 max-w-3xl text-center">
-              <p className="text-sm font-semibold text-[#1683ff]">
+        <section id="3d-view" className="scroll-mt-40 bg-black py-2 text-white lg:py-6">
+          <div className="relative mx-auto max-w-7xl px-6">
+            <div className="mx-auto mb-1 max-w-3xl text-center">
+              <p className="text-[13px] font-semibold text-[#1683ff] sm:text-sm">
                 มุมมองสามมิติ
               </p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="mt-0.5 text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">
                 หมุนดูทุกมุม เหมือนถือจริง
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+              <p className="mx-auto mt-1 max-w-2xl text-[14px] leading-relaxed text-white/58 sm:text-sm">
                 หมุนชม {showcase.displayName} แบบ 360 องศา ลากเพื่อหมุน ซูมเข้าดูรายละเอียด หรือเลือกมุมมองที่ต้องการได้ทันที
               </p>
             </div>
@@ -478,7 +491,10 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+              <div 
+                className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 no-scrollbar md:grid md:grid-cols-3 lg:gap-10"
+                onScroll={handleFeatureScroll}
+              >
                 {[
                   { 
                     id: "design", 
@@ -502,7 +518,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                     eyebrow: showcase.experience.eyebrow
                   }
                 ].map((item) => (
-                  <div key={item.id} className="flex flex-col group">
+                  <div key={item.id} className="flex min-w-[85vw] snap-center flex-col group md:min-w-0">
                     <div className="relative aspect-[4/4.5] overflow-hidden rounded-[1.5rem] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] shadow-black/40">
                       <Image
                         src={item.img}
@@ -515,7 +531,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-2">
                         {item.eyebrow}
                       </p>
-                      <h3 className="text-lg font-bold tracking-tight lg:text-xl">
+                      <h3 className="text-lg font-bold tracking-tight lg:text-xl text-white">
                         {item.title}
                       </h3>
                       <p className="mt-2 text-xs leading-relaxed text-white/40 sm:text-[13px] sm:leading-6 line-clamp-3">
@@ -525,12 +541,35 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                   </div>
                 ))}
               </div>
+
+              {/* Mobile Pagination Dots */}
+              <div className="mt-6 flex justify-center md:hidden">
+                <div className="flex h-6 items-center gap-2.5 rounded-full border border-white/10 bg-black/40 px-3 backdrop-blur-md">
+                  {[0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === activeFeature ? "w-6 bg-white" : "w-1.5 bg-white/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-10 lg:py-14 bg-[#e8e8ed]">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative py-10 lg:py-14 bg-[#e8e8ed] overflow-hidden">
+          {/* Visible Marble Texture Overlay */}
+          <div 
+            className="absolute inset-0 opacity-80 mix-blend-multiply pointer-events-none"
+            style={{
+              backgroundImage: 'url(/images/textures/marble.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <div className="relative mx-auto max-w-7xl px-6">
             <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="showcase-stage-panel rounded-2xl border border-black/6 bg-white/84 p-6 shadow-[0_32px_96px_rgba(15,23,42,0.08)] backdrop-blur-2xl sm:rounded-[2.5rem] sm:p-10">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) sm:text-[11px]">
