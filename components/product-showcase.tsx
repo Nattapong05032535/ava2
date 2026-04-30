@@ -500,21 +500,21 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                     id: "design", 
                     title: showcase.sections[0].title, 
                     desc: showcase.sections[0].description, 
-                    img: showcase.sections[0].visual.src,
+                    img: `/highlight/${folderName}/1.jpeg`,
                     eyebrow: showcase.sections[0].eyebrow
                   },
                   { 
                     id: "creative", 
                     title: showcase.sections[1].title, 
                     desc: showcase.sections[1].description, 
-                    img: showcase.sections[1].visual.src,
+                    img: `/highlight/${folderName}/2.jpeg`,
                     eyebrow: showcase.sections[1].eyebrow
                   },
                   { 
                     id: "experience", 
                     title: showcase.experience.title, 
                     desc: showcase.experience.description, 
-                    img: showcase.detailVisual.src,
+                    img: `/highlight/${folderName}/3.jpeg`,
                     eyebrow: showcase.experience.eyebrow
                   }
                 ].map((item) => (
