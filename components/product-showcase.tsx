@@ -221,10 +221,10 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                   src={showcase.hero.heroVisual.src}
                   alt={showcase.hero.heroVisual.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 42vw, 32vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                   className="showcase-stage-device relative z-10 object-contain object-center transition-transform duration-1000 lg:scale-105 xl:scale-110"
                   priority
-                  quality={100}
+                  quality={85}
                 />
               </div>
             </div>
@@ -245,19 +245,19 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
 
           <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.75rem] bg-zinc-900 sm:mt-12 sm:rounded-[2rem]">
             <div className="relative aspect-[1.35/1] sm:aspect-[16/9]">
-              <Image
-                key={currentSlide.src}
-                src={currentSlide.src}
-                alt={currentSlide.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 1200px"
-                className={`object-cover ${
-                  direction === "next"
-                    ? "animate-slide-in-right"
-                    : "animate-slide-in-left"
-                }`}
-                quality={95}
-              />
+                <Image
+                  key={currentSlide.src}
+                  src={currentSlide.src}
+                  alt={currentSlide.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1000px"
+                  className={`object-cover ${
+                    direction === "next"
+                      ? "animate-slide-in-right"
+                      : "animate-slide-in-left"
+                  }`}
+                  quality={80}
+                />
               <button
                 type="button"
                 onClick={showNextSlide}
@@ -524,7 +524,9 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                         src={item.img}
                         alt={item.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 30vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        quality={80}
                       />
                     </div>
                     <div className="mt-5">
