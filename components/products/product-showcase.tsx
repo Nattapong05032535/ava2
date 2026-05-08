@@ -1,7 +1,6 @@
 "use client";
 
 import React, { CSSProperties, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
 import {
@@ -9,27 +8,15 @@ import {
   ProductShowcaseSection,
   ProductShowcaseStat,
 } from "@/types";
-import { Navbar } from "@/components/navbar";
-import { LineupSlider } from "@/components/lineup-slider";
-import { Product3DViewer } from "@/components/product-3d-viewer";
-
+import { SmartImage } from "@/components/shared";
 import { getProductModelKey } from "@/constants";
-
-const MODEL_FOLDER_MAP: Record<string, string> = {
-  "promax-p89": "P89",
-  "promax-p63": "P63",
-  "note-p65": "P65C",
-  "enjoy-p65": "P65P",
-  "tab-p68": "P68",
-};
-
-const DEFAULT_DESCRIPTIONS = [
-  "ขอแนะนำดีไซน์ตัวเครื่องที่จัดวางทุกเส้นสายให้ดูลงตัวขึ้น ทั้งพื้นผิว โมดูลกล้อง และสัดส่วนที่ให้ความรู้สึกพรีเมียมตั้งแต่แรกเห็น",
-  "โมดูลกล้องถูกออกแบบให้กลมกลืนกับตัวเครื่อง พร้อมเน้นรายละเอียดของวัสดุและแสงเงาให้ดูหรูอย่างเป็นธรรมชาติ",
-  "สัดส่วนของตัวเครื่องถูกจัดให้ดูนิ่งและมั่นใจ เหมาะกับภาพลักษณ์ของสมาร์ทโฟนระดับเรือธง",
-  "พื้นผิวด้านหลังช่วยขับคาแรกเตอร์ของรุ่นให้ชัดขึ้น โดยยังคงความเรียบและดูสะอาดตา",
-  "รายละเอียดเล็ก ๆ รอบตัวเครื่องถูกเก็บให้ดูประณีต เพื่อให้ประสบการณ์โดยรวมรู้สึกพรีเมียมมากขึ้น",
-];
+import {
+  MODEL_FOLDER_MAP,
+  SHOWCASE_DETAIL_DESCRIPTIONS,
+} from "@/constants/products";
+import { Navbar } from "@/components/layout";
+import { LineupSlider } from "@/components/products";
+import { Product3DViewer } from "@/components/products";
 
 function formatUpdatedDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("th-TH", {
@@ -77,7 +64,7 @@ function StorySection({
       }}
     >
       <div 
-        className="absolute inset-x-0 top-0 h-[350px] opacity-10"
+        className="absolute inset-x-0 top-0 h-87.5 opacity-10"
         style={{
           background: `radial-gradient(circle at 50% 0%, ${showcase.theme.accent}, transparent 70%)`
         }}
@@ -100,12 +87,13 @@ function StorySection({
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
           <div className="lg:col-span-3">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-gray-200/50 sm:rounded-[2.5rem]">
-              <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
-                <Image
+              <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-16/10">
+                <SmartImage
                   src={section.visual?.src || showcase.detailVisual.src}
                   alt={section.visual?.alt || section.title}
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
+                  quality={80}
                 />
               </div>
             </div>
@@ -137,15 +125,15 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
   const [direction, setDirection] = useState<"next" | "prev">("next");
   
   const slides = React.useMemo(() => {
-    const modelKey = getProductModelKey(showcase.product.name);
+    const modelKey = getProductModelKey(showcase.displayName);
     const folderName = MODEL_FOLDER_MAP[modelKey] || "P89";
     
     return [1, 2, 3, 4, 5].map((num, i) => ({
-      src: `/first-detail/${folderName}/${num}.jpeg`,
+      src: `/first-detail/${folderName}/${num}.webp`,
       alt: `ภาพรายละเอียด ${showcase.displayName} ชุดที่ ${num}`,
-      description: DEFAULT_DESCRIPTIONS[i],
+      description: SHOWCASE_DETAIL_DESCRIPTIONS[i],
     }));
-  }, [showcase.product.name, showcase.displayName]);
+  }, [showcase.product.documentId, showcase.displayName]);
 
   const currentSlide = slides[activeSlide];
 
@@ -162,7 +150,7 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
       >
         <div className="relative isolate px-6 pb-6 pt-8 sm:pt-10 lg:pb-2 lg:pt-16">
           <div 
-            className="absolute inset-x-0 top-0 h-[500px] opacity-40 lg:h-[700px]"
+            className="absolute inset-x-0 top-0 h-125 opacity-40 lg:h-175"
             style={{
               background: `radial-gradient(circle at 70% 20%, ${showcase.theme.accent}, transparent 70%)`
             }}
@@ -217,7 +205,7 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
                 />
                 <div className="absolute inset-x-[12%] bottom-[12%] h-12 rounded-full bg-black/10 blur-3xl lg:h-16" />
 
-                <Image
+                <SmartImage
                   src={showcase.hero.heroVisual.src}
                   alt={showcase.hero.heroVisual.alt}
                   fill
@@ -244,8 +232,8 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.75rem] bg-zinc-900 sm:mt-12 sm:rounded-[2rem]">
-            <div className="relative aspect-[1.35/1] sm:aspect-[16/9]">
-                <Image
+            <div className="relative aspect-[1.35/1] sm:aspect-video">
+                <SmartImage
                   key={currentSlide.src}
                   src={currentSlide.src}
                   alt={currentSlide.alt}
@@ -300,15 +288,24 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
 }
 
 export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase }) {
-  const mappedLineup = showcase.lineup.map((item) => ({
-    id: item.documentId,
-    name: item.name,
-    shortName: item.name,
-    tagline: item.subtitle,
-    image: item.imageSrc,
-    price: "เริ่มที่ ฿12,900",
-    colors: ["bg-black", "bg-[#f5f5f7]", "bg-[#333]"]
-  }));
+  const mappedLineup = showcase.lineup.map((item) => {
+    const itemModelKey = getProductModelKey(item.name);
+    const itemFolderName = MODEL_FOLDER_MAP[itemModelKey] || "P89";
+    const isTablet = itemModelKey === "tab-p68";
+    const productImage = isTablet
+      ? `/products/tab_let/${itemFolderName}.webp`
+      : `/products/smart_phone/${itemFolderName}.webp`;
+
+    return {
+      id: item.documentId,
+      name: item.name,
+      shortName: item.name,
+      tagline: item.subtitle,
+      image: productImage,
+      price: "เริ่มที่ ฿12,900",
+      colors: ["bg-black", "bg-[#f5f5f7]", "bg-[#333]"],
+    };
+  });
 
   const themeStyle = {
     "--showcase-page": showcase.theme.page,
@@ -350,9 +347,9 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
     }
   };
 
-  const modelKey = getProductModelKey(showcase.product.name);
+  const modelKey = getProductModelKey(showcase.displayName);
   const folderName = MODEL_FOLDER_MAP[modelKey] || "P89";
-  const colorImagePath = `/color/${folderName}/color.jpeg`;
+  const colorImagePath = `/color/${folderName}/color.webp`;
 
   return (
     <div
@@ -361,8 +358,8 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
     >
       <Navbar />
 
-      <main className="pt-18">
-        <header className="sticky top-[72px] z-40 hidden overflow-hidden border-b border-white/10 bg-[#050506]/88 text-white shadow-[0_18px_70px_rgba(0,0,0,0.32)] backdrop-blur-2xl lg:block">
+      <main className="pt-14">
+        <header className="sticky top-14 z-40 hidden overflow-hidden border-b border-white/10 bg-[#050506]/88 text-white shadow-[0_18px_70px_rgba(0,0,0,0.32)] backdrop-blur-2xl lg:block">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(255,255,255,0.08),transparent_30%),linear-gradient(90deg,rgba(255,255,255,0.05),transparent_38%,rgba(255,255,255,0.04))]" />
           <div
             className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-80"
@@ -448,7 +445,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
             <div id="specs" className="mb-24 lg:mb-32 scroll-mt-32">
               <div className="mx-auto max-w-3xl text-center mb-12">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-blue-400">
-                  Performance Specs
+                  สเปกและความแรง
                 </p>
                 <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
                   ประสิทธิภาพที่เหนือกว่าในทุกมิติ
@@ -465,7 +462,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                       <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40 sm:text-[11px]">
                         {spec.label}
                       </p>
-                      <h3 className="mt-3 text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-indigo-400 sm:mt-4 sm:text-3xl">
+                      <h3 className="mt-3 text-xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-br from-blue-400 to-indigo-400 sm:mt-4 sm:text-3xl">
                         {spec.value}
                       </h3>
                     </div>
@@ -500,27 +497,27 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                     id: "design", 
                     title: showcase.sections[0].title, 
                     desc: showcase.sections[0].description, 
-                    img: `/highlight/${folderName}/1.jpeg`,
+                    img: `/highlight/${folderName}/1.webp`,
                     eyebrow: showcase.sections[0].eyebrow
                   },
                   { 
                     id: "creative", 
                     title: showcase.sections[1].title, 
                     desc: showcase.sections[1].description, 
-                    img: `/highlight/${folderName}/2.jpeg`,
+                    img: `/highlight/${folderName}/2.webp`,
                     eyebrow: showcase.sections[1].eyebrow
                   },
                   { 
                     id: "experience", 
                     title: showcase.experience.title, 
                     desc: showcase.experience.description, 
-                    img: `/highlight/${folderName}/3.jpeg`,
+                    img: `/highlight/${folderName}/3.webp`,
                     eyebrow: showcase.experience.eyebrow
                   }
                 ].map((item) => (
                   <div key={item.id} className="flex min-w-[85vw] snap-center flex-col group md:min-w-0">
-                    <div className="relative aspect-[4/4.5] overflow-hidden rounded-[1.5rem] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] shadow-black/40">
-                      <Image
+                    <div className="relative aspect-4/4.5 overflow-hidden rounded-[1.5rem] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] shadow-black/40">
+                      <SmartImage
                         src={item.img}
                         alt={item.title}
                         fill
@@ -575,10 +572,10 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
             <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="showcase-stage-panel rounded-2xl border border-black/6 bg-white/84 p-6 shadow-[0_32px_96px_rgba(15,23,42,0.08)] backdrop-blur-2xl sm:rounded-[2.5rem] sm:p-10">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-(--showcase-accent) sm:text-[11px]">
-                  Finishes
+                  เฉดสีและพื้นผิว
                 </p>
                 <h2 className="mt-4 text-2xl font-semibold tracking-tight text-(--showcase-ink) sm:mt-6 sm:text-3xl lg:text-4xl">
-                  Curated colors, chosen to shape the mood of the product.
+                  สีสันที่ผ่านการคัดสรร เพื่อสะท้อนอารมณ์และตัวตนของผลิตภัณฑ์
                 </h2>
 
                 <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
@@ -607,13 +604,14 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
               <div
                 className="relative min-h-80 overflow-hidden rounded-2xl border border-black/6 bg-white shadow-[0_32px_96px_rgba(15,23,42,0.06)] sm:min-h-100 sm:rounded-[2.5rem] lg:min-h-120"
               >
-                <Image
+                <SmartImage
                   src={colorImagePath}
                   alt={`${showcase.displayName} Colors`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
                   className="object-cover"
                   priority
+                  quality={85}
                 />
               </div>
             </div>
@@ -626,10 +624,10 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
               <div className="mb-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div className="max-w-2xl text-center sm:text-left">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#86868b]">
-                    More from the lineup
+                    รุ่นอื่นๆ ในซีรีส์
                   </p>
                   <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl text-[#1d1d1f]">
-                    See how the rest of AVA is shaping the collection.
+                    สัมผัสความหลากหลายของ AVA ที่ออกแบบมาเพื่อคุณ
                   </h2>
                 </div>
                 <Link

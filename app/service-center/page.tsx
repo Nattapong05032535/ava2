@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/layout";
 import { Phone, MapPin, Shield, Clock, MessageCircle, Mail, ChevronRight } from "lucide-react";
 
 export default function ServiceCenterPage() {

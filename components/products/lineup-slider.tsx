@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import { SmartImage } from "@/components/shared";
 import Link from "next/link";
 import { Play } from "lucide-react";
 
@@ -70,12 +70,13 @@ export function LineupSlider({ products }: { products: ProductItem[] }) {
                 <Link href={`/products/${item.id}`} prefetch className="mt-3 block">
                   <div className="relative overflow-hidden rounded-[1.8rem] bg-white">
                     <div className="relative h-56 sm:h-60">
-                      <Image
+                      <SmartImage
                         src={item.image}
                         alt={item.name}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
                         className="object-contain p-2 transition-transform duration-500 group-hover:scale-105 sm:p-3"
+                        quality={80}
                       />
                     </div>
                   </div>

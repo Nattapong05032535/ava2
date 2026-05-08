@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProductShowcasePage } from "@/components/product-showcase";
+import { ProductShowcasePage } from "@/components/products";
 import { SUPPORTED_PRODUCT_MODEL_KEYS } from "@/constants/products";
 import { getProductShowcase } from "@/lib/actions";
 

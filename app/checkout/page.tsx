@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
-import { useCart } from "@/context/cart-context";
+import { Navbar } from "@/components/layout";
+import { useCart } from "@/contexts/cart-context";
 import { CheckCircle2, Package, Truck, ArrowLeft } from "lucide-react";
 
 interface CustomerData {

@@ -1,12 +1,12 @@
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/layout";
 
 export default function ProductDetailLoading() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <main className="pt-18">
-        <div className="sticky top-18 z-40 border-b border-black/8 bg-white">
+      <main className="pt-14">
+        <div className="sticky top-14 z-40 border-b border-black/8 bg-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
             <div className="space-y-2">
               <div className="h-3 w-40 animate-pulse rounded-full bg-gray-200" />

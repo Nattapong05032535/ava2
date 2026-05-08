@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/layout";
 import { BookOpen, Calendar, ArrowRight, Tag, Cpu } from "lucide-react";
 
 export default function ArticlesPage() {

@@ -3,8 +3,8 @@
 import { useState, use } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Navbar } from "@/components/navbar";
-import { useCart } from "@/context/cart-context";
+import { Navbar } from "@/components/layout";
+import { useCart } from "@/contexts/cart-context";
 import { resolveProductPresentationByModelKey, type SupportedProductModelKey } from "@/constants/products";
 
 const SHOP_PRODUCTS_DATA = {

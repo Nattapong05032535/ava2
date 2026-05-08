@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SmartImage } from "@/components/shared";
 import Link from "next/link";
 import {
   resolveProductPresentationByModelKey,
@@ -56,12 +56,13 @@ export function ProductCard({ modelKey }: ProductCardProps) {
             }}
           />
           <div className="relative h-56 sm:h-64">
-            <Image
+            <SmartImage
               src={imageUrl}
               alt={modelName}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               className="object-contain p-4 transition-transform duration-500 group-hover:scale-105 sm:p-5"
+              quality={80}
             />
           </div>
         </div>

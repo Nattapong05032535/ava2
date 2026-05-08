@@ -3,12 +3,18 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
-import { useCart } from "@/context/cart-context";
+import { useRouter } from "next/navigation";
+import { Navbar } from "@/components/layout";
+import { useCart } from "@/contexts/cart-context";
+import { useAuth } from "@/contexts/auth-context";
+
 
 export default function CartPage() {
+  const router = useRouter();
   const { items, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
+  const { isLoggedIn, currentUser, logout } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
+
 
   useEffect(() => {
     setIsMounted(true);
@@ -38,10 +44,25 @@ export default function CartPage() {
       
       <main className="pt-24 pb-20 px-6">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12">
+          <div className="mb-12 flex justify-between items-end">
             <h1 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-[#1d1d1f]">
               ตะกร้าสินค้าของคุณมี {totalItems} รายการ
             </h1>
+            
+            {/* User Info Display */}
+            {isLoggedIn && currentUser && (
+              <div className="hidden md:flex flex-col items-end">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-[#1d1d1f]">{currentUser.fullName}</span>
+                  <span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-600 font-medium">
+                    {currentUser.roleLabel}
+                  </span>
+                </div>
+                <button onClick={logout} className="text-xs text-red-500 hover:text-red-600 hover:underline mt-1">
+                  ออกจากระบบ
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12">
@@ -159,12 +180,19 @@ export default function CartPage() {
                   <span className="text-2xl font-bold text-[#1d1d1f]">฿{grandTotal.toLocaleString()}</span>
                 </div>
                 
-                <Link 
-                  href="/checkout"
-                  className={`w-full block text-center rounded-full bg-[#0071e3] py-4 text-base font-semibold text-white transition-all hover:bg-[#0077ed] ${items.length === 0 ? "opacity-50 pointer-events-none" : ""}`}
+                <button 
+                  onClick={() => {
+                    if (!isLoggedIn) {
+                      router.push("/login?redirect=/checkout");
+                    } else {
+                      router.push("/checkout");
+                    }
+                  }}
+                  disabled={items.length === 0}
+                  className={`w-full block text-center rounded-full bg-[#0071e3] py-4 text-base font-semibold text-white transition-all hover:bg-[#0077ed] disabled:opacity-50 disabled:pointer-events-none`}
                 >
                   ยืนยันการสั่งซื้อ
-                </Link>
+                </button>
                 
                 <div className="space-y-2 mt-5">
                    <p className="text-[11px] text-[#6e6e73] flex items-center gap-2">
@@ -182,6 +210,8 @@ export default function CartPage() {
           </div>
         </div>
       </main>
+
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/shop";
 import { SUPPORTED_PRODUCT_MODEL_KEYS } from "@/constants/products";
 
 export const metadata: Metadata = {

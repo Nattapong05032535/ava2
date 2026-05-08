@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
-import { LineupSlider } from "@/components/lineup-slider";
+import { Navbar } from "@/components/layout";
+import { LineupSlider } from "@/components/products";
 
 const AVA_LINEUP = [
   {
@@ -9,7 +9,7 @@ const AVA_LINEUP = [
     name: "AVA Life Pro Max P89",
     shortName: "Pro Max P89",
     tagline: "Intelligence in every detail.",
-    image: "/images/products/promax-p89.png",
+    image: "/products/smart_phone/P89.webp",
     price: "เริ่มที่ ฿24,990",
     colors: ["bg-black", "bg-gray-400", "bg-orange-400", "bg-blue-900"],
   },
@@ -18,7 +18,7 @@ const AVA_LINEUP = [
     name: "AVA Life Pro Max P63",
     shortName: "Pro Max P63",
     tagline: "Streamlined luxury. Pro all day.",
-    image: "/images/products/promax-p63.png",
+    image: "/products/smart_phone/P63.webp",
     price: "เริ่มที่ ฿19,990",
     colors: ["bg-slate-800", "bg-slate-300", "bg-blue-200"],
   },
@@ -27,7 +27,7 @@ const AVA_LINEUP = [
     name: "AVA Life Note cold P65",
     shortName: "Note Cold P65",
     tagline: "Note everything. Anywhere.",
-    image: "/images/products/note-p65.png",
+    image: "/products/smart_phone/P65C.webp",
     price: "เริ่มที่ ฿14,990",
     colors: ["bg-black", "bg-gray-300"],
   },
@@ -36,7 +36,7 @@ const AVA_LINEUP = [
     name: "AVA Enjoy Series Pro P65",
     shortName: "Series Pro P65",
     tagline: "More fun. More power.",
-    image: "/images/products/enjoy-p65.png",
+    image: "/products/smart_phone/P65P.webp",
     price: "เริ่มที่ ฿9,990",
     colors: ["bg-black", "bg-blue-100"],
   },
@@ -45,7 +45,7 @@ const AVA_LINEUP = [
     name: "AVA Life Tab Ultra P68",
     shortName: "Tab Ultra P68",
     tagline: "Pro creativity. Ultra portable.",
-    image: "/images/products/tab-p68.png",
+    image: "/products/tab_let/P68.webp",
     price: "เริ่มที่ ฿18,990",
     colors: ["bg-gray-700", "bg-blue-200", "bg-stone-200"],
   },
@@ -58,7 +58,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white font-sans selection:bg-blue-100">
       <Navbar />
 
-      <main className="flex-grow pt-[64px]">
+      <main className="flex-grow pt-14">
         {/* APPLE-STYLE SUB-MENU (SECONDARY NAV) */}
         <div className="z-40 hidden w-full overflow-x-auto border-b border-gray-200 bg-white/90 backdrop-blur-xl no-scrollbar md:block">
           <div className="mx-auto flex max-w-7xl gap-4 px-6 py-4 min-w-max lg:min-w-0">

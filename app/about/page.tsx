@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/layout";
 import { Compass, Lightbulb, ShieldCheck, Cpu } from "lucide-react";
 
 export default function AboutPage() {
