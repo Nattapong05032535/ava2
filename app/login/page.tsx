@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
@@ -10,6 +10,18 @@ import { X, ChevronDown, Edit3, Eye, EyeOff, Check } from "lucide-react";
 type ModalView = "choice" | "login" | "terms" | "register";
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#f5f5f5] flex items-center justify-center">
+        <div className="animate-pulse text-gray-400 font-medium">กำลังโหลด...</div>
+      </div>
+    }>
+      <LoginPageContent />
+    </Suspense>
+  );
+}
+
+function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { login, isLoggedIn } = useAuth();

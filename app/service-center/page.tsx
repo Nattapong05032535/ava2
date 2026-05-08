@@ -1,42 +1,13 @@
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
 import { Phone, MapPin, Shield, Clock, MessageCircle, Mail, ChevronRight } from "lucide-react";
+import { PRIMARY_SERVICES, SERVICE_BRANCHES, WARRANTY_FAQS } from "@/constants";
 
 export default function ServiceCenterPage() {
-  const services = [
-    {
-      icon: <Shield className="h-6 w-6 text-blue-600" />,
-      title: "Check Warranty",
-      desc: "ตรวจสอบระยะเวลาการรับประกันสินค้าของคุณได้ง่ายๆ ผ่านหมายเลข IMEI",
-      link: "#"
-    },
-    {
-      icon: <Clock className="h-6 w-6 text-orange-600" />,
-      title: "Repair Status",
-      desc: "ติดตามสถานะการซ่อมบำรุงแบบ Real-time ตั้งแต่การรับเครื่องจนถึงส่งคืน",
-      link: "#"
-    },
-    {
-      icon: <Phone className="h-6 w-6 text-green-600" />,
-      title: "VIP Hotline",
-      desc: "บริการสายด่วนสำหรับลูกค้า AVA Life Pro series ตลอด 24 ชั่วโมง",
-      link: "tel:1234"
-    }
-  ];
-
-  const branches = [
-    {
-      name: "AVA Experience Store - Siam Paragon",
-      location: "ชั้น 2 โซน Technology, สยามพารากอน",
-      hours: "10:00 - 21:00 น.",
-      phone: "02-XXX-XXXX"
-    },
-    {
-      name: "AVA Service Point - Central World",
-      location: "ชั้น 4 ฝั่ง Digital World, เซ็นทรัลเวิลด์",
-      hours: "10:30 - 21:30 น.",
-      phone: "02-YYY-YYYY"
-    }
+  const serviceIcons = [
+    <Shield key="warranty" className="h-6 w-6 text-blue-600" />,
+    <Clock key="repair" className="h-6 w-6 text-orange-600" />,
+    <Phone key="hotline" className="h-6 w-6 text-green-600" />,
   ];
 
   return (
@@ -62,10 +33,10 @@ export default function ServiceCenterPage() {
 
         {/* Primary Services Grid */}
         <div className="grid gap-6 sm:grid-cols-3">
-          {services.map((service, i) => (
+          {PRIMARY_SERVICES.map((service, i) => (
             <div key={i} className="group rounded-[2.5rem] border border-black/5 bg-white p-10 shadow-[0_12px_40px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_24px_64px_rgba(0,0,0,0.06)]">
               <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-gray-50 transition-colors group-hover:bg-white group-hover:shadow-sm">
-                {service.icon}
+                {serviceIcons[i]}
               </div>
               <h3 className="text-2xl font-semibold text-gray-900">{service.title}</h3>
               <p className="mt-4 text-base leading-7 text-gray-500">{service.desc}</p>
@@ -109,7 +80,7 @@ export default function ServiceCenterPage() {
           <div className="rounded-[3rem] border border-black/5 bg-white p-12 shadow-xl sm:p-16">
             <h2 className="text-4xl font-semibold tracking-tight text-gray-900">ศูนย์บริการใกล้บ้านคุณ</h2>
             <div className="mt-10 space-y-8">
-              {branches.map((branch, i) => (
+              {SERVICE_BRANCHES.map((branch, i) => (
                 <div key={i} className="relative pb-8 border-b border-gray-100 last:border-0 last:pb-0">
                   <div className="flex items-start gap-4">
                     <MapPin className="h-5 w-5 mt-1 text-gray-400" />
@@ -141,12 +112,7 @@ export default function ServiceCenterPage() {
         <div className="mt-24">
           <h2 className="text-center text-3xl font-bold tracking-tight">คำถามที่พบบ่อยเกี่ยวกับการรับประกัน</h2>
           <div className="mt-12 mx-auto max-w-3xl space-y-4">
-            {[
-              "อุปกรณ์ที่ได้รับความเสียหายจากน้ำรวมอยู่ในการรับประกันหรือไม่?",
-              "ระยะเวลาในการซ่อมบำรุงปกติใช้เวลาประมาณกี่วัน?",
-              "สามารถซื้อประกันเพิ่ม (AVA Care+) ได้ที่ไหน?",
-              "การส่งซ่อมสามารถส่งผ่านขนส่งสาธารณะได้หรือไม่?"
-            ].map((q, i) => (
+            {WARRANTY_FAQS.map((q, i) => (
               <div key={i} className="rounded-2xl border border-black/5 bg-white p-6 flex items-center justify-between group cursor-pointer hover:bg-gray-50">
                 <span className="font-medium text-gray-900">{q}</span>
                 <ChevronRight className="h-5 w-5 text-gray-300 transition-transform group-hover:translate-x-1" />

@@ -1,35 +1,9 @@
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
 import { BookOpen, Calendar, ArrowRight, Tag, Cpu } from "lucide-react";
+import { ARTICLES_MOCK, ARTICLE_CATEGORIES } from "@/constants";
 
 export default function ArticlesPage() {
-  const articles = [
-    {
-      id: 1,
-      category: "Innovation",
-      title: "เบื้องหลังการออกแบบ AVA Signature Flagship: เมื่อศิลปะมาบรรจบกับวิศวกรรม",
-      excerpt: "เจาะลึกทุกกระบวนการคิดและนวัตกรรมเบื้องหลังการพัฒนา P89 รุ่นเรือธงที่เปลี่ยนนิยามของความเป็นไปได้",
-      date: "8 เมษายน 2569",
-      imageColor: "bg-blue-100"
-    },
-    {
-      id: 2,
-      category: "Tips & Tricks",
-      title: "5 วิธีใช้งานกล้อง AVA Pro Max ให้เหมือนช่างภาพมือโปร",
-      excerpt: "เทคนิคการตั้งค่าแสง เงา และมุมกล้องที่จะช่วยให้ทุกช็อตของคุณออกมาสวยงามระดับ Cinematic",
-      date: "5 เมษายน 2569",
-      imageColor: "bg-orange-100"
-    },
-    {
-      id: 3,
-      category: "Lifestyle",
-      title: "ทำไม AVA Life Tab P68 ถึงเป็นเพื่อนคู่ใจที่ดีที่สุดของคนสาย Creative",
-      excerpt: "จากสเก็ตซ์แรกสู่โปรเจกต์ใหญ่ มาดูกันว่าแท็บเล็ตของเราช่วยยกระดับการทำงานให้คล่องตัวได้อย่างไร",
-      date: "2 เมษายน 2569",
-      imageColor: "bg-green-100"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-[#f8f9fa] text-[#0f172a]">
       <Navbar />
@@ -84,7 +58,7 @@ export default function ArticlesPage() {
 
         {/* Category Filter Placeholder */}
         <div className="mt-20 flex flex-wrap gap-3">
-          {["ทั้งหมด", "Innovation", "Tips & Tricks", "Lifestyle", "Announcements"].map((cat, i) => (
+          {ARTICLE_CATEGORIES.map((cat, i) => (
             <button 
               key={i} 
               className={`rounded-full px-6 py-2.5 text-sm font-medium transition-colors ${
@@ -98,7 +72,7 @@ export default function ArticlesPage() {
 
         {/* Article Grid */}
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article) => (
+          {ARTICLES_MOCK.map((article) => (
             <article key={article.id} className="group flex flex-col rounded-[2.5rem] border border-black/5 bg-white p-6 shadow-[0_12px_40px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_24px_64px_rgba(0,0,0,0.06)] hover:-translate-y-1">
               <div className={`aspect-video rounded-2xl ${article.imageColor} mb-6 flex items-center justify-center relative overflow-hidden`}>
                  <Tag className="h-10 w-10 text-(--showcase-ink) opacity-10" />

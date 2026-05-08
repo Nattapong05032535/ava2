@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
 import { Compass, Lightbulb, ShieldCheck, Cpu } from "lucide-react";
+import { ABOUT_VALUES } from "@/constants";
 
 export default function AboutPage() {
+  const icons = [
+    <Lightbulb key="innovation" className="h-6 w-6 text-orange-500" />,
+    <ShieldCheck key="quality" className="h-6 w-6 text-green-500" />,
+    <Cpu key="performance" className="h-6 w-6 text-blue-500" />,
+  ];
+
   return (
     <div className="min-h-screen bg-[#f8f9fa] text-[#0f172a]">
       <Navbar />
@@ -29,26 +36,10 @@ export default function AboutPage() {
 
         {/* Values Grid */}
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
-          {[
-            {
-              icon: <Lightbulb className="h-6 w-6 text-orange-500" />,
-              title: "Innovation first",
-              desc: "เรามุ่งเน้นการนำเทคโนโลยีล้ำสมัยมาปรับใช้ให้เข้ากับการใช้งานจริงในชีวิตประจำวันอย่างลงตัวที่สุด"
-            },
-            {
-              icon: <ShieldCheck className="h-6 w-6 text-green-500" />,
-              title: "Quality obsessive",
-              desc: "ทุกรายละเอียดการออกแบบและวัสดุที่เราเลือกใช้ต้องผ่านการตรวจสอบคุณภาพที่เข้มงวดที่สุด"
-            },
-            {
-              icon: <Cpu className="h-6 w-6 text-blue-500" />,
-              title: "Performance core",
-              desc: "เราเชื่อว่าความเร็วและประสิทธิภาพที่เสถียรคือพื้นฐานสำคัญของประสบการณ์การใช้งานที่ดี"
-            }
-          ].map((item, i) => (
+          {ABOUT_VALUES.map((item, i) => (
             <div key={i} className="rounded-[2.5rem] border border-black/5 bg-white p-10 shadow-[0_12px_40px_rgba(0,0,0,0.03)] transition-transform hover:-translate-y-1">
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50">
-                {item.icon}
+                {icons[i]}
               </div>
               <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
               <p className="mt-4 text-sm leading-7 text-gray-500">{item.desc}</p>

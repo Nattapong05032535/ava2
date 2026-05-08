@@ -186,3 +186,41 @@ export const PRIVILEGES = [
     imageFolder: "5",
   },
 ];
+export const SHOP_PRODUCTS_DATA = {
+  "promax-p89": {
+    basePrice: 24990,
+    image: "/images/products/p89-hero-premium.png",
+    storages: ["256 GB", "512 GB", "1 TB"],
+    priceDiffs: { "256 GB": 0, "512 GB": 4000, "1 TB": 10000 }
+  },
+  "promax-p63": {
+    basePrice: 19990,
+    image: "/images/products/p63-hero-premium.png",
+    storages: ["256 GB", "512 GB"],
+    priceDiffs: { "256 GB": 0, "512 GB": 3000 }
+  },
+  "note-p65": {
+    basePrice: 14990,
+    image: "/images/products/p65-note-hero-premium.png",
+    storages: ["256 GB", "512 GB"],
+    priceDiffs: { "256 GB": 0, "512 GB": 2500 }
+  },
+  "enjoy-p65": {
+    basePrice: 9990,
+    image: "/images/products/enjoy-p65.png",
+    storages: ["128 GB", "256 GB"],
+    priceDiffs: { "128 GB": 0, "256 GB": 2000 }
+  },
+  "tab-p68": {
+    basePrice: 18990,
+    image: "/images/products/tab-p68.png",
+    storages: ["256 GB", "512 GB"],
+    priceDiffs: { "256 GB": 0, "512 GB": 4000 }
+  }
+} as const;
+
+export const PAYMENT_METHODS = [
+  { id: "stripe", label: "บัตรเครดิต/เดบิต (Stripe)", icon: "💳" },
+  { id: "transfer", label: "โอนผ่านบัญชีธนาคาร", icon: "🏦" },
+  { id: "cod", label: "ชำระเงินปลายทาง / เงินสด", icon: "🚚" },
+] as const;

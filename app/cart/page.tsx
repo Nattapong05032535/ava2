@@ -7,14 +7,13 @@ import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout";
 import { useCart } from "@/contexts/cart-context";
 import { useAuth } from "@/contexts/auth-context";
-
+import { PAYMENT_METHODS } from "@/constants";
 
 export default function CartPage() {
   const router = useRouter();
   const { items, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
   const { isLoggedIn, currentUser, logout } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
-
 
   useEffect(() => {
     setIsMounted(true);
@@ -23,12 +22,6 @@ export default function CartPage() {
   const [selectedPayment, setSelectedPayment] = useState("stripe");
   const vat = subtotal * 0.07;
   const grandTotal = subtotal; 
-
-  const paymentMethods = [
-    { id: "stripe", label: "บัตรเครดิต/เดบิต (Stripe)", icon: "💳" },
-    { id: "transfer", label: "โอนผ่านบัญชีธนาคาร", icon: "🏦" },
-    { id: "cod", label: "ชำระเงินปลายทาง / เงินสด", icon: "🚚" },
-  ];
 
   if (!isMounted) {
     return (
@@ -151,7 +144,7 @@ export default function CartPage() {
                 <div className="mb-5 p-4 bg-[#f5f5f7] rounded-2xl">
                   <h3 className="text-[12px] font-semibold mb-3 text-[#6e6e73] uppercase tracking-wider">เลือกช่องทางการชำระเงิน</h3>
                   <div className="space-y-2">
-                    {paymentMethods.map((method) => (
+                    {PAYMENT_METHODS.map((method) => (
                       <button
                         key={method.id}
                         onClick={() => setSelectedPayment(method.id)}
