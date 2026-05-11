@@ -18,27 +18,56 @@ export function Navbar() {
   const pathname = usePathname();
   const { isLoggedIn, currentUser, logout } = useAuth();
   const [mounted, setMounted] = React.useState(false);
+  const [hasScrolled, setHasScrolled] = React.useState(false);
+  const isHeroNavbar = pathname === "/" && !hasScrolled;
+  const logoSrc = isHeroNavbar
+    ? "/images/logo/icon-logo-white.webp"
+    : "/images/logo/icon-logo-back.webp";
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  React.useEffect(() => {
+    if (pathname !== "/") {
+      setHasScrolled(false);
+      return;
+    }
+
+    const updateScrollState = () => {
+      setHasScrolled(window.scrollY > 72);
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollState);
+    };
+  }, [pathname]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
 
 
       {/* Main Navigation Bar */}
-      <div className="bg-white border-b border-black/8 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
+      <div
+        className={`transition-colors duration-300 ${
+          isHeroNavbar
+            ? "border-b border-white/0 bg-transparent text-white shadow-none"
+            : "border-b border-black/8 bg-white text-[#333] shadow-[0_1px_6px_rgba(0,0,0,0.04)]"
+        }`}
+      >
         <div className="mx-auto flex h-14 max-w-7xl items-center px-6">
           {/* Logo — left */}
           <Link href="/" className="group flex shrink-0 items-center">
             <div className="relative h-9 w-9 transition-transform duration-300 group-hover:scale-105">
               <SmartImage
-                src="/images/logo/icon-logo.png"
+                src={logoSrc}
                 alt="AVA Logo"
                 fill
                 sizes="36px"
-                className="object-contain"
+                className="object-contain transition-opacity duration-300"
                 priority
               />
             </div>
@@ -50,7 +79,11 @@ export function Navbar() {
               <Link
                 key={item.href + item.label}
                 href={item.href}
-                className="px-4 py-2 text-[13px] font-medium text-[#555] transition-colors hover:text-black whitespace-nowrap"
+                className={`px-4 py-2 text-[13px] font-medium transition-colors whitespace-nowrap ${
+                  isHeroNavbar
+                    ? "text-white/84 hover:text-white"
+                    : "text-[#555] hover:text-black"
+                }`}
               >
                 {item.label}
               </Link>
@@ -60,7 +93,11 @@ export function Navbar() {
           {/* Right Icons */}
           <div className="flex items-center gap-1 ml-auto">
             <button
-              className="flex h-10 w-10 items-center justify-center rounded-full text-[#333] transition-colors hover:bg-black/5"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                isHeroNavbar
+                  ? "text-white hover:bg-white/12"
+                  : "text-[#333] hover:bg-black/5"
+              }`}
               aria-label="ค้นหา"
             >
               <Search className="h-[18px] w-[18px]" strokeWidth={1.8} />
@@ -68,7 +105,11 @@ export function Navbar() {
 
             <Link
               href="/cart"
-              className="relative flex h-10 w-10 items-center justify-center rounded-full text-[#333] transition-colors hover:bg-black/5"
+              className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                isHeroNavbar
+                  ? "text-white hover:bg-white/12"
+                  : "text-[#333] hover:bg-black/5"
+              }`}
               aria-label="ตะกร้าสินค้า"
             >
               <ShoppingBag className="h-[18px] w-[18px]" strokeWidth={1.8} />
@@ -79,7 +120,11 @@ export function Navbar() {
               <div className="relative">
                 <button
                   id="user-menu-button"
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-[#333] transition-colors hover:bg-black/5"
+                  className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                    isHeroNavbar
+                      ? "text-white hover:bg-white/12"
+                      : "text-[#333] hover:bg-black/5"
+                  }`}
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                   aria-label="บัญชีผู้ใช้"
                 >
@@ -167,7 +212,11 @@ export function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-[#333] transition-colors hover:bg-black/5 lg:hidden"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden ${
+                isHeroNavbar
+                  ? "text-white hover:bg-white/12"
+                  : "text-[#333] hover:bg-black/5"
+              }`}
               aria-label="เปิดเมนู"
             >
               <Menu className="h-5 w-5" strokeWidth={1.8} />
@@ -189,7 +238,7 @@ export function Navbar() {
           <Link href="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
             <div className="relative h-9 w-9">
               <SmartImage
-                src="/images/logo/icon-logo.png"
+                src="/images/logo/icon-logo-back.webp"
                 alt="AVA Logo"
                 fill
                 className="object-contain"

@@ -193,7 +193,27 @@
   }
 }
 
+@keyframes homeHeroNarrow {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: min(calc(100% - var(--home-hero-page-gutter)), 90rem);
+  }
+}
+
 @layer utilities {
+  .home-hero-shell {
+    --home-hero-page-gutter: 2rem;
+    animation: homeHeroNarrow linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 430px;
+    margin-inline: auto;
+    width: 100%;
+    will-change: width;
+  }
+
   .showcase-stage-copy {
     animation: showcaseStageCopy 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
@@ -216,6 +236,30 @@
 
   .showcase-stage-glow {
     animation: showcaseStageGlow 5s ease-in-out infinite;
+  }
+
+  @media (max-width: 767px) {
+    .home-hero-shell {
+      animation-range: 0 300px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .home-hero-shell {
+      --home-hero-page-gutter: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .home-hero-shell {
+      --home-hero-page-gutter: 4rem;
+    }
+  }
+
+  @supports not (animation-timeline: scroll(root block)) {
+    .home-hero-shell {
+      animation: none;
+    }
   }
 
   @keyframes slideInRight {

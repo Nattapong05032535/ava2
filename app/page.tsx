@@ -2,7 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
 import { LineupSlider } from "@/components/products";
-import { AVA_LINEUP, type HomeProduct } from "@/constants";
+import { AVA_LINEUP, HOME_HERO_PRODUCT_CARDS, type HomeProduct } from "@/constants";
+import heroFirstImage from "@/public/main/้hero-first/1.webp";
+import heroSecondImage from "@/public/main/hero-sec/1.webp";
+
+const heroPanelClass =
+  "relative isolate mx-auto min-h-[620px] max-w-[90rem] overflow-hidden bg-[radial-gradient(circle_at_78%_26%,rgba(251,146,60,0.38),transparent_28%),linear-gradient(115deg,#16182a_0%,#262943_42%,#6c4a32_100%)] text-white sm:min-h-[680px] lg:min-h-[640px]";
 
 export default function Home() {
   const heroProduct = AVA_LINEUP[0];
@@ -11,97 +16,99 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white font-sans selection:bg-blue-100">
       <Navbar />
 
-      <main className="flex-grow pt-14">
-        {/* APPLE-STYLE SUB-MENU (SECONDARY NAV) */}
-        <div className="z-40 hidden w-full overflow-x-auto border-b border-gray-200 bg-white/90 backdrop-blur-xl no-scrollbar md:block">
-          <div className="mx-auto flex max-w-7xl gap-4 px-6 py-4 min-w-max lg:min-w-0">
-            {AVA_LINEUP.map((item: HomeProduct) => (
-              <Link
-                key={item.id}
-                href={`/products/${item.id}`}
-                prefetch
-                className="group flex min-w-[220px] items-center justify-between gap-4 rounded-[1.35rem] border border-black/10 bg-[#f8f8f9] px-4 py-4 shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-black/18 hover:bg-white lg:min-w-0 lg:flex-1"
-              >
-                <div className="min-w-0">
-                  <p className="text-base font-semibold tracking-tight text-gray-900">
-                    {item.shortName}
-                  </p>
-                  <p className="mt-2 text-xs leading-5 text-gray-500">
-                    {item.tagline}
-                  </p>
-                </div>
-
-                <div className="relative h-16 w-16 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    sizes="64px"
-                    className="object-contain"
-                  />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
+      <main className="flex-grow bg-white">
         {/* HERO SECTION */}
-        <section className="overflow-hidden bg-white py-14 lg:py-20">
-          <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-            <Link
-              href="/products/promax-p89"
-              prefetch
-              className="relative order-2 block h-[360px] bg-white sm:h-[460px] lg:order-1 lg:h-[620px]"
-            >
-              <Image
-                src="/images/products/promax-p89.png"
-                alt={heroProduct.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                loading="eager"
-                className="animate-in fade-in zoom-in duration-1000 delay-200 object-contain object-center lg:scale-[1.08]"
-              />
-            </Link>
+        <section className="home-hero-shell relative isolate min-h-svh overflow-hidden bg-[radial-gradient(circle_at_78%_26%,rgba(251,146,60,0.38),transparent_28%),linear-gradient(115deg,#16182a_0%,#262943_42%,#6c4a32_100%)] text-white">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#07080d] via-[#07080d]/45 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-full bg-gradient-to-r from-[#11131b] via-[#11131b]/72 to-transparent lg:w-[62%]" />
 
-            <div className="relative order-1 text-center text-[#111111] lg:order-2 lg:text-left">
-              <p className="animate-in fade-in slide-in-from-bottom-5 text-sm font-semibold tracking-[0.18em] text-[#6b6f76] duration-700">
+          <Link
+            href="/products/promax-p89"
+            prefetch
+            aria-label={`ดูรายละเอียด ${heroProduct.name}`}
+            className="absolute inset-y-0 right-[-70%] z-0 block w-[150%] sm:right-[-36%] sm:w-[104%] lg:right-[-18%] lg:w-[68%] xl:right-[-14%] xl:w-[66%] 2xl:right-[-10%] 2xl:w-[64%]"
+          >
+            <Image
+              src={heroFirstImage}
+              alt={heroProduct.name}
+              fill
+              sizes="(max-width: 640px) 150vw, (max-width: 1024px) 104vw, 68vw"
+              priority
+              className="animate-in fade-in zoom-in duration-1000 object-contain object-right-bottom drop-shadow-[0_34px_70px_rgba(0,0,0,0.42)]"
+            />
+          </Link>
+
+          <div className="relative z-10 mx-auto flex min-h-svh max-w-7xl items-center px-6 py-16 sm:py-20 lg:px-8">
+            <div className="w-full max-w-[560px] -translate-y-32 text-center sm:-translate-y-14 sm:text-left lg:translate-y-0 lg:pt-0">
+              <p className="animate-in fade-in slide-in-from-bottom-4 text-sm font-semibold text-white/72 duration-700">
                 ขอแนะนำผลิตภัณฑ์ใหม่
               </p>
-              <h1 className="animate-in fade-in slide-in-from-bottom-6 mt-5 text-4xl font-semibold tracking-tight duration-700 delay-75 sm:text-5xl lg:text-6xl">
-                {heroProduct.name}
+              <h1 className="animate-in fade-in slide-in-from-bottom-5 mt-5 text-[clamp(3rem,6vw,5.25rem)] font-semibold leading-[0.94] duration-700 delay-75">
+                {heroProduct.shortName}
               </h1>
-              <p className="animate-in fade-in slide-in-from-bottom-7 mt-4 text-xl font-medium text-[#2b2f38] duration-700 delay-150 sm:text-2xl">
-                {heroProduct.tagline}
+              <p className="animate-in fade-in slide-in-from-bottom-6 mt-5 text-3xl font-medium leading-tight text-white/90 duration-700 delay-150 sm:text-4xl">
+                AVA Intelligence
               </p>
-              <p className="animate-in fade-in slide-in-from-bottom-8 mt-5 max-w-xl text-sm leading-7 text-[#666b74] duration-700 delay-200 sm:text-base">
-                โชว์เคสรุ่น flagship ของ AVA ในภาพเปิดตัวใหม่ เน้นตัวเครื่องเด่นชัด
-                บนพื้นหลังสะอาด เพื่อให้รายละเอียดของสีและงานออกแบบดูชัดขึ้น
+              <p className="animate-in fade-in slide-in-from-bottom-7 mt-5 text-lg font-medium text-white/82 duration-700 delay-200 sm:text-2xl">
+                รับข้อเสนอพิเศษเมื่อซื้อเครื่องใหม่
               </p>
 
-              <div className="animate-in fade-in slide-in-from-bottom-8 mt-8 flex flex-wrap justify-center gap-3 duration-700 delay-300 lg:justify-start">
-                <Link
-                  href="/shop/promax-p89"
-                  prefetch
-                  className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1a1a1a]"
-                >
-                  ซื้อ
-                </Link>
+              <div className="animate-in fade-in slide-in-from-bottom-8 mt-8 flex flex-wrap justify-center gap-3 duration-700 delay-300 sm:justify-start">
                 <Link
                   href="/products/promax-p89"
                   prefetch
-                  className="rounded-full border border-black/12 bg-white px-6 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-[#f3f4f6]"
+                  className="rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#11131b]"
                 >
-                  ดูรายละเอียด
+                  เรียนรู้เพิ่มเติม
+                </Link>
+                <Link
+                  href="/shop/promax-p89"
+                  prefetch
+                  className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#11131b] transition-colors hover:bg-white/86"
+                >
+                  ซื้อ
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
+        <SecondaryHero product={heroProduct} />
+
+        {/* HERO PRODUCT GRID */}
+        <section className="bg-white px-4 py-5 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-[90rem] grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {HOME_HERO_PRODUCT_CARDS.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                prefetch
+                className="group relative flex min-h-[320px] overflow-hidden bg-[#f6f6f6] px-6 pt-8 text-center transition-transform duration-300 hover:-translate-y-1 sm:min-h-[360px] lg:min-h-[390px]"
+              >
+                <div className="relative z-10 w-full">
+                  <h2 className="text-[clamp(1.45rem,2vw,2rem)] font-semibold leading-tight text-black">
+                    {item.modelName}
+                  </h2>
+                </div>
+
+                <div className="absolute inset-x-6 bottom-5 top-[92px] transition-transform duration-500 group-hover:scale-[1.03]">
+                  <Image
+                    src={item.image}
+                    alt={item.modelName}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    className="object-contain object-center"
+                  />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* LINEUP EXPLORATION */}
-        <section className="bg-[#f8f9fb] py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            <h2 className="text-3xl lg:text-5xl font-bold text-center mb-16 tracking-tight">
+        <section className="bg-white py-20">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight lg:text-5xl">
               เลือกชมกลุ่มผลิตภัณฑ์ของเรา
             </h2>
 
@@ -167,5 +174,62 @@ export default function Home() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function SecondaryHero({ product }: { product: HomeProduct }) {
+  const productHref = `/products/${product.id}`;
+  const shopHref = `/shop/${product.id}`;
+
+  return (
+    <section className="bg-white px-4 py-5 sm:px-6 lg:px-8">
+      <div className={heroPanelClass}>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#07080d] via-[#07080d]/45 to-transparent" />
+
+        <div className="relative z-10 mx-auto flex max-w-[760px] justify-center px-6 pb-0 pt-16 text-center sm:px-10 sm:pt-20 lg:ml-auto lg:min-h-[640px] lg:w-[50%] lg:items-center lg:px-10 lg:py-16 xl:w-[48%] xl:px-14">
+          <div className="max-w-[560px]">
+            <h2 className="text-[clamp(2.5rem,8vw,4.7rem)] font-semibold leading-[0.98]">
+              {product.shortName}
+            </h2>
+            <p className="mt-5 text-3xl font-medium leading-tight text-white/92 sm:text-4xl lg:text-5xl">
+              AVA Intelligence <span className="text-[#20b8ff]">✦</span>
+            </p>
+
+            <div className="mt-9 flex flex-wrap justify-center gap-4">
+              <Link
+                href={productHref}
+                prefetch
+                className="border-b border-white pb-1 text-sm font-semibold text-white transition-opacity hover:opacity-78"
+              >
+                เรียนรู้เพิ่มเติม
+              </Link>
+              <Link
+                href={shopHref}
+                prefetch
+                className="rounded-full border border-white/76 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#11131b]"
+              >
+                ซื้อ
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <Link
+          href={productHref}
+          prefetch
+          aria-label={`ดูรายละเอียด ${product.name}`}
+          className="relative z-0 mx-auto mt-4 block h-[280px] w-[86%] sm:h-[360px] sm:w-[68%] lg:absolute lg:left-[5%] lg:top-1/2 lg:mt-0 lg:h-[56%] lg:w-[38%] lg:-translate-y-1/2 xl:left-[7%] xl:w-[36%]"
+        >
+          <Image
+            src={heroSecondImage}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 86vw, (max-width: 1024px) 68vw, 38vw"
+            quality={100}
+            className="object-contain object-center drop-shadow-[0_32px_70px_rgba(15,18,38,0.45)] lg:object-left-center"
+          />
+        </Link>
+      </div>
+    </section>
   );
 }
