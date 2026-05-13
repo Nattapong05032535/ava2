@@ -40,6 +40,14 @@ const DEFAULT_STORAGE_SELECTION = Object.fromEntries(
   ])
 ) as Record<SupportedProductModelKey, string>;
 
+const SHOP_CARD_IMAGE_SCALE: Record<SupportedProductModelKey, number> = {
+  "promax-p89": 0.9,
+  "promax-p63": 0.94,
+  "note-p65": 0.92,
+  "enjoy-p65": 0.94,
+  "tab-p68": 0.84,
+};
+
 function formatCurrency(value: number) {
   return `฿${value.toLocaleString("th-TH")}`;
 }
@@ -68,7 +76,10 @@ function ProductPurchaseCard({
 
       {/* Image Container */}
       <Link href={detailHref} className="bg-white rounded-xl mt-8 p-4 mb-4 flex items-center justify-center relative min-h-[200px] cursor-pointer group">
-        <div className="relative w-full h-40">
+        <div
+          className="relative h-36 w-[170px] sm:h-40 sm:w-[190px]"
+          style={{ transform: `scale(${SHOP_CARD_IMAGE_SCALE[product.modelKey]})` }}
+        >
           <SmartImage
             src={`/products/${folderName}/1.webp`}
             alt={modelName}

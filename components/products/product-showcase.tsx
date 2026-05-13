@@ -10,6 +10,7 @@ import {
 } from "@/types";
 import { SmartImage } from "@/components/shared";
 import { getProductModelKey } from "@/constants";
+import { AVA_LINEUP } from "@/constants/home";
 import {
   MODEL_FOLDER_MAP,
   SHOWCASE_DETAIL_DESCRIPTIONS,
@@ -288,25 +289,6 @@ function SpotlightHero({ showcase, onScrollTo }: { showcase: ProductShowcase; on
 }
 
 export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase }) {
-  const mappedLineup = showcase.lineup.map((item) => {
-    const itemModelKey = getProductModelKey(item.name);
-    const itemFolderName = MODEL_FOLDER_MAP[itemModelKey] || "P89";
-    const isTablet = itemModelKey === "tab-p68";
-    const productImage = isTablet
-      ? `/products/tab_let/${itemFolderName}.webp`
-      : `/products/smart_phone/${itemFolderName}.webp`;
-
-    return {
-      id: item.documentId,
-      name: item.name,
-      shortName: item.name,
-      tagline: item.subtitle,
-      image: productImage,
-      price: "เริ่มที่ ฿12,900",
-      colors: ["bg-black", "bg-[#f5f5f7]", "bg-[#333]"],
-    };
-  });
-
   const themeStyle = {
     "--showcase-page": showcase.theme.page,
     "--showcase-surface": showcase.theme.surface,
@@ -618,7 +600,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
           </div>
         </section>
 
-        {showcase.lineup.length > 0 && (
+        {AVA_LINEUP.length > 0 && (
           <section className="border-t border-black/6 py-10 lg:py-20 bg-[#fbfbfd]">
             <div className="mx-auto max-w-7xl px-6">
               <div className="mb-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -631,7 +613,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
                   </h2>
                 </div>
                 <Link
-                  href="/products"
+                  href="/shop"
                   className="text-sm font-semibold text-[#0066cc] hover:underline"
                 >
                   ดูสินค้าทั้งหมด
@@ -639,7 +621,7 @@ export function ProductShowcasePage({ showcase }: { showcase: ProductShowcase })
               </div>
 
               <div className="mt-8">
-                <LineupSlider products={mappedLineup} />
+                <LineupSlider products={AVA_LINEUP} />
               </div>
             </div>
           </section>

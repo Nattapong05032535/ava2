@@ -86,7 +86,7 @@ export default function Home() {
                 className="group relative flex min-h-[320px] overflow-hidden bg-[#f6f6f6] px-6 pt-8 text-center transition-transform duration-300 hover:-translate-y-1 sm:min-h-[360px] lg:min-h-[390px]"
               >
                 <div className="relative z-10 w-full">
-                  <h2 className="text-[clamp(1.45rem,2vw,2rem)] font-semibold leading-tight text-black">
+                  <h2 className="whitespace-nowrap text-[clamp(1.15rem,1.45vw,1.55rem)] font-semibold leading-tight text-black">
                     {item.modelName}
                   </h2>
                 </div>
@@ -108,7 +108,7 @@ export default function Home() {
         {/* LINEUP EXPLORATION */}
         <section className="bg-white py-20">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight lg:text-5xl">
+            <h2 className="mb-12 text-left text-3xl font-bold tracking-tight lg:text-5xl">
               เลือกชมกลุ่มผลิตภัณฑ์ของเรา
             </h2>
 
@@ -119,37 +119,37 @@ export default function Home() {
         {/* WHY AVA - FEATURE STRIPS */}
         <section className="bg-[#f5f5f7] py-24">
            <div className="mx-auto max-w-5xl px-6">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-16 tracking-tight">ทำไม AVA ถึงพิเศษเหนือใคร</h2>
+              <h2 className="text-3xl lg:text-5xl font-bold mb-16 tracking-tight">AVA ที่ดีในแบบของตัวเอง</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative border border-black/5 shadow-sm">
-                    <div className="relative z-10">
-                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">อัจฉริยะในทุกอณู</h3>
-                       <p className="text-gray-500 leading-relaxed">ชิปอันทรงพลังที่ออกแบบมาเพื่อประสิทธิภาพสูงสุดและการจัดการพลังงานที่ยอดเยี่ยมในทุกๆ งานของคุณ</p>
+                 <div className="group flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-black/5 bg-white p-10 text-center shadow-sm">
+                    <div>
+                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">ประสิทธิภาพที่พอดีกับชีวิตจริง</h3>
                     </div>
-                    <div className="relative h-48 w-full group-hover:scale-110 transition-transform duration-700">
+                    <div className="relative my-8 h-48 w-full transition-transform duration-700 group-hover:scale-105">
                        <Image
-                         src="/images/products/note-p65.png"
-                         alt="Chips"
+                         src="/Privilege/1.webp"
+                         alt="ประสิทธิภาพที่พอดีกับชีวิตจริง"
                          fill
                          sizes="(max-width: 768px) 100vw, 50vw"
-                         className="object-contain object-bottom"
+                         className="object-contain object-center"
                        />
                     </div>
+                    <p className="mt-auto text-left leading-relaxed text-gray-500">ทำงานได้ลื่นไหล ใช้งานได้นาน และพร้อมรับมือกับสิ่งที่คุณทำในแต่ละวัน โดยไม่จำเป็นต้องเป็นที่สุดของใคร แค่เป็นเครื่องที่ไว้ใจได้ในแบบของคุณ</p>
                  </div>
-                 <div className="bg-white p-10 rounded-3xl h-[400px] flex flex-col justify-between group overflow-hidden relative border border-black/5 shadow-sm">
-                    <div className="relative z-10">
-                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">กล้องถ่ายรูปสเปกโปร</h3>
-                       <p className="text-gray-500 leading-relaxed">บันทึกโลกของคุณด้วยรายละเอียดที่น่าทึ่งผ่านเทคโนโลยีเซ็นเซอร์ที่ทันสมัยและระบบประมวลผลภาพขั้นสูง</p>
+                 <div className="group flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-black/5 bg-white p-10 text-center shadow-sm">
+                    <div>
+                       <h3 className="text-2xl font-bold mb-4 text-[#111111]">เทคโนโลยีที่ส่งเสริมการเรียนรู้</h3>
                     </div>
-                    <div className="relative h-48 w-full group-hover:scale-105 transition-transform duration-700 translate-y-8">
+                    <div className="relative my-8 h-48 w-full transition-transform duration-700 group-hover:scale-105">
                        <Image
-                         src="/images/products/promax-p89.png"
-                         alt="Camera"
+                         src="/Privilege/2.webp"
+                         alt="เทคโนโลยีที่ส่งเสริมการเรียนรู้"
                          fill
                          sizes="(max-width: 768px) 100vw, 50vw"
-                         className="object-contain object-bottom"
+                         className="object-contain object-center"
                        />
                     </div>
+                    <p className="mt-auto text-left leading-relaxed text-gray-500">AVA ออกแบบมาให้เป็นเครื่องมือสำหรับค้นคว้า จดบันทึก เรียนออนไลน์ และสร้างสรรค์ผลงาน เพื่อช่วยให้การศึกษาเข้าถึงง่ายขึ้นสำหรับทุกคน</p>
                  </div>
               </div>
            </div>

@@ -188,13 +188,13 @@ export function LineupSlider({ products }: { products: ProductItem[] }) {
                 prefetch
                 className="group block overflow-hidden rounded-lg bg-[#f6f6f6]"
               >
-                <div className="relative h-[270px] sm:h-[310px] lg:h-[340px]">
+                <div className="relative h-[240px] sm:h-[275px] lg:h-[300px]">
                   <SmartImage
                     src={item.image}
                     alt={item.name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-contain p-8 transition-transform duration-500 group-hover:scale-[1.035] sm:p-10"
+                    className="object-contain p-10 transition-transform duration-500 group-hover:scale-[1.03] sm:p-14 lg:p-16"
                     quality={90}
                   />
                 </div>

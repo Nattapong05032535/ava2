@@ -59,7 +59,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-12">
               <Link
-                href="/products"
+                href="/shop"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition-colors hover:bg-gray-200"
               >
                 สำรวจนวัตกรรมของเรา
@@ -106,4 +106,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

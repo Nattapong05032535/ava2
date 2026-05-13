@@ -26,27 +26,27 @@ export type HomeHeroProductCard = {
 export const HOME_HERO_PRODUCT_CARDS = [
   {
     id: "hero-product-1",
-    modelName: "Pro Max P89",
+    modelName: "Life Pro Max P63",
     image: heroProduct1,
-    href: "/products/promax-p89",
-  },
-  {
-    id: "hero-product-2",
-    modelName: "Pro Max P63",
-    image: heroProduct2,
     href: "/products/promax-p63",
   },
   {
+    id: "hero-product-2",
+    modelName: "Enjoy Series Pro P65",
+    image: heroProduct2,
+    href: "/products/enjoy-p65",
+  },
+  {
     id: "hero-product-3",
-    modelName: "Note Cold P65",
+    modelName: "Life Note cold P65",
     image: heroProduct3,
     href: "/products/note-p65",
   },
   {
     id: "hero-product-4",
-    modelName: "Series Pro P65",
+    modelName: "Life Tab Ultra P68",
     image: heroProduct4,
-    href: "/products/enjoy-p65",
+    href: "/products/tab-p68",
   },
 ] satisfies HomeHeroProductCard[];
 
