@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
-import { LineupSlider } from "@/components/products";
+import { HeroProductCardsSlider, LineupSlider } from "@/components/products";
 import { AVA_LINEUP, HOME_HERO_PRODUCT_CARDS, type HomeProduct } from "@/constants";
 import heroFirstImage from "@/public/main/้hero-first/1.webp";
 import heroSecondImage from "@/public/main/hero-sec/1.webp";
@@ -77,38 +77,8 @@ export default function Home() {
 
         {/* HERO PRODUCT GRID */}
         <section className="bg-white px-4 py-5 sm:px-6 lg:px-8">
-          <div
-            className="mx-auto flex max-w-[90rem] snap-x snap-mandatory gap-4 overflow-x-auto pb-3 no-scrollbar sm:gap-5 xl:grid xl:grid-cols-4 xl:overflow-visible xl:pb-0"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              touchAction: "pan-y pinch-zoom",
-            }}
-          >
-            {HOME_HERO_PRODUCT_CARDS.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                prefetch
-                className="group relative flex min-h-[320px] w-[82vw] shrink-0 snap-start overflow-hidden bg-[#f6f6f6] px-6 pt-8 text-center transition-transform duration-300 hover:-translate-y-1 sm:min-h-[360px] sm:w-[calc(50%-10px)] lg:min-h-[390px] xl:w-auto"
-              >
-                <div className="relative z-10 w-full">
-                  <h2 className="whitespace-nowrap text-[clamp(1.15rem,1.45vw,1.55rem)] font-semibold leading-tight text-black">
-                    {item.modelName}
-                  </h2>
-                </div>
-
-                <div className="absolute inset-x-6 bottom-5 top-[92px] transition-transform duration-500 group-hover:scale-[1.03]">
-                  <Image
-                    src={item.image}
-                    alt={item.modelName}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-contain object-center"
-                  />
-                </div>
-              </Link>
-            ))}
+          <div className="mx-auto max-w-[90rem]">
+            <HeroProductCardsSlider cards={HOME_HERO_PRODUCT_CARDS} />
           </div>
         </section>
 
