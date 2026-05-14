@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
 import { Navbar } from "@/components/layout";
 import { useCart } from "@/contexts/cart-context";
+import type { CartItem } from "@/contexts/cart-context";
 import { useAuth } from "@/contexts/auth-context";
 import { PAYMENT_METHODS } from "@/constants";
+import { getRearFrontProductImageSrc } from "@/constants/products";
 
 export default function CartPage() {
   const router = useRouter();
@@ -22,6 +25,15 @@ export default function CartPage() {
   const [selectedPayment, setSelectedPayment] = useState("stripe");
   const vat = subtotal * 0.07;
   const grandTotal = subtotal; 
+
+  const handleDecreaseQuantity = (item: CartItem) => {
+    if (item.quantity <= 1) {
+      removeFromCart(item.id);
+      return;
+    }
+
+    updateQuantity(item.id, -1);
+  };
 
   if (!isMounted) {
     return (
@@ -77,8 +89,8 @@ export default function CartPage() {
                   <div key={item.id} className="flex flex-col sm:flex-row gap-6 pb-8 border-b border-gray-200 last:border-0">
                     <div className="relative h-40 w-40 shrink-0 bg-[#f5f5f7] rounded-2xl overflow-hidden flex items-center justify-center">
                       <Image
-                        src={item.image}
-                        alt={item.name}
+                        src={getRearFrontProductImageSrc(item)}
+                        alt={`${item.name} ${item.color}`}
                         fill
                         className="object-contain p-4"
                       />
@@ -91,8 +103,9 @@ export default function CartPage() {
                         
                         <div className="flex items-center gap-3">
                            <button 
-                             onClick={() => updateQuantity(item.id, -1)}
+                             onClick={() => handleDecreaseQuantity(item)}
                              className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 transition-colors hover:border-gray-900"
+                             aria-label={`ลดจำนวน ${item.name}`}
                            >
                              －
                            </button>
@@ -100,6 +113,7 @@ export default function CartPage() {
                            <button 
                              onClick={() => updateQuantity(item.id, 1)}
                              className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 transition-colors hover:border-gray-900"
+                             aria-label={`เพิ่มจำนวน ${item.name}`}
                            >
                              ＋
                            </button>
@@ -110,9 +124,10 @@ export default function CartPage() {
                         <p className="text-xl font-semibold">฿{(item.priceValue * item.quantity).toLocaleString()}</p>
                         <button 
                           onClick={() => removeFromCart(item.id)}
-                          className="text-sm text-[#0071e3] font-medium hover:underline mt-2"
+                          className="mt-2 flex h-9 w-9 items-center justify-center rounded-full text-[#0071e3] transition-colors hover:bg-[#0071e3]/10 hover:text-[#005bb5]"
+                          aria-label={`ลบ ${item.name} ออกจากตะกร้า`}
                         >
-                          ลบออก
+                          <Trash2 className="h-4.5 w-4.5" strokeWidth={1.8} />
                         </button>
                       </div>
                     </div>

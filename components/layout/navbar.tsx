@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/contexts/cart-context";
 import { useAuth } from "@/contexts/auth-context";
-import { ShoppingBag, Search, Menu, X, User, ChevronDown, LogOut } from "lucide-react";
+import { ShoppingBag, Search, Menu, X, User, ChevronDown, Store } from "lucide-react";
 
 import { NAV_CATEGORIES } from "@/constants";
 
@@ -102,6 +102,18 @@ export function Navbar() {
             >
               <Search className="h-[18px] w-[18px]" strokeWidth={1.8} />
             </button>
+
+            <Link
+              href="/shop"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden ${
+                isHeroNavbar
+                  ? "text-white hover:bg-white/12"
+                  : "text-[#333] hover:bg-black/5"
+              }`}
+              aria-label="ไปหน้าช็อป"
+            >
+              <Store className="h-[18px] w-[18px]" strokeWidth={1.8} />
+            </Link>
 
             <Link
               href="/cart"

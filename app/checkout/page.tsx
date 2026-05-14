@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout";
 import { useCart } from "@/contexts/cart-context";
+import type { CartItem } from "@/contexts/cart-context";
+import { getRearFrontProductImageSrc } from "@/constants/products";
 import { CheckCircle2, Package, Truck, ArrowLeft } from "lucide-react";
 
 interface CustomerData {
@@ -12,17 +14,6 @@ interface CustomerData {
   phone: string;
   address: string;
   note?: string;
-}
-
-interface CartItem {
-  id: string;
-  productId: string;
-  name: string;
-  image: string;
-  color: string;
-  storage: string;
-  priceValue: number;
-  quantity: number;
 }
 
 interface OrderInfo {
@@ -236,7 +227,13 @@ export default function CheckoutPage() {
                   {items.map((item) => (
                     <div key={item.id} className="flex gap-4 items-center">
                       <div className="h-16 w-16 bg-[#f5f5f7] rounded-xl overflow-hidden shrink-0 flex items-center justify-center">
-                         <Image src={item.image} alt={item.name} width={40} height={40} className="object-contain" />
+                         <Image
+                           src={getRearFrontProductImageSrc(item)}
+                           alt={`${item.name} ${item.color}`}
+                           width={40}
+                           height={40}
+                           className="object-contain"
+                         />
                       </div>
                       <div className="flex-1 min-w-0">
                          <p className="text-sm font-semibold text-[#1d1d1f] truncate">{item.name}</p>
