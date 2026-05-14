@@ -6,9 +6,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/contexts/cart-context";
 import { useAuth } from "@/contexts/auth-context";
-import { ShoppingBag, Search, Menu, X, User, ChevronDown, Store } from "lucide-react";
+import { ShoppingBag, Search, Menu, X, User, ChevronDown, Store, Settings } from "lucide-react";
 
 import { NAV_CATEGORIES } from "@/constants";
+import { canAccessBackOffice } from "@/constants/user";
 
 
 
@@ -127,6 +128,20 @@ export function Navbar() {
               <ShoppingBag className="h-[18px] w-[18px]" strokeWidth={1.8} />
               <CartBadge />
             </Link>
+
+            {mounted && canAccessBackOffice(currentUser?.role) && (
+              <Link
+                href="/admin"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                  isHeroNavbar
+                    ? "text-white hover:bg-white/12"
+                    : "text-[#333] hover:bg-black/5"
+                }`}
+                aria-label="เปิดหลังบ้าน"
+              >
+                <Settings className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              </Link>
+            )}
 
             {mounted && (
               <div className="relative">

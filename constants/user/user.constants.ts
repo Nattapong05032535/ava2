@@ -53,3 +53,7 @@ export const MOCK_USERS: MockUser[] = [
     roleLabel: "ผู้บริหาร",
   },
 ];
+
+export function canAccessBackOffice(role?: UserRole): boolean {
+  return role === "admin" || role === "manager";
+}

@@ -77,13 +77,20 @@ export default function Home() {
 
         {/* HERO PRODUCT GRID */}
         <section className="bg-white px-4 py-5 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-[90rem] grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div
+            className="mx-auto flex max-w-[90rem] snap-x snap-mandatory gap-4 overflow-x-auto pb-3 no-scrollbar sm:gap-5 xl:grid xl:grid-cols-4 xl:overflow-visible xl:pb-0"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              touchAction: "pan-y pinch-zoom",
+            }}
+          >
             {HOME_HERO_PRODUCT_CARDS.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
                 prefetch
-                className="group relative flex min-h-[320px] overflow-hidden bg-[#f6f6f6] px-6 pt-8 text-center transition-transform duration-300 hover:-translate-y-1 sm:min-h-[360px] lg:min-h-[390px]"
+                className="group relative flex min-h-[320px] w-[82vw] shrink-0 snap-start overflow-hidden bg-[#f6f6f6] px-6 pt-8 text-center transition-transform duration-300 hover:-translate-y-1 sm:min-h-[360px] sm:w-[calc(50%-10px)] lg:min-h-[390px] xl:w-auto"
               >
                 <div className="relative z-10 w-full">
                   <h2 className="whitespace-nowrap text-[clamp(1.15rem,1.45vw,1.55rem)] font-semibold leading-tight text-black">
